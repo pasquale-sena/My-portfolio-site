@@ -1,9 +1,7 @@
-/* --- GLOBAL STYLES & COLOR PALETTE --- */
+/* --- GLOBAL STYLES --- */
 :root {
     --color-neutral-light: #f4f2ef; 
     --color-neutral-dark: #333333;
-    --color-muted-blue: #5F9EA0; 
-    --color-muted-brown: #C87462; 
     --color-accent: #E98A15; /* Burnt Sienna */
     --font-primary: sans-serif;
 }
@@ -16,100 +14,109 @@ body {
     color: var(--color-neutral-dark);
     line-height: 1.6;
     overflow-x: hidden;
-    perspective: 1px; /* Helps with 3D context */
 }
 
-/* --- HERO & PARALLAX --- */
+/* --- HERO SECTION (THE STACK) --- */
 .hero-container {
-    height: 100vh;
-    overflow: hidden; 
+    /* Changed to min-height so it can grow if text is long */
+    min-height: 100vh; 
     position: relative;
     display: flex;
-    align-items: center; /* Vertical Center for Text */
+    flex-direction: column; /* STACKS items vertically */
+    align-items: center;
     justify-content: center;
+    padding: 40px 20px;
+}
+
+/* 1. Text Styles */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
     text-align: center;
+    margin-bottom: 20px; /* Space between text and graphic */
+}
+
+.hero-title { font-size: 3rem; color: var(--color-accent); margin-bottom: 0.5rem; }
+.hero-subtitle { font-size: 1.2rem; margin-bottom: 1.5rem; color: #555; }
+
+.about-hero-blurb {
+    background: rgba(255,255,255,0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* 2. The Graphic Stage (Smaller Container) */
+.graphic-stage {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Limits width so it doesn't get too huge */
+    height: 400px;    /* Sets the "Half Size" height you wanted */
+    margin-bottom: 30px; /* Space between graphic and buttons */
+    
+    /* Keeps the layers inside this box */
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
 }
 
 .parallax-layer {
     position: absolute;
-    /* We make the height > 100% so when it moves up, it doesn't show a gap at the bottom */
-    height: 115%; 
+    top: 0; left: 0;
     width: 100%;
-    top: 0;
-    left: 0;
-    
-    /* CARTOON SPECIFIC SETTINGS */
-    background-size: contain; /* Keeps the illustration proportions perfect */
+    height: 100%;
+    background-size: contain; /* Ensures the image fits in the box */
     background-repeat: no-repeat;
-    background-position: center bottom; /* Anchors image to the bottom */
-    
-    will-change: transform; /* Optimization for smoother motion */
+    background-position: center bottom; /* Sits character on the 'floor' */
+    will-change: transform;
 }
 
-/* --- LAYER INDEXING --- */
-.parallax-bg { z-index: 1; } /* Green Circle */
-.parallax-mid { z-index: 2; } /* Dots */
-.parallax-fg { z-index: 3; } /* You/Table/Cat */
+/* Layer Z-Indexes */
+.parallax-bg { z-index: 1; } 
+.parallax-mid { z-index: 2; } 
+.parallax-fg { z-index: 3; }
 
-/* --- CONTENT --- */
-.hero-content {
-    position: relative;
-    z-index: 10; /* Text sits on top of everything */
-    padding: 20px;
-    max-width: 900px;
-    margin-top: -10vh; /* Slight nudge up so text isn't covering your face */
+/* 3. Button Styles */
+.nav-buttons-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows buttons to stack on mobile */
+    z-index: 10;
 }
-
-.hero-title { font-size: 3.5rem; color: var(--color-accent); margin-bottom: 0.5rem; opacity: 0; transform: translateY(20px); transition: opacity 1s, transform 1s; }
-.hero-subtitle { font-size: 1.5rem; margin-bottom: 1.5rem; opacity: 0; transform: translateY(20px); transition: opacity 1s 0.5s, transform 1s 0.5s; }
-
-/* About Blurb */
-.about-hero-blurb {
-    max-width: 700px;
-    margin: 0 auto 30px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.6); /* More transparent to see graphic */
-    backdrop-filter: blur(5px); /* Blurs the graphic behind the text slightly */
-    border-radius: 8px;
-    opacity: 0;
-    transition: opacity 1s 1.5s;
-}
-.about-hero-blurb.is-visible { opacity: 1; }
-
-/* --- NAV BUTTONS --- */
-.nav-buttons-container { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
 
 .button-wrapper {
     position: relative;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
-    opacity: 0; 
-    transform: scale(0.9);
-    transition: opacity 0.8s, transform 0.8s;
-    width: 200px; /* Set width for better button shape */
-    height: 60px;
+    width: 180px;
+    height: 50px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    /* Initial State for Animation */
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
 }
-.button-wrapper.is-visible { opacity: 1; transform: scale(1); }
+.button-wrapper.is-visible { opacity: 1; transform: translateY(0); }
 
 .blur-tease {
     width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1;
-    filter: blur(5px);
+    filter: blur(4px);
 }
 
 .nav-button {
     position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;
     width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.4);
     color: var(--color-neutral-dark); font-weight: bold; text-decoration: none;
-    backdrop-filter: blur(4px);
+    font-size: 0.9rem;
+    backdrop-filter: blur(2px);
     transition: background 0.3s;
 }
 .nav-button:hover { background: var(--color-accent); color: white; }
-
-/* Focus Button Style */
 .focus-button .nav-button { background: var(--color-accent); color: white; }
 
 /* --- SECTIONS --- */
-main { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
-.project-section, #contact { min-height: 50vh; margin-bottom: 100px; padding: 40px; opacity: 0; transform: translateY(50px); transition: 0.6s; }
-.section-reveal.is-visible { opacity: 1; transform: translateY(0); }
+main { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+.project-section { min-height: 60vh; margin-bottom: 50px; padding-top: 20px; }
+h3 { color: var(--color-accent); font-size: 2rem; margin-bottom: 10px; }
