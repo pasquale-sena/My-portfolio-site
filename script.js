@@ -5,16 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const aboutBlurb = document.querySelector('.about-hero-blurb');
     const navButtons = document.querySelectorAll('.dissolve-in');
 
+    // Reveal Title
     setTimeout(() => {
         heroTitle.style.opacity = 1;
         heroTitle.style.transform = 'translateY(0)';
     }, 500);
 
+    // Reveal Subtitle
     setTimeout(() => {
         heroSubtitle.style.opacity = 1;
         heroSubtitle.style.transform = 'translateY(0)';
     }, 1000);
 
+    // Reveal About Blurb
     setTimeout(() => {
         aboutBlurb.classList.add('is-visible');
     }, 1500);
@@ -32,12 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const fg = document.querySelector('.parallax-fg');
 
     window.addEventListener('scroll', () => {
+        // Use the vertical scroll position of the entire window
         const scrollY = window.scrollY;
 
-        // Adjust the multipliers to control speed
-        bg.style.transform = `translateY(${scrollY * 0.4}px)`; 
-        mid.style.transform = `translateY(${scrollY * 0.7}px)`; 
-        fg.style.transform = `translateY(${scrollY * 1.0}px)`; // Foreground moves fastest
+        // **FIXED:** Layers now move using negative multipliers (-X)
+        // This ensures they move UP as the user scrolls DOWN, creating the depth illusion.
+        // Adjust the absolute value (0.4, 0.7, 1.0) to control speed differential.
+        bg.style.transform = `translateY(${scrollY * -0.4}px)`; 
+        mid.style.transform = `translateY(${scrollY * -0.7}px)`; 
+        fg.style.transform = `translateY(${scrollY * -1.0}px)`; 
     });
 
     // 3. Smooth Scroll for Navigation Buttons
