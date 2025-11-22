@@ -18,14 +18,13 @@ body {
 
 /* --- HERO SECTION (THE STACK) --- */
 .hero-container {
-    /* Changed to min-height so it can grow if text is long */
     min-height: 100vh; 
     position: relative;
     display: flex;
     flex-direction: column; /* STACKS items vertically */
     align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
+    justify-content: flex-start; /* Starts from top */
+    padding-top: 60px; /* Space at the very top */
 }
 
 /* 1. Text Styles */
@@ -34,7 +33,8 @@ body {
     z-index: 10;
     max-width: 800px;
     text-align: center;
-    margin-bottom: 20px; /* Space between text and graphic */
+    padding: 0 20px;
+    margin-bottom: 40px; /* Push buttons down */
 }
 
 .hero-title { font-size: 3rem; color: var(--color-accent); margin-bottom: 0.5rem; }
@@ -47,43 +47,14 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* 2. The Graphic Stage (Smaller Container) */
-.graphic-stage {
-    position: relative;
-    width: 100%;
-    max-width: 600px; /* Limits width so it doesn't get too huge */
-    height: 400px;    /* Sets the "Half Size" height you wanted */
-    margin-bottom: 30px; /* Space between graphic and buttons */
-    
-    /* Keeps the layers inside this box */
-    overflow: hidden; 
-    display: flex;
-    justify-content: center;
-}
-
-.parallax-layer {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: contain; /* Ensures the image fits in the box */
-    background-repeat: no-repeat;
-    background-position: center bottom; /* Sits character on the 'floor' */
-    will-change: transform;
-}
-
-/* Layer Z-Indexes */
-.parallax-bg { z-index: 1; } 
-.parallax-mid { z-index: 2; } 
-.parallax-fg { z-index: 3; }
-
-/* 3. Button Styles */
+/* 2. Button Styles (Now in Middle) */
 .nav-buttons-container {
     display: flex;
     gap: 15px;
     justify-content: center;
-    flex-wrap: wrap; /* Allows buttons to stack on mobile */
+    flex-wrap: wrap;
     z-index: 10;
+    margin-bottom: 40px; /* Push Graphic down */
 }
 
 .button-wrapper {
@@ -93,7 +64,6 @@ body {
     width: 180px;
     height: 50px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    /* Initial State for Animation */
     opacity: 0; transform: translateY(20px);
     transition: opacity 0.5s, transform 0.5s;
 }
@@ -115,6 +85,34 @@ body {
 }
 .nav-button:hover { background: var(--color-accent); color: white; }
 .focus-button .nav-button { background: var(--color-accent); color: white; }
+
+/* 3. The Graphic Stage (Now at Bottom) */
+.graphic-stage {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* Slightly smaller to fit nicely */
+    height: 350px;    
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+    /* No margin bottom, sits on the "floor" of the hero section */
+}
+
+.parallax-layer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center bottom; 
+    will-change: transform;
+}
+
+.parallax-bg { z-index: 1; } 
+.parallax-mid { z-index: 2; } 
+.parallax-fg { z-index: 3; }
+
 
 /* --- SECTIONS --- */
 main { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
