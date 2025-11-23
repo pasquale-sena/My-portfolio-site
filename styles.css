@@ -7,9 +7,11 @@
     
     /* NEON ACCENTS */
     --color-cyan: #00dbde;
-    --color-purple: #9f40ff;
-    /* A gradient used for specific text effects or glows */
-    --accent-gradient: linear-gradient(90deg, var(--color-cyan), var(--color-purple));
+    /* NEW: Brighter neon pink/magenta for punchier gradients */
+    --color-neon-pink: #ff56f6;
+    
+    /* NEW: Brighter gradient for titles */
+    --bright-neon-gradient: linear-gradient(90deg, var(--color-cyan), var(--color-neon-pink));
     
     /* Futuristic Glass Variables */
     --glass-border: rgba(255, 255, 255, 0.15); 
@@ -47,19 +49,17 @@ body::before {
 }
 
 /* --- BACKGROUND EFFECT 2: SUBTLE TECH GRID --- */
-/* NEW: Adds a futuristic grid layer over the background */
 body::after {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none;
-    z-index: 0; /* Sits with the orbs */
-    opacity: 0.15; /* Very subtle */
+    z-index: 0; 
+    opacity: 0.15; 
     background-image:
         linear-gradient(rgba(0, 219, 222, 0.2) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 219, 222, 0.2) 1px, transparent 1px);
     background-size: 50px 50px;
-    /* Fade out the grid towards the edges so it's not distracting */
     mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
 }
@@ -189,42 +189,50 @@ body::after {
 .section-reveal.is-visible { opacity: 1; transform: translateY(0); }
 .section-header { margin-bottom: 30px; }
 
-/* UPDATED: BRIGHTER SECTION TITLES */
+/* UPDATED: BRIGHTER NEON GRADIENT TITLES */
 h3 { 
     font-size: 2.5rem; margin-bottom: 15px; 
-    /* Changed from gradient to solid bright cyan for better contrast */
-    color: var(--color-cyan);
-    text-shadow: 0 0 15px rgba(0, 219, 222, 0.4); /* Added a glow to make it pop */
     display: inline-block;
+    
+    /* Use the new brighter gradient */
+    background: var(--bright-neon-gradient);
+    
+    /* Standard and Webkit properties for gradient text fill */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Fallback */
+    
+    /* Drop-shadow filter creates the neon glow effect on gradient text */
+    filter: drop-shadow(0 0 10px rgba(0, 219, 222, 0.5));
 }
 .section-focus { font-size: 1.2rem; color: #b4b4c8; font-weight: 300; }
 
-/* UPDATED: TECH LABEL WITH GLOWING UNDERLINE */
+/* TECH LABEL WITH GLOWING UNDERLINE */
 .section-label {
     font-size: 0.9rem;
     font-weight: 800;
     letter-spacing: 2px;
     color: var(--color-cyan);
-    margin-bottom: 35px; /* Increased spacing */
+    margin-bottom: 35px; 
     text-transform: uppercase;
     opacity: 0.9;
     text-align: center;
     width: 100%;
     max-width: 700px;
-    position: relative; /* Needed for the pseudo-element */
+    position: relative; 
 }
 
-/* NEW: Glowing underline for the label */
 .section-label::after {
     content: '';
     position: absolute;
     left: 50%;
-    bottom: -10px; /* Position below text */
-    width: 60px; /* Short line */
+    bottom: -10px; 
+    width: 60px; 
     height: 3px;
     background: var(--color-cyan);
-    transform: translateX(-50%); /* Center the line */
-    box-shadow: 0 0 10px var(--color-cyan); /* Neon glow */
+    transform: translateX(-50%); 
+    box-shadow: 0 0 10px var(--color-cyan);
     border-radius: 2px;
 }
 
@@ -234,7 +242,7 @@ h3 {
     gap: 40px; justify-content: center; 
 }
 
-/* "FUTURISTIC" CARD STYLE */
+/* "FUTURISTIC" CARD STYLE (Permanent Neon Highlight) */
 .project-card {
     background: var(--glass-bg);
     border-radius: 24px;
@@ -242,7 +250,6 @@ h3 {
     transition: all 0.4s ease;
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     max-width: 550px;
-    /* Permanent neon highlight */
     border: 1px solid var(--color-cyan);
     box-shadow: var(--card-hover-glow);
 }
@@ -254,24 +261,22 @@ h3 {
 .card-image { 
     height: 220px; width: 100%; overflow: hidden; 
     border-bottom: 1px solid rgba(0, 219, 222, 0.2);
-    position: relative; /* Needed for the grid overlay */
+    position: relative; 
 }
 
-/* NEW: TECH GRID OVERLAY ON HOVER */
+/* TECH GRID OVERLAY ON HOVER */
 .card-image::after {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* Create a tech grid pattern */
     background-image:
         linear-gradient(rgba(0, 219, 222, 0.15) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 219, 222, 0.15) 1px, transparent 1px);
     background-size: 20px 20px;
-    opacity: 0; /* Hidden by default */
+    opacity: 0; 
     transition: opacity 0.4s ease;
-    pointer-events: none; /* Let clicks pass through */
+    pointer-events: none; 
 }
-/* Show grid on hover */
 .project-card:hover .card-image::after {
     opacity: 1;
 }
