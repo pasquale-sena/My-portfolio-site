@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
                     entry.target.classList.add('is-visible');
-                    // Ensure styles apply
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
                 }, index * 100); 
@@ -20,15 +19,21 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => observerReveal.observe(el));
 
 
-    // 2. PARALLAX LOGIC (Only runs if element is visible)
-    const tallBg = document.querySelector('.parallax-tall-bg');
+    // 2. PARALLAX LOGIC (Left Sidebar - 3 Layers)
+    const bg = document.querySelector('.parallax-bg');
+    const mid = document.querySelector('.parallax-mid');
+    const fg = document.querySelector('.parallax-fg');
 
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
         
-        // This check ensures no errors on mobile when element is hidden
-        if (tallBg && tallBg.offsetParent !== null) {
-            tallBg.style.transform = `translateY(${scrollY * -0.5}px)`;
+        // Only run parallax on desktop (where sidebar is visible)
+        if (window.innerWidth > 900) {
+            // Use negative values to move layers UP as you scroll DOWN
+            // Speeds are subtle for long scrolling
+            if(bg) bg.style.transform = `translateY(${scrollY * -0.05}px)`; // Slowest
+            if(mid) mid.style.transform = `translateY(${scrollY * -0.1}px)`;
+            if(fg) fg.style.transform = `translateY(${scrollY * -0.15}px)`; // Fastest
         }
     });
 
