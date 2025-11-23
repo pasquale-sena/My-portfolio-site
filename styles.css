@@ -98,17 +98,17 @@ body::after {
 } 
 .parallax-fg { z-index: 3; }
 
-/* MODIFIED: Changed height to 100vh to constrain image size to the visible window height */
+/* MODIFIED: Reset height to 100% of parent and removed padding-bottom */
 .sidebar-content-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; 
-    padding-bottom: 50px; /* Add some space above the button */
+    height: 100%; 
+    padding-bottom: 0; 
 }
 
-/* MODIFIED: Added drop-shadow filter */
+/* MODIFIED: Increased margin-top on the button to separate it from the GIF */
 .sidebar-char-img {
     width: 100%; /* Now tries to fill its container more */
     height: auto;
@@ -388,7 +388,7 @@ h3 {
 
 /* --- FIX FOR SIDEBAR BUTTON --- */
 .tech-btn.sidebar-btn {
-    margin-top: 12px;
+    margin-top: 25px; /* MODIFIED: Increased margin to ensure separation and visibility */
     background: var(--super-neon-gradient) !important; 
     color: #000000 !important; 
     border: none;
