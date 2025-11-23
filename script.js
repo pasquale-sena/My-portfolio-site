@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // 3. Smooth Scroll (unchanged)
+    // 3. Smooth Scroll (FIXED: Added block: 'center' to center the element)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -117,7 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(targetId);
             if (target) {
                 e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth' });
+                // Changed scroll alignment from default 'top' to 'center'
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         });
     });
