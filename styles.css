@@ -567,6 +567,8 @@ h3 {
 .skill-card ul li {
     margin-bottom: 12px;
     color: #b4b4c8;
+    /* This generic rule is likely where the conflict comes from. */
+    /* Since we're fixing the specific .meta-list below, we leave this. */
     display: flex;
     align-items: center;
 }
@@ -578,70 +580,74 @@ h3 {
     font-size: 1.2rem;
 }
 
+/* ========================================= */
 /* --- ADDIE LIST STRUCTURE FIXES (Separating Label/Content) --- */
+/*
+    ISSUE FIX: Increased specificity for .meta-list li to override
+    the earlier .skill-card ul li display: flex rule, which was preventing
+    the meta-label and meta-content divs from stacking.
+*/
 .meta-list {
-    list-style: none; 
-    padding-left: 0; 
-    margin-top: 15px; 
+    list-style: none; 
+    padding-left: 0; 
+    margin-top: 15px; 
 }
 
-.meta-list li {
-    /* Ensures stacking of label/content */
-    display: block !important; 
-    list-style: none;
-    position: relative;
-    
-    /* Added indentation and spacing for the bullet to appear correctly */
-    padding-left: 25px; 
-    padding-bottom: 25px; 
-    margin-bottom: 25px; 
-    padding-top: 5px; 
+/* Use higher specificity to ensure display: block wins without !important */
+.skill-card .meta-list li {
+    /* Ensures stacking of label/content (overrides display: flex from above) */
+    display: block; 
+    list-style: none;
+    position: relative;
+    
+    /* Indentation and spacing */
+    padding-left: 25px; 
+    padding-bottom: 25px; 
+    margin-bottom: 25px; 
+    padding-top: 5px; 
     border-bottom: none;
 }
 
 /* Ensure bullet is displayed and positioned correctly */
-.meta-list li::before {
-    content: '▹'; /* Re-adding the bullet point */
-    color: var(--color-neon-pink);
+.skill-card .meta-list li::before {
+    content: '▹'; /* Re-adding the bullet point */
+    color: var(--color-neon-pink);
     position: absolute;
     left: 0;
     top: 5px; /* Aligns with the title line */
-    margin-right: 0;
+    margin-right: 0;
 }
 
 /* Label (The Title - e.g., Target Audience) */
-.meta-list .meta-label {
-    /* FIX: Ensure the label always takes up full width for stacking */
-    display: block; 
-    margin-bottom: 8px; /* Space between title and description */
-    color: var(--color-cyan); 
-    font-weight: 700;
-    text-transform: uppercase;
-    line-height: 1.2;
+.skill-card .meta-list .meta-label {
+    /* Ensure the label always takes up full width for stacking */
+    display: block; 
+    margin-bottom: 8px; /* Space between title and description */
+    color: var(--color-cyan); 
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
 }
 
 /* Content (The Description - Line 2) */
-.meta-list .meta-content {
-    /* FIX: Ensure the content always takes up full width for stacking */
+.skill-card .meta-list .meta-content {
+    /* Ensure the content always takes up full width for stacking */
     display: block; 
-    padding-left: 0;
-    font-weight: 400;
-    line-height: 1.6; /* Slightly more space */
-    color: #b4b4c8;
-}
-
-/* Content (The Description - Line 2) - This was a redundant rule in the previous version, removing the unnecessary rule to clean up. */
-.meta-list li:not(:last-child)::after {
-    content: none; 
+    padding-left: 0;
+    font-weight: 400;
+    line-height: 1.6; /* Slightly more space */
+    color: #b4b4c8;
 }
 
 /* Remove extra spacing from the last item */
-.meta-list li:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    padding-top: 0;
+.skill-card .meta-list li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0;
 }
 /* --- END ADDIE LIST STRUCTURE FIXES --- */
+/* ========================================= */
+
 
 /* --- VIDEO PLAYER STYLES (Unchanged) --- */
 .video-wrapper-glass {
