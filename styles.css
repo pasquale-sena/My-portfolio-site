@@ -99,7 +99,7 @@ body::after {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* FIX: Changed from 100% to 300vh to match the parallax-layer height */
+    /* FIX from previous step: keeps height at 300vh for parallax */
     height: 300vh; 
 }
 
@@ -110,18 +110,27 @@ body::after {
     object-fit: contain;
 }
 
+/* --- UPDATED SIDEBAR BUTTON --- */
 .sidebar-btn {
     margin-top: 25px;
-    border-color: var(--color-cyan);
-    color: var(--color-cyan);
-    background: rgba(85, 255, 255, 0.1);
+    /* Use the super neon gradient fill */
+    background: var(--super-neon-gradient);
+    /* Dark text for contrast against bright gradient */
+    color: #0a041c;
+    border: none; /* Removed border for cleaner fill look */
     padding: 12px 35px;
     font-size: 1rem;
+    font-weight: 800; /* Bolder text */
+    /* Multi-color neon glow based on gradient colors */
+    box-shadow: 0 0 20px rgba(85, 255, 255, 0.4), 0 0 40px rgba(255, 119, 255, 0.4);
+    transition: all 0.3s ease;
 }
 .sidebar-btn:hover {
-    background: var(--color-cyan);
+    /* On hover, intensify the glow and slightly lift */
+    filter: brightness(1.1);
+    box-shadow: 0 0 30px rgba(85, 255, 255, 0.7), 0 0 60px rgba(255, 119, 255, 0.7);
+    transform: translateY(-3px);
     color: #0a041c;
-    box-shadow: 0 0 30px rgba(85, 255, 255, 0.6);
 }
 
 
