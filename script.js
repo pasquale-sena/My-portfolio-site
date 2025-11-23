@@ -30,22 +30,33 @@ function animateTyping() {
 
         // 2. SEQUENCE THE REVEAL OF NEXT ELEMENTS
         
-        // Target: About Glass, Section Label, and all Navigation Buttons
-        const elementsToReveal = document.querySelectorAll(
-            '.about-glass.reveal-text, ' + 
-            '.section-label.reveal-text, ' + 
-            '.glass-btn-wrapper.dissolve-in'
-        );
+        // --- PHASE 1: Reveal About Me Summary (.about-glass) immediately ---
+        const aboutGlass = document.querySelector('.about-glass.reveal-text');
+        if (aboutGlass) {
+            aboutGlass.classList.add('is-visible');
+        }
 
-        elementsToReveal.forEach((el, index) => {
-            // Apply a staggered delay to the subsequent elements
-            // (e.g., 50ms delay after typing finishes, plus 100ms per element)
-            const delay = 50 + (index * 100); 
-            
-            setTimeout(() => {
-                el.classList.add('is-visible');
-            }, delay);
-        });
+        // --- PHASE 2: Wait for Phase 1 (0.7s) before revealing the rest ---
+        // (The CSS transition for .reveal-text is 0.6s, so we wait 700ms)
+        const secondaryRevealDelay = 700; 
+
+        setTimeout(() => {
+            // Target: Section Label and all Navigation Buttons
+            const elementsToReveal = document.querySelectorAll(
+                '.section-label.reveal-text, ' + 
+                '.glass-btn-wrapper.dissolve-in'
+            );
+
+            elementsToReveal.forEach((el, index) => {
+                // Apply a staggered delay to the subsequent elements
+                // (100ms per element)
+                const delay = index * 100; 
+                
+                setTimeout(() => {
+                    el.classList.add('is-visible');
+                }, delay);
+            });
+        }, secondaryRevealDelay);
     }
 
     function step(timestamp) {
@@ -90,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Reveal Animations
     // NOTE: revealElements selection is now ONLY for sections below the hero.
-    // The hero elements (.about-glass, .section-label, .dissolve-in) are handled by animateTyping().
+    // The hero elements are handled sequentially by animateTyping().
     const revealElements = document.querySelectorAll('.section-reveal');
     
     const observerReveal = new IntersectionObserver((entries) => {
