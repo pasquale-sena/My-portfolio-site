@@ -542,10 +542,11 @@ h3 {
     list-style: none;
     padding-left: 10px; /* Indent for the list marker */
     
-    /* ADDED: Visual Separation */
-    border-bottom: 1px dashed rgba(85, 255, 255, 0.1);
-    padding-bottom: 12px;
-    margin-bottom: 12px; 
+    /* FIX 1: Increased Visibility & Padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 18px; /* Increased vertical spacing */
+    margin-bottom: 18px; 
+    padding-top: 5px; /* Added slight top padding */
 }
 
 /* Custom Bullet Point Styling */
@@ -563,13 +564,14 @@ h3 {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
+    padding-top: 0;
 }
 
 /* Label (The Title - e.g., Target Audience) */
 .meta-list .meta-label {
     /* Forces the label to its own line */
     display: block; 
-    margin-bottom: 3px; 
+    margin-bottom: 5px; /* Increased spacing between label and description */
     color: var(--color-cyan);
     font-weight: 700;
     text-transform: uppercase;
