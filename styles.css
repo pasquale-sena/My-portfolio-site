@@ -219,16 +219,29 @@ body::after {
 .section-header { margin-bottom: 30px; }
 
 /* UPDATED: BRIGHTER GRADIENT, NO GLOW FILTER */
+/* UPDATED: Brighter, Glowing Headlines */
 h3 { 
-    font-size: 2.5rem; margin-bottom: 15px; 
+    font-size: 2.5rem; 
+    margin-bottom: 15px; 
     display: inline-block;
-    /* Use the new super bright gradient */
-    background: var(--super-neon-gradient);
+    
+    /* 1. We add a White start point to force high brightness */
+    background: linear-gradient(90deg, #ffffff 0%, var(--color-cyan) 40%, var(--color-neon-pink) 100%);
+    
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-    /* FILTER REMOVED */
+    
+    /* 2. IMPORTANT: Use filter: drop-shadow instead of text-shadow for clipped text */
+    /* This creates the "bloom" effect making it look like a light source */
+    filter: drop-shadow(0 0 8px rgba(85, 255, 255, 0.5));
+    
+    /* 3. Thicker weight to fight the "dark edge" anti-aliasing */
+    font-weight: 800;
+    
+    /* Ensure the gradient stretches correctly */
+    width: fit-content; 
 }
 .section-focus { font-size: 1.2rem; color: #b4b4c8; font-weight: 300; }
 
