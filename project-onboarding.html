@@ -8,36 +8,41 @@
     
     <style>
         .meta-list li {
-            /* Now treats each point as its own block */
             display: block; 
             list-style: none;
             margin-bottom: 15px; 
-            padding-left: 10px; /* Indent for the list marker */
+            padding-left: 10px;
         }
-        /* Style the custom bullet point */
         .meta-list li::before {
             content: '▹';
             color: var(--color-neon-pink);
             margin-right: 8px;
             font-size: 1.2rem;
             display: inline-block;
-            margin-left: -18px; /* Pull the bullet point outside the padding */
+            margin-left: -18px; 
+        }
+
+        .meta-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            padding-top: 0;
         }
 
         .meta-list .meta-label {
-            /* Forces the label to its own line */
             display: block; 
-            margin-bottom: 3px; 
+            margin-bottom: 5px; 
             color: var(--color-cyan);
             font-weight: 700;
             text-transform: uppercase;
         }
         .meta-list .meta-content {
-            /* Ensures the content flows naturally below the label */
             display: block;
             padding-left: 0;
+            font-weight: 400;
+            line-height: 1.4;
+            color: #b4b4c8;
         }
-        /* Adjust the specific paragraph content */
         .skill-card p {
              margin-bottom: 15px;
         }
@@ -80,9 +85,29 @@
                     <a href="https://pasquale-sena.github.io/booking-onboarding-sim/" target="_blank" class="tech-btn" style="background: var(--color-cyan); color: black;">Launch Simulation</a>
                 </div>
 
+                
+                <div class="section-header">
+                    <h3>Key Findings</h3>
+                </div>
+
+                <div class="about-text-content section-reveal" style="margin-bottom: 40px;">
+                    <p class="lead-text">
+                        [cite_start]This project fundamentally shifted the approach to high-volume agent enablement, moving beyond passive, "one-size-fits-all" training [cite: 74] to a model rooted in data-driven performance.
+                    </p>
+                    
+                    <p>
+                        [cite_start]The core design implements adaptive pathing, directly addressing the gap between experienced hires being bored and novices feeling overwhelmed[cite: 96, 75]. [cite_start]The solution's success is defined by holistic, measurable KPIs, specifically the **Empathy Index** [cite: 131] [cite_start]and **Time-to-Resolution** [cite: 132][cite_start], ensuring training measures real-world job performance, not just knowledge recall[cite: 76].
+                    </p>
+                    
+                    <p>
+                        [cite_start]From a scalable architecture standpoint, the custom React framework ensures zero-latency interactions [cite: 107][cite_start], while the conceptual SCORM 1.2 wrapper enables seamless reporting across an enterprise LMS[cite: 123]. [cite_start]This blend of instructional strategy and advanced technology highlights an ability to manage the full product lifecycle, from initial needs analysis to continuous, iterative evaluation[cite: 135].
+                    </p>
+                </div>
+                
                 <div class="section-header">
                     <h3>The ADDIE Process</h3>
                     <p class="section-focus">From analysis to deployment.</p>
+                    
                 </div>
 
                 <div class="skills-grid">
