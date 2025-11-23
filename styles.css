@@ -1,8 +1,17 @@
-/* --- GLOBAL STYLES --- */
+/* --- GLOBAL STYLES & NEW COLOR PALETTE --- */
 :root {
-    --color-neutral-light: #f4f2ef; 
-    --color-neutral-dark: #333333;
-    --color-accent: #E98A15; /* Burnt Sienna */
+    /* New Cool Base */
+    --color-bg: #F3F6F8; /* Cool Mist Gray */
+    --color-text: #1E293B; /* Deep Charcoal */
+    
+    /* New Bold Accent */
+    --color-accent: #0F766E; /* Vibrant Deep Teal */
+    
+    /* "Icy" Glassmorphism Variables */
+    /* Tinted slightly blue/gray for a cooler frosted look */
+    --glass-border: rgba(148, 163, 184, 0.4); 
+    --glass-bg: rgba(255, 255, 255, 0.3);
+    
     --font-primary: sans-serif;
 }
 
@@ -10,111 +19,198 @@
 
 body {
     font-family: var(--font-primary);
-    background-color: var(--color-neutral-light);
-    color: var(--color-neutral-dark);
-    line-height: 1.6;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     overflow-x: hidden;
 }
 
-/* --- HERO SECTION (THE STACK) --- */
-.hero-container {
-    min-height: 100vh; 
-    position: relative;
-    display: flex;
-    flex-direction: column; /* STACKS items vertically */
-    align-items: center;
-    justify-content: flex-start; /* Starts from top */
-    padding-top: 60px; /* Space at the very top */
-}
-
-/* 1. Text Styles */
-.hero-content {
-    position: relative;
-    z-index: 10;
-    max-width: 800px;
-    text-align: center;
-    padding: 0 20px;
-    margin-bottom: 40px; /* Push buttons down */
-}
-
-.hero-title { font-size: 3rem; color: var(--color-accent); margin-bottom: 0.5rem; }
-.hero-subtitle { font-size: 1.2rem; margin-bottom: 1.5rem; color: #555; }
-
-.about-hero-blurb {
-    background: rgba(255,255,255,0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-/* 2. Button Styles (Now in Middle) */
-.nav-buttons-container {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-    z-index: 10;
-    margin-bottom: 40px; /* Push Graphic down */
-}
-
-.button-wrapper {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 180px;
-    height: 50px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.5s, transform 0.5s;
-}
-.button-wrapper.is-visible { opacity: 1; transform: translateY(0); }
-
-.blur-tease {
-    width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1;
-    filter: blur(4px);
-}
-
-.nav-button {
-    position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;
-    width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.4);
-    color: var(--color-neutral-dark); font-weight: bold; text-decoration: none;
-    font-size: 0.9rem;
-    backdrop-filter: blur(2px);
-    transition: background 0.3s;
-}
-.nav-button:hover { background: var(--color-accent); color: white; }
-.focus-button .nav-button { background: var(--color-accent); color: white; }
-
-/* 3. The Graphic Stage (Now at Bottom) */
-.graphic-stage {
-    position: relative;
+/* --- SPLIT HERO LAYOUT (2/3 vs 1/3) --- */
+.split-hero {
+    display: grid;
+    /* This creates the 2/3 Content vs 1/3 Graphic split */
+    grid-template-columns: 2fr 1fr; 
+    height: 100vh;
     width: 100%;
-    max-width: 500px; /* Slightly smaller to fit nicely */
-    height: 350px;    
-    overflow: hidden; 
-    display: flex;
-    justify-content: center;
-    /* No margin bottom, sits on the "floor" of the hero section */
+    position: relative;
+    overflow: hidden;
 }
 
-.parallax-layer {
+/* --- LEFT COLUMN (CONTENT) --- */
+.hero-left {
+    display: flex;
+    align-items: center;
+    /* Adds padding so content isn't touching the edge */
+    padding: 0 8%; 
+    z-index: 10;
+}
+
+.content-wrapper {
+    max-width: 650px; /* Wider content area for the 2/3 split */
+    width: 100%;
+}
+
+.name-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid var(--color-text);
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--color-accent); /* Highlight badge with accent */
+    border-color: var(--color-accent);
+}
+
+.hero-headline {
+    font-size: 4rem; /* Larger Headline */
+    line-height: 1.1;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+.about-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 50px;
+    box-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.05); /* Cooler shadow tone */
+    font-size: 1.1rem;
+}
+
+/* --- GLASS BUTTONS --- */
+.glass-btn-container {
+    display: flex;
+    gap: 20px;
+    height: 90px; 
+    width: 100%;
+}
+
+.glass-btn-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    opacity: 0; transform: translateY(20px);
+}
+.glass-btn-wrapper.is-visible { opacity: 1; transform: translateY(0); }
+
+/* BUTTON SIZING LOGIC */
+.small-btn { flex: 1; } /* GD and MM */
+.main-btn { flex: 2; } /* ID is double the size */
+
+.btn-bg-img {
     position: absolute;
     top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: contain; 
-    background-repeat: no-repeat;
-    background-position: center bottom; 
-    will-change: transform;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    /* Slightly darker filter so white text pops better */
+    filter: blur(6px) brightness(0.8); 
+    transition: filter 0.3s;
 }
 
-.parallax-bg { z-index: 1; } 
-.parallax-mid { z-index: 2; } 
-.parallax-fg { z-index: 3; }
+.glass-btn {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; height: 100%;
+    text-decoration: none;
+    color: white; /* Text needs to be white over images */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(4px);
+    transition: border-color 0.3s, background 0.3s;
+}
 
+.btn-label { font-size: 1.8rem; font-weight: 900; }
+.btn-full { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+
+/* HOVER & FOCUS EFFECTS */
+.glass-btn-wrapper:hover { transform: translateY(-5px); }
+.glass-btn-wrapper:hover .btn-bg-img { filter: blur(3px) brightness(1.0); }
+
+/* The Main ID Button gets the Teal Accent Border */
+.main-btn .glass-btn { 
+    border-color: var(--color-accent); 
+    border-width: 2px; 
+    background: rgba(15, 118, 110, 0.2); /* Subtle teal tint */
+}
+.glass-btn-wrapper:hover .glass-btn {
+    border-color: var(--color-accent);
+}
+
+
+/* --- RIGHT COLUMN (VISUALS) --- */
+.hero-right {
+    position: relative;
+    height: 100vh;
+    overflow: hidden; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E2E8F0; /* Cool slate fallback */
+    border-left: 1px solid var(--glass-border);
+}
+
+.parallax-tall-bg {
+    position: absolute;
+    top: -20%; 
+    left: 0;
+    width: 100%;
+    height: 200%; 
+    background-size: cover;
+    background-position: center;
+    /* Slightly lower opacity for subtle texture */
+    opacity: 0.5; 
+    will-change: transform;
+    /* Add a cool blue/slate filter to whatever image is used */
+    filter: grayscale(50%) sepia(20%) hue-rotate(180deg);
+}
+
+.fixed-character {
+    position: relative;
+    z-index: 5;
+    width: 85%;
+    display: flex;
+    justify-content: center;
+}
+.fixed-character img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    /* Cooler toned shadow */
+    drop-shadow: -10px 10px 30px rgba(15, 23, 42, 0.2);
+}
+
+
+/* --- MOBILE RESPONSIVE (THE HIDE LOGIC) --- */
+@media (max-width: 900px) {
+    /* 1. Change grid to single column */
+    .split-hero { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+    
+    /* 2. COMPLETELY HIDE the right graphic column */
+    .hero-right { display: none; }
+    
+    /* 3. Adjust padding for mobile */
+    .hero-left { padding: 40px 20px; }
+    .hero-headline { font-size: 3rem; }
+    
+    /* 4. Allow buttons to wrap if screen is very small */
+    .glass-btn-container { height: auto; flex-wrap: wrap; }
+    .small-btn, .main-btn { flex: 100%; height: 80px; }
+}
 
 /* --- SECTIONS --- */
-main { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
-.project-section { min-height: 60vh; margin-bottom: 50px; padding-top: 20px; }
-h3 { color: var(--color-accent); font-size: 2rem; margin-bottom: 10px; }
+main { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+.project-section { min-height: 60vh; margin-bottom: 50px; opacity: 0; transform: translateY(50px); transition: 0.6s; }
+.section-reveal.is-visible { opacity: 1; transform: translateY(0); }
+h3 { color: var(--color-accent); font-size: 2rem; margin-bottom: 15px; }
+.section-focus { font-size: 1.2rem; color: #555; font-style: italic;}
