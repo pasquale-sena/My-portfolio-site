@@ -43,7 +43,7 @@ function animateTyping() {
         setTimeout(() => {
             // Target: Section Label and all Navigation Buttons
             const elementsToReveal = document.querySelectorAll(
-                '.section-label.reveal-text, ' + 
+                '#hero .section-label.reveal-text, ' + // Explicitly target hero children
                 '.glass-btn-wrapper.dissolve-in'
             );
 
@@ -99,10 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
     animateTyping();
 
 
-    // 1. Reveal Animations
-    // NOTE: revealElements selection is now ONLY for sections below the hero.
-    // The hero elements are handled sequentially by animateTyping().
-    const revealElements = document.querySelectorAll('.section-reveal');
+    // 1. Reveal Animations (Only targets sections outside the hero, which use .section-reveal)
+    const revealElements = document.querySelectorAll('.section-reveal'); // SIMPLIFIED SELECTOR
     
     const observerReveal = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
@@ -121,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => observerReveal.observe(el));
 
 
-    // 2. PARALLAX LOGIC
+    // 2. PARALLAX LOGIC (unchanged)
     const bg = document.querySelector('.parallax-bg');
     const mid = document.querySelector('.parallax-mid');
     const fg = document.querySelector('.parallax-fg');
@@ -138,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // 3. Smooth Scroll
+    // 3. Smooth Scroll (unchanged)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -152,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // 4. AJAX FORM HANDLING (No Redirect)
+    // 4. AJAX FORM HANDLING (No Redirect) (unchanged)
     const contactForm = document.getElementById('contact-form');
     
     if (contactForm) {
