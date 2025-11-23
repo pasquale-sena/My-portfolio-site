@@ -98,24 +98,24 @@ body::after {
 } 
 .parallax-fg { z-index: 3; }
 
-/* MODIFIED: Reset height to 100% of parent and removed padding-bottom */
+/* REVERTED to original setup */
 .sidebar-content-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%; 
+    height: 300vh; /* Reverted to 300vh for parallax scroll functionality */
     padding-bottom: 0; 
 }
 
-/* MODIFIED: Increased margin-top on the button to separate it from the GIF */
+/* REVERTED to original dimensions and removed drop shadow */
 .sidebar-char-img {
-    width: 100%; /* Now tries to fill its container more */
+    width: 90%; /* Reverted to original width */
     height: auto;
-    max-width: 550px; /* Increased maximum width */
-    max-height: 80vh; /* Allow it to take up most of the vertical space */
+    max-width: 450px; /* Reverted to original max-width */
+    /* Removed max-height */
     object-fit: contain;
-    filter: drop-shadow(0 0 20px rgba(85, 255, 255, 0.6)); /* Added drop shadow */
+    filter: none; /* Removed drop shadow */
 }
 
 /* --- RIGHT MAIN CONTENT AREA --- */
@@ -388,7 +388,7 @@ h3 {
 
 /* --- FIX FOR SIDEBAR BUTTON --- */
 .tech-btn.sidebar-btn {
-    margin-top: 25px; /* MODIFIED: Increased margin to ensure separation and visibility */
+    margin-top: 12px; /* Reverted to original margin */
     background: var(--super-neon-gradient) !important; 
     color: #000000 !important; 
     border: none;
