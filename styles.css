@@ -215,13 +215,10 @@ body::after {
 }
 
 .type-text {
-    /* Hide overflow to simulate typing */
-    overflow: hidden;
-    /* Use steps() to animate the border for the typing cursor */
-    border-right: 3px solid var(--color-cyan);
-    white-space: nowrap;
-    display: inline-block;
-    width: 0; /* Starts hidden, JS handles the width animation */
+    /* REMOVED: overflow: hidden; - No longer needed as JS controls content visibility */
+    /* REMOVED: white-space: nowrap; - Was preventing <br> from working */
+    border-right: 3px solid var(--color-cyan); /* Cursor style */
+    display: inline-block; /* Essential to get the cursor effect on the border */
     padding-right: 5px; /* Space for cursor */
     
     /* Initial state - hidden */
@@ -248,31 +245,31 @@ body::after {
         transform: translate(0);
     }
     10% {
-        transform: translate(-1px, -1px); /* Reduced from 2px */
+        transform: translate(-1px, -1px); /* Reduced movement */
     }
     20% {
-        transform: translate(1px, 1px); /* Reduced from 2px */
+        transform: translate(1px, 1px); /* Reduced movement */
     }
     30% {
-        transform: translate(-1px, 0px); /* Reduced from 3px */
+        transform: translate(-1px, 0px); /* Reduced movement */
     }
     40% {
-        transform: translate(1px, -1px); /* Reduced from 3px */
+        transform: translate(1px, -1px); /* Reduced movement */
     }
     50% {
-        transform: translate(0px, 1px); /* Reduced from 3px */
+        transform: translate(0px, 1px); /* Reduced movement */
     }
     60% {
-        transform: translate(1px, -1px); /* Reduced from 3px */
+        transform: translate(1px, -1px); /* Reduced movement */
     }
     70% {
-        transform: translate(-1px, 0px); /* Reduced from 3px */
+        transform: translate(-1px, 0px); /* Reduced movement */
     }
     80% {
-        transform: translate(0px, 1px); /* Reduced from 3px */
+        transform: translate(0px, 1px); /* Reduced movement */
     }
     90% {
-        transform: translate(0px, 0px); /* Reduced from 1px */
+        transform: translate(0px, 0px); /* Reduced movement */
     }
     100% {
         transform: translate(0);
