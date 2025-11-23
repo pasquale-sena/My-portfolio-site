@@ -545,7 +545,7 @@ h3 {
     
     /* FIX 2: Increased Visibility & Padding */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 18px; 
+    padding-bottom: 18px; /* Increased vertical spacing */
     margin-bottom: 18px; 
     padding-top: 5px; 
 }
@@ -572,7 +572,7 @@ h3 {
 
 /* Label (The Title - e.g., Target Audience) */
 .meta-list .meta-label {
-    /* Forces the label to its own line (Line 1) */
+    /* FIX: Forces the label to its own line (Line 1) */
     display: block; 
     margin-bottom: 5px; /* Increased spacing between label and description */
     color: var(--color-cyan);
@@ -583,6 +583,7 @@ h3 {
 
 /* Content (The Description - Line 2) */
 .meta-list .meta-content {
+    /* FIX: Ensures content uses the full width below the label */
     display: block;
     padding-left: 0;
     font-weight: 400;
