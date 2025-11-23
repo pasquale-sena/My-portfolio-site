@@ -41,15 +41,21 @@ function animateTyping() {
         const secondaryRevealDelay = 700; 
 
         setTimeout(() => {
-            // FIX: Target ALL elements with 'dissolve-in' in one query.
-            // This now includes the section-label (index 0) and the three buttons (index 1, 2, 3).
-            const elementsToReveal = document.querySelectorAll(
-                '#hero .dissolve-in' 
-            );
+            // Get the label element separately
+            const label = document.querySelector('#hero .section-label.dissolve-in');
+            
+            // Get the buttons
+            const buttonWrappers = document.querySelectorAll('.glass-btn-wrapper.dissolve-in');
 
-            elementsToReveal.forEach((el, index) => {
-                // Apply a staggered delay to the subsequent elements
-                // The label (index 0) will have a delay of 0, appearing simultaneously with the first button (index 1)
+            // FIX: Reveal the label at delay 0.
+            if (label) {
+                label.classList.add('is-visible');
+            }
+            
+            // Now, start the staggered reveal ONLY for the buttons.
+            buttonWrappers.forEach((el, index) => {
+                // Apply a staggered delay. The first button (index 0) will appear immediately 
+                // after the label (which just appeared), and the subsequent buttons will stagger.
                 const delay = index * 100; 
                 
                 setTimeout(() => {
