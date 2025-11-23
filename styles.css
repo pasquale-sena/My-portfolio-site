@@ -1,16 +1,10 @@
-/* --- GLOBAL STYLES & NEW DARK PALETTE --- */
+/* --- GLOBAL STYLES & DARK PALETTE --- */
 :root {
-    /* Dark Mode Base */
-    --color-bg: #0f172a; /* Deep Dark Blue/Slate Background */
-    --color-text: #e2e8f0; /* Light Gray Text for contrast */
-    
-    /* Vibrant Accent */
-    --color-accent: #14b8a6; /* Bright Teal/Cyan Accent */
-    
-    /* Dark Glassmorphism Variables */
-    --glass-border: rgba(255, 255, 255, 0.1); /* Subtle light border */
-    --glass-bg: rgba(30, 41, 59, 0.7); /* Dark, semi-transparent slate */
-    
+    --color-bg: #0f172a; 
+    --color-text: #e2e8f0; 
+    --color-accent: #14b8a6; /* Teal Accent */
+    --glass-border: rgba(255, 255, 255, 0.1); 
+    --glass-bg: rgba(30, 41, 59, 0.7); 
     --font-primary: sans-serif;
 }
 
@@ -20,234 +14,197 @@ body {
     font-family: var(--font-primary);
     background-color: var(--color-bg);
     color: var(--color-text);
-    overflow-x: hidden; /* Prevents horizontal scrollbar */
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
-
-/* --- MAIN FULL-PAGE SPLIT LAYOUT --- */
+/* --- LAYOUT & SIDEBAR (UNCHANGED) --- */
 .split-layout {
     display: grid;
-    /* 1/3 width for sidebar graphic, 2/3 for main content */
     grid-template-columns: 1fr 2fr; 
     width: 100%;
     min-height: 100vh;
     position: relative;
 }
 
-
-/* --- LEFT SIDEBAR (STICKY PARALLAX GRAPHIC) --- */
 .sidebar-graphic {
-    /* Makes the sidebar stick to the viewport while content scrolls */
     position: sticky; 
     top: 0;
-    height: 100vh; /* Occupies full screen height */
-    overflow: hidden; /* Crops the very tall images inside */
-    background-color: #1e293b; /* Slightly lighter slate for the sidebar base */
+    height: 100vh; 
+    overflow: hidden; 
+    background-color: #1e293b; 
     border-right: 1px solid var(--glass-border);
     z-index: 1;
-    
-    /* Flexbox to help center the layers initially */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* PARALLAX LAYERS (Must use tall PNGs) */
 .parallax-layer {
     position: absolute;
-    /* Center the layers horizontally */
-    left: 0;
-    width: 100%;
-    
-    /* Make layers MUCH taller than screen to allow for long scrolling movement without running out of image */
-    height: 300vh; 
-    
-    /* Position the top of the tall layer higher up so the visual center aligns with the screen center */
-    top: -100vh; 
-    
-    background-size: contain;
-    background-repeat: no-repeat;
-    /* Ensures the graphic image is centered within its tall layer */
-    background-position: center center; 
-    will-change: transform; /* Performance optimization */
+    left: 0; width: 100%; height: 300vh; top: -100vh; 
+    background-size: contain; background-repeat: no-repeat; background-position: center center; 
+    will-change: transform;
 }
-
 .parallax-bg { z-index: 1; } 
 .parallax-mid { z-index: 2; } 
 .parallax-fg { z-index: 3; }
 
-
 /* --- RIGHT MAIN CONTENT AREA --- */
 .main-content-container {
     padding: 0 5%;
-    z-index: 10; /* Ensures content sits above background elements */
+    z-index: 10;
+    max-width: 1000px; 
+    margin: 0 auto;
 }
 
-/* Hero Intro Section (Top part of right column) */
+/* Hero Intro Section */
 .hero-intro {
-    /* Fills most of the first screen view */
     min-height: 90vh; 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; /* Left align text */
+    align-items: flex-start;
     padding-bottom: 60px;
 }
 
-.header-group {
-    /* Ensures left alignment matches the glass box below */
-    padding-left: 30px; 
-    margin-bottom: 30px;
-}
-
+.header-group { padding-left: 30px; margin-bottom: 30px; }
 .name-badge {
-    display: inline-block;
-    padding: 8px 12px;
-    background-color: var(--color-accent); /* Solid Accent Background */
-    color: #0f172a; /* Dark text on bright accent for readability */
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-    border-radius: 4px;
-    text-transform: uppercase;
+    display: inline-block; padding: 8px 12px; background-color: var(--color-accent); 
+    color: #0f172a; font-weight: 800; letter-spacing: 2px; margin-bottom: 20px; 
+    font-size: 0.9rem; border-radius: 4px; text-transform: uppercase;
 }
-
-.hero-headline {
-    font-size: 4.5rem; 
-    line-height: 1.1;
-    margin-bottom: 0; 
-    font-weight: 800;
-    color: white; /* Pure white for maximum headline pop */
-}
+.hero-headline { font-size: 4.5rem; line-height: 1.1; margin-bottom: 0; font-weight: 800; color: white; }
 
 .about-glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px); /* Stronger blur for dark mode */
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    padding: 30px;
-    border-radius: 16px;
-    margin-bottom: 50px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* deeper shadow */
-    font-size: 1.1rem;
-    text-align: left; 
-    max-width: 650px;
-    color: #cbd5e1; /* Slightly softer white for body text */
+    background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); padding: 30px; border-radius: 16px;
+    margin-bottom: 50px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    font-size: 1.1rem; text-align: left; max-width: 650px; color: #cbd5e1;
 }
 
-
-/* --- GLASS BUTTONS --- */
-.glass-btn-container {
-    display: flex;
-    gap: 20px;
-    height: 90px; 
-    width: 100%;
-    max-width: 650px;
-}
-
+/* --- GLASS BUTTONS (HERO) --- */
+.glass-btn-container { display: flex; gap: 20px; height: 90px; width: 100%; max-width: 650px; }
 .glass-btn-wrapper {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    /* Initial State for Animation */
-    opacity: 0; transform: translateY(20px);
+    position: relative; border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); opacity: 0; transform: translateY(20px);
 }
 .glass-btn-wrapper.is-visible { opacity: 1; transform: translateY(0); }
-
-/* Button Sizing */
-.small-btn { flex: 1; } 
-.main-btn { flex: 2; } /* ID button is wider */
-
-/* Blurred Background Image inside button */
-.btn-bg-img {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    /* Darken and blur image so white text is readable */
-    filter: blur(8px) brightness(0.6); 
-    transition: filter 0.3s;
-}
-
-/* The clickable button layer */
+.small-btn { flex: 1; } .main-btn { flex: 2; }
+.btn-bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(8px) brightness(0.6); transition: filter 0.3s; }
 .glass-btn {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%; height: 100%;
-    text-decoration: none;
-    color: white; 
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-    
-    background: rgba(255, 255, 255, 0.05); /* Very subtle fill */
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(4px);
-    transition: border-color 0.3s, background 0.3s;
+    position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    width: 100%; height: 100%; text-decoration: none; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); backdrop-filter: blur(4px); transition: border-color 0.3s, background 0.3s;
 }
-
-.btn-label { font-size: 1.8rem; font-weight: 900; }
-.btn-full { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
-
-/* HOVER EFFECTS */
+.btn-label { font-size: 1.8rem; font-weight: 900; } .btn-full { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
 .glass-btn-wrapper:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3); }
 .glass-btn-wrapper:hover .btn-bg-img { filter: blur(4px) brightness(0.8); }
-
-/* Main ID Button Highlight */
-.main-btn .glass-btn { 
-    border-color: var(--color-accent); 
-    border-width: 2px; 
-    background: rgba(20, 184, 166, 0.15); /* Subtle teal tint */
-}
-.glass-btn-wrapper:hover .glass-btn {
-    border-color: var(--color-accent);
-    background: rgba(20, 184, 166, 0.25);
-}
+.main-btn .glass-btn { border-color: var(--color-accent); border-width: 2px; background: rgba(20, 184, 166, 0.15); }
+.glass-btn-wrapper:hover .glass-btn { border-color: var(--color-accent); background: rgba(20, 184, 166, 0.25); }
 
 
-/* --- PROJECT SECTIONS --- */
+/* ========================================= */
+/* --- PROJECT GRID STYLES --- */
+/* ========================================= */
+
 .project-section { 
-    min-height: 80vh; /* Ensures tall scrolling area */
-    margin-bottom: 80px; 
+    margin-bottom: 120px; 
     padding-top: 40px; 
-    max-width: 800px; 
-    /* Scroll Reveal Initial State */
     opacity: 0; transform: translateY(50px); transition: 0.6s; 
 }
 .section-reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-h3 { 
-    color: var(--color-accent); 
-    font-size: 2.5rem; 
-    margin-bottom: 20px; 
+.section-header { margin-bottom: 40px; }
+h3 { color: var(--color-accent); font-size: 2.5rem; margin-bottom: 15px; }
+.section-focus { font-size: 1.2rem; color: #94a3b8; }
+
+/* THE GRID CONTAINER */
+.project-grid {
+    display: grid;
+    /* Creates responsive columns, min 280px wide */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
-.section-focus { font-size: 1.3rem; color: #94a3b8; font-style: italic;}
+
+/* --- NEW "BELOW THE SURFACE" CARD STYLE --- */
+.project-card {
+    /* Darker background to feel deeper */
+    background: rgba(15, 23, 42, 0.6); 
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+
+    /* INSET BORDERS: Darker top/left, lighter bottom/right */
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-left: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+
+    /* INSET SHADOWS: Creates the sunken illusion */
+    box-shadow: inset 6px 6px 20px rgba(0, 0, 0, 0.4),
+                inset -6px -6px 20px rgba(255, 255, 255, 0.02);
+}
+
+.project-card:hover {
+    /* On hover, it subtly rises up */
+    transform: translateY(-5px);
+    border-color: var(--color-accent);
+    /* Add an outer glow and reduce inner shadow slightly */
+    box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.3),
+                0 10px 30px -10px rgba(20, 184, 166, 0.2);
+}
+
+.card-image {
+    height: 200px; 
+    width: 100%;
+    overflow: hidden;
+    /* Add a subtle border below image to separate from content */
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+.card-image img {
+    width: 100%; height: 100%; object-fit: cover; 
+    transition: transform 0.5s ease;
+}
+.project-card:hover .card-image img { transform: scale(1.05); }
+
+.card-content { padding: 25px; }
+
+.card-content h4 { color: white; font-size: 1.4rem; margin-bottom: 10px; }
+
+.card-content p {
+    color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px;
+    /* Limit description to 3 lines for uniformity */
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* TECH BUTTON STYLE */
+.tech-btn {
+    display: inline-block; padding: 10px 20px; background: transparent;
+    border: 2px solid var(--color-accent); color: var(--color-accent);
+    text-decoration: none; font-weight: bold; border-radius: 6px;
+    transition: all 0.3s ease; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;
+}
+
+.tech-btn:hover {
+    background: var(--color-accent); color: #0f172a; 
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.4); 
+}
 
 
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 900px) {
-    /* 1. Collapse grid to single column */
     .split-layout { grid-template-columns: 1fr; }
-    
-    /* 2. HIDE the sidebar graphic completely on mobile */
     .sidebar-graphic { display: none; }
-    
-    /* 3. Adjust content padding */
     .main-content-container { padding: 0 25px; }
     .hero-intro { min-height: auto; padding: 80px 0 60px; }
-    
-    /* 4. Reset alignment padding for mobile */
     .header-group { padding-left: 0; }
-    
-    /* 5. Resize text for smaller screens */
     .hero-headline { font-size: 3.5rem; }
-    
-    /* 6. Stack buttons vertically */
     .glass-btn-container { height: auto; flex-wrap: wrap; }
     .small-btn, .main-btn { flex: 100%; height: 80px; }
+    
+    /* On mobile, force grid to 1 column */
+    .project-grid { grid-template-columns: 1fr; }
 }
