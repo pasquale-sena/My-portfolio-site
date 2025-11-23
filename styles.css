@@ -97,7 +97,17 @@ body {
     width: 100%; height: 100%; text-decoration: none; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); backdrop-filter: blur(4px); transition: border-color 0.3s, background 0.3s;
 }
-.btn-label { font-size: 1.8rem; font-weight: 900; } .btn-full { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+
+/* --- UPDATED BUTTON TITLE STYLE --- */
+.btn-title {
+    font-size: 1.1rem; /* Slightly smaller to fit long titles */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 0 10px; /* Ensures text doesn't touch edges on smaller screens */
+}
+
 .glass-btn-wrapper:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3); }
 .glass-btn-wrapper:hover .btn-bg-img { filter: blur(4px) brightness(0.8); }
 .main-btn .glass-btn { border-color: var(--color-accent); border-width: 2px; background: rgba(20, 184, 166, 0.15); }
@@ -119,39 +129,35 @@ body {
 h3 { color: var(--color-accent); font-size: 2.5rem; margin-bottom: 15px; }
 .section-focus { font-size: 1.2rem; color: #94a3b8; }
 
-/* THE GRID CONTAINER */
+/* THE GRID CONTAINER - Automatically handles 2 items nicely */
 .project-grid {
     display: grid;
-    /* Creates responsive columns, min 280px wide */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
+    /* Optional: center the two items if the screen is very wide */
+    justify-content: center; 
 }
 
-/* --- NEW "BELOW THE SURFACE" CARD STYLE --- */
+/* --- "BELOW THE SURFACE" CARD STYLE --- */
 .project-card {
-    /* Darker background to feel deeper */
     background: rgba(15, 23, 42, 0.6); 
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-
-    /* INSET BORDERS: Darker top/left, lighter bottom/right */
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-left: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     border-right: 1px solid rgba(255, 255, 255, 0.05);
-
-    /* INSET SHADOWS: Creates the sunken illusion */
     box-shadow: inset 6px 6px 20px rgba(0, 0, 0, 0.4),
                 inset -6px -6px 20px rgba(255, 255, 255, 0.02);
+    /* Ensure max width so 2 cards don't get overly large on huge screens */
+    max-width: 500px;
 }
 
 .project-card:hover {
-    /* On hover, it subtly rises up */
     transform: translateY(-5px);
     border-color: var(--color-accent);
-    /* Add an outer glow and reduce inner shadow slightly */
     box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.3),
                 0 10px 30px -10px rgba(20, 184, 166, 0.2);
 }
@@ -160,7 +166,6 @@ h3 { color: var(--color-accent); font-size: 2.5rem; margin-bottom: 15px; }
     height: 200px; 
     width: 100%;
     overflow: hidden;
-    /* Add a subtle border below image to separate from content */
     border-bottom: 1px solid rgba(0,0,0,0.3);
 }
 
@@ -176,7 +181,6 @@ h3 { color: var(--color-accent); font-size: 2.5rem; margin-bottom: 15px; }
 
 .card-content p {
     color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px;
-    /* Limit description to 3 lines for uniformity */
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 
@@ -203,8 +207,9 @@ h3 { color: var(--color-accent); font-size: 2.5rem; margin-bottom: 15px; }
     .header-group { padding-left: 0; }
     .hero-headline { font-size: 3.5rem; }
     .glass-btn-container { height: auto; flex-wrap: wrap; }
-    .small-btn, .main-btn { flex: 100%; height: 80px; }
+    /* Increase height slightly for long titles on mobile wrapping */
+    .small-btn, .main-btn { flex: 100%; height: 90px; }
     
-    /* On mobile, force grid to 1 column */
     .project-grid { grid-template-columns: 1fr; }
+    .project-card { max-width: 100%; } /* Allow full width on mobile */
 }
