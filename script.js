@@ -24,37 +24,12 @@ function animateTyping() {
 
     // Function to run after typing completes
     function onTypingComplete() {
-        console.log("Typing complete. Starting combined reveal sequence.");
-
-        // 1. Remove the typing cursor/animation
+        // Remove the typing cursor/animation
         typeElement.classList.remove('is-typing');
         typeElement.classList.add('no-cursor');
 
-        // 2. SEQUENCE THE REVEAL OF NEXT ELEMENTS
-        
-        // Wait for a small buffer time (200ms) after the cursor is gone for a smoother transition.
-        const combinedRevealDelay = 200; 
-
-        setTimeout(() => {
-            console.log("Executing combined reveal for summary, label, and button container.");
-
-            // FIX: Select ALL elements (Summary, Label, AND the main NAV container).
-            const elementsToRevealSimultaneously = document.querySelectorAll(
-                '.about-glass.dissolve-in, #project-label, .glass-btn-container.dissolve-in'
-            );
-
-            // Safety check in case elements are missing
-            if (elementsToRevealSimultaneously.length === 0) {
-                 console.error("Reveal failure: Did not find any elements with the selectors.");
-                 return;
-            }
-
-            // Iterate over the combined NodeList and reveal them all at once.
-            elementsToRevealSimultaneously.forEach(el => {
-                el.classList.add('is-visible');
-            });
-
-        }, combinedRevealDelay);
+        // NOTE: The summary box, project label, and navigation buttons 
+        // are now static (no 'dissolve-in' class in HTML) and are immediately visible.
     }
 
     function step(timestamp) {
