@@ -1,7 +1,7 @@
 /* --- GLOBAL STYLES & DARK PALETTE --- */
 :root {
     --color-bg: #0f172a; 
-    --color-text: #e2e8f0; 
+    --color-text: #ffffff; /* UPDATED: Changed global text to pure white for better readability */
     --color-accent: #14b8a6; /* Teal Accent */
     --glass-border: rgba(255, 255, 255, 0.1); 
     --glass-bg: rgba(30, 41, 59, 0.7); 
@@ -69,49 +69,74 @@ body {
 }
 
 .header-group { padding-left: 30px; margin-bottom: 30px; }
-.name-badge {
-    display: inline-block; padding: 8px 12px; background-color: var(--color-accent); 
-    color: #0f172a; font-weight: 800; letter-spacing: 2px; margin-bottom: 20px; 
-    font-size: 0.9rem; border-radius: 4px; text-transform: uppercase;
-}
-.hero-headline { font-size: 4.5rem; line-height: 1.1; margin-bottom: 0; font-weight: 800; color: white; }
 
+/* --- UPDATED TYPOGRAPHY --- */
+
+/* 1. Name Badge - Removed background card, increased size */
+.name-badge {
+    display: block; /* Changed from inline-block */
+    /* padding removed */
+    /* background-color removed */
+    color: var(--color-accent); /* Text is now the accent color */
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    font-size: 3rem; /* INCREASED SIZE significantly */
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+/* 2. Hero Headline - Decreased size */
+.hero-headline {
+    font-size: 2.5rem; /* DECREASED SIZE (was 4.5rem) */
+    line-height: 1.2;
+    margin-bottom: 0; 
+    font-weight: 700;
+    color: white;
+    opacity: 0.9; /* Slightly softer white than the name */
+}
+
+/* --- UPDATED READABILITY --- */
 .about-glass {
     background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border); padding: 30px; border-radius: 16px;
     margin-bottom: 50px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    font-size: 1.1rem; text-align: left; max-width: 650px; color: #cbd5e1;
+    font-size: 1.1rem; text-align: left; max-width: 650px;
+    color: #ffffff; /* UPDATED: Pure white text for readability */
 }
 
-/* --- GLASS BUTTONS (HERO) --- */
+/* --- UPDATED GLASS BUTTONS (BETTER CONTRAST) --- */
 .glass-btn-container { display: flex; gap: 20px; height: 90px; width: 100%; max-width: 650px; }
 .glass-btn-wrapper {
     position: relative; border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2); opacity: 0; transform: translateY(20px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); opacity: 0; transform: translateY(20px);
 }
 .glass-btn-wrapper.is-visible { opacity: 1; transform: translateY(0); }
 .small-btn { flex: 1; } .main-btn { flex: 2; }
 .btn-bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(8px) brightness(0.6); transition: filter 0.3s; }
+
 .glass-btn {
     position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center;
     width: 100%; height: 100%; text-decoration: none; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-    background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); backdrop-filter: blur(4px); transition: border-color 0.3s, background 0.3s;
+    /* UPDATED CONTRAST: Made background darker and more opaque so it stands out */
+    background: rgba(30, 41, 59, 0.85); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(4px); transition: border-color 0.3s, background 0.3s;
 }
 
-/* --- UPDATED BUTTON TITLE STYLE --- */
 .btn-title {
-    font-size: 1.1rem; /* Slightly smaller to fit long titles */
+    font-size: 1.1rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-align: center;
-    padding: 0 10px; /* Ensures text doesn't touch edges on smaller screens */
+    padding: 0 10px;
 }
 
 .glass-btn-wrapper:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3); }
 .glass-btn-wrapper:hover .btn-bg-img { filter: blur(4px) brightness(0.8); }
-.main-btn .glass-btn { border-color: var(--color-accent); border-width: 2px; background: rgba(20, 184, 166, 0.15); }
-.glass-btn-wrapper:hover .glass-btn { border-color: var(--color-accent); background: rgba(20, 184, 166, 0.25); }
+.main-btn .glass-btn { border-color: var(--color-accent); border-width: 2px; background: rgba(20, 184, 166, 0.2); }
+.glass-btn-wrapper:hover .glass-btn { border-color: var(--color-accent); background: rgba(20, 184, 166, 0.3); }
 
 
 /* ========================================= */
@@ -127,14 +152,14 @@ body {
 
 .section-header { margin-bottom: 40px; }
 h3 { color: var(--color-accent); font-size: 2.5rem; margin-bottom: 15px; }
-.section-focus { font-size: 1.2rem; color: #94a3b8; }
+/* UPDATED READABILITY */
+.section-focus { font-size: 1.2rem; color: #e2e8f0; /* Lighter gray */ }
 
-/* THE GRID CONTAINER - Automatically handles 2 items nicely */
+/* THE GRID CONTAINER */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    /* Optional: center the two items if the screen is very wide */
     justify-content: center; 
 }
 
@@ -151,7 +176,6 @@ h3 { color: var(--color-accent); font-size: 2.5rem; margin-bottom: 15px; }
     border-right: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: inset 6px 6px 20px rgba(0, 0, 0, 0.4),
                 inset -6px -6px 20px rgba(255, 255, 255, 0.02);
-    /* Ensure max width so 2 cards don't get overly large on huge screens */
     max-width: 500px;
 }
 
@@ -179,8 +203,10 @@ h3 { color: var(--color-accent); font-size: 2.5rem; margin-bottom: 15px; }
 
 .card-content h4 { color: white; font-size: 1.4rem; margin-bottom: 10px; }
 
+/* UPDATED READABILITY */
 .card-content p {
-    color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px;
+    color: #e2e8f0; /* Lighter gray for better contrast */
+    font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px;
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 
@@ -205,11 +231,11 @@ h3 { color: var(--color-accent); font-size: 2.5rem; margin-bottom: 15px; }
     .main-content-container { padding: 0 25px; }
     .hero-intro { min-height: auto; padding: 80px 0 60px; }
     .header-group { padding-left: 0; }
-    .hero-headline { font-size: 3.5rem; }
+    /* Resized for mobile */
+    .name-badge { font-size: 2.5rem; }
+    .hero-headline { font-size: 2rem; }
     .glass-btn-container { height: auto; flex-wrap: wrap; }
-    /* Increase height slightly for long titles on mobile wrapping */
     .small-btn, .main-btn { flex: 100%; height: 90px; }
-    
     .project-grid { grid-template-columns: 1fr; }
-    .project-card { max-width: 100%; } /* Allow full width on mobile */
+    .project-card { max-width: 100%; }
 }
