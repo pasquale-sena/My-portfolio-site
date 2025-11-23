@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Reveal Animations (Text & Buttons)
-    const revealElements = document.querySelectorAll('.reveal-text, .dissolve-in');
+    // 1. Reveal Animations
+    const revealElements = document.querySelectorAll('.reveal-text, .dissolve-in, .section-reveal');
     
     const observerReveal = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                // We add the class and let CSS handle the transition
-                // This prevents JS from fighting with your CSS styles
                 setTimeout(() => {
                     entry.target.classList.add('is-visible');
                 }, index * 100); 
@@ -19,38 +17,29 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => observerReveal.observe(el));
 
 
-    // 2. PARALLAX LOGIC (Left Sidebar - 3 Layers)
+    // 2. PARALLAX LOGIC
     const bg = document.querySelector('.parallax-bg');
     const mid = document.querySelector('.parallax-mid');
     const fg = document.querySelector('.parallax-fg');
 
-    // Only add the event listener if the elements actually exist
     if (bg && mid && fg) {
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
-            
-            // Only run parallax on desktop (where sidebar is visible)
             if (window.innerWidth > 900) {
-                // Use negative values to move layers UP as you scroll DOWN
-                bg.style.transform = `translateY(${scrollY * -0.05}px)`; // Slowest
+                bg.style.transform = `translateY(${scrollY * -0.05}px)`;
                 mid.style.transform = `translateY(${scrollY * -0.1}px)`;
-                fg.style.transform = `translateY(${scrollY * -0.15}px)`; // Fastest
+                fg.style.transform = `translateY(${scrollY * -0.15}px)`;
             }
         });
     }
 
 
-    // 3. Smooth Scroll (With Safety Check)
+    // 3. Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            
-            // Skip empty links
-            if(targetId === '#') return;
-
+            if(targetId === '#' || !targetId.startsWith('#')) return;
             const target = document.querySelector(targetId);
-            
-            // Only prevent default if the target actually exists on this page
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth' });
@@ -59,16 +48,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // 4. Section Scroll Reveal
-    const sectionObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
+    // 4. AJAX FORM HANDLING (No Redirect)
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Stop the redirect
+            
+            const status = document.getElementById("my-form-status");
+            const data = new FormData(event.target);
+            
+            fetch(event.target.action, {
+                method: contactForm.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    status.innerHTML = "Message Received! I'll be in touch soon.";
+                    status.className = "form-status success";
+                    contactForm.reset(); // Clear the form
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+                        } else {
+                            status.innerHTML = "Oops! There was a problem submitting your form";
+                        }
+                        status.className = "form-status error";
+                    })
+                }
+            }).catch(error => {
+                status.innerHTML = "Oops! There was a problem submitting your form";
+                status.className = "form-status error";
+            });
         });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.section-reveal').forEach(section => {
-        sectionObserver.observe(section);
-    });
+    }
 });
