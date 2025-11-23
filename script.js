@@ -24,7 +24,7 @@ function animateTyping() {
 
     // Function to run after typing completes
     function onTypingComplete() {
-        console.log("Typing complete. Starting combined reveal sequence."); // Added log for debugging
+        console.log("Typing complete. Starting combined reveal sequence.");
 
         // 1. Remove the typing cursor/animation
         typeElement.classList.remove('is-typing');
@@ -36,12 +36,11 @@ function animateTyping() {
         const combinedRevealDelay = 200; 
 
         setTimeout(() => {
-            console.log("Executing combined reveal for summary, label, and buttons.");
+            console.log("Executing combined reveal for summary, label, and button container.");
 
-            // FIX: Select ALL elements (Summary, Label, Buttons) that should appear.
-            // This ensures they are all treated in one batch and appear simultaneously.
+            // FIX: Select ALL elements (Summary, Label, AND the main NAV container).
             const elementsToRevealSimultaneously = document.querySelectorAll(
-                '.about-glass.dissolve-in, #project-label, .glass-btn-wrapper.dissolve-in'
+                '.about-glass.dissolve-in, #project-label, .glass-btn-container.dissolve-in'
             );
 
             // Safety check in case elements are missing
