@@ -111,21 +111,23 @@ body::after {
 
 /* --- UPDATED SIDEBAR BUTTON --- */
 .sidebar-btn {
-    /* ADJUSTED: Reduced from 25px to 12px */
     margin-top: 12px;
     background: var(--super-neon-gradient);
-    color: #0a041c;
+    box-shadow: none;
+    color: #0a041c; 
     border: none; 
     padding: 12px 35px;
     font-size: 1rem;
     font-weight: 800; 
-    box-shadow: 0 0 20px rgba(85, 255, 255, 0.4), 0 0 40px rgba(255, 119, 255, 0.4);
     transition: all 0.3s ease;
+    border-radius: 50px; 
+    text-decoration: none; 
 }
+
 .sidebar-btn:hover {
     filter: brightness(1.1);
-    box-shadow: 0 0 30px rgba(85, 255, 255, 0.7), 0 0 60px rgba(255, 119, 255, 0.7);
     transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(85, 255, 255, 0.4); 
     color: #0a041c;
 }
 
@@ -218,31 +220,26 @@ body::after {
 .section-reveal.is-visible { opacity: 1; transform: translateY(0); }
 .section-header { margin-bottom: 30px; }
 
-/* UPDATED: BRIGHTER GRADIENT, NO GLOW FILTER */
-/* UPDATED: Brighter, Glowing Headlines */
+/* UPDATED: Added Thin White Outline */
 h3 { 
-    font-size: 2.5rem; 
-    margin-bottom: 15px; 
+    font-size: 2.5rem; margin-bottom: 15px; 
     display: inline-block;
     
-    /* 1. We add a White start point to force high brightness */
     background: linear-gradient(90deg, #ffffff 0%, var(--color-cyan) 40%, var(--color-neon-pink) 100%);
     
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
+
+    /* NEW: Adds a thin 0.8px white outline around the text */
+    -webkit-text-stroke: 0.8px #ffffff;
     
-    /* 2. IMPORTANT: Use filter: drop-shadow instead of text-shadow for clipped text */
-    /* This creates the "bloom" effect making it look like a light source */
-    filter: drop-shadow(0 0 8px rgba(85, 255, 255, 0.5));
-    
-    /* 3. Thicker weight to fight the "dark edge" anti-aliasing */
+    filter: none;
     font-weight: 800;
-    
-    /* Ensure the gradient stretches correctly */
-    width: fit-content; 
+    width: fit-content;
 }
+
 .section-focus { font-size: 1.2rem; color: #b4b4c8; font-weight: 300; }
 
 .section-label {
