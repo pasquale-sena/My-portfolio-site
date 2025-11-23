@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const observerReveal = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
+                // We add the class and let CSS handle the transition
+                // This prevents JS from fighting with your CSS styles
                 setTimeout(() => {
                     entry.target.classList.add('is-visible');
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
                 }, index * 100); 
                 observerReveal.unobserve(entry.target);
             }
@@ -24,28 +24,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const mid = document.querySelector('.parallax-mid');
     const fg = document.querySelector('.parallax-fg');
 
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        
-        // Only run parallax on desktop (where sidebar is visible)
-        if (window.innerWidth > 900) {
-            // Use negative values to move layers UP as you scroll DOWN
-            // Speeds are subtle for long scrolling
-            if(bg) bg.style.transform = `translateY(${scrollY * -0.05}px)`; // Slowest
-            if(mid) mid.style.transform = `translateY(${scrollY * -0.1}px)`;
-            if(fg) fg.style.transform = `translateY(${scrollY * -0.15}px)`; // Fastest
-        }
-    });
+    // Only add the event listener if the elements actually exist
+    if (bg && mid && fg) {
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            
+            // Only run parallax on desktop (where sidebar is visible)
+            if (window.innerWidth > 900) {
+                // Use negative values to move layers UP as you scroll DOWN
+                bg.style.transform = `translateY(${scrollY * -0.05}px)`; // Slowest
+                mid.style.transform = `translateY(${scrollY * -0.1}px)`;
+                fg.style.transform = `translateY(${scrollY * -0.15}px)`; // Fastest
+            }
+        });
+    }
 
 
-    // 3. Smooth Scroll
+    // 3. Smooth Scroll (With Safety Check)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if(target) target.scrollIntoView({ behavior: 'smooth' });
+            const targetId = this.getAttribute('href');
+            
+            // Skip empty links
+            if(targetId === '#') return;
+
+            const target = document.querySelector(targetId);
+            
+            // Only prevent default if the target actually exists on this page
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
+
 
     // 4. Section Scroll Reveal
     const sectionObserver = new IntersectionObserver(entries => {
