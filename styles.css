@@ -27,8 +27,7 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
     position: relative;
-    /* Ensure body establishes a stacking context */
-    z-index: 0;
+    /* REMOVED: z-index: 0 from body (let the browser handle the root level) */
 }
 
 /* --- BACKGROUND EFFECTS --- */
@@ -38,8 +37,8 @@ body::before {
     top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; 
     
-    /* Z-Index Fix: Forces background blobs behind everything */
-    z-index: -1; 
+    /* FIX: Set to 0 so it sits ON TOP of the black body bg, but UNDER the content */
+    z-index: 0; 
     
     opacity: 0.4; 
     background-image: 
@@ -53,7 +52,10 @@ body::after {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; 
-    z-index: -1; /* Z-Index Fix */
+    
+    /* FIX: Set to 0 */
+    z-index: 0; 
+    
     opacity: 0.15; 
     background-image:
         linear-gradient(rgba(85, 255, 255, 0.2) 1px, transparent 1px),
@@ -71,7 +73,9 @@ body::after {
     width: 100%;
     min-height: 100vh;
     position: relative;
-    z-index: 1;
+    
+    /* FIX: Lift the entire content wrapper ABOVE the background blobs (z-index 0) */
+    z-index: 5;
 }
 
 .sidebar-graphic {
@@ -217,7 +221,7 @@ h3 {
     margin-bottom: 15px; 
     display: inline-block;
     
-    /* UPDATED: Purple -> Cyan -> Purple Gradient */
+    /* Kept the Purple -> Cyan -> Purple Gradient you liked */
     background: linear-gradient(90deg, var(--color-neon-pink) 0%, var(--color-cyan) 50%, var(--color-neon-pink) 100%);
     
     background-clip: text;
@@ -225,7 +229,6 @@ h3 {
     -webkit-text-fill-color: transparent;
     color: transparent;
     
-    /* Brightness boost for visibility */
     filter: brightness(1.3);
     
     font-weight: 800;
