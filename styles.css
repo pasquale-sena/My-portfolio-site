@@ -31,14 +31,14 @@ body {
     z-index: 0;
 }
 
-/* --- BACKGROUND EFFECTS (THE FIX) --- */
+/* --- BACKGROUND EFFECTS --- */
 body::before {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; 
     
-    /* FIX: Changed from 0 to -1 to force it BEHIND everything */
+    /* Z-Index Fix: Forces background blobs behind everything */
     z-index: -1; 
     
     opacity: 0.4; 
@@ -53,7 +53,7 @@ body::after {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; 
-    z-index: -1; /* FIX: Also moved behind */
+    z-index: -1; /* Z-Index Fix */
     opacity: 0.15; 
     background-image:
         linear-gradient(rgba(85, 255, 255, 0.2) 1px, transparent 1px),
@@ -208,24 +208,24 @@ body::after {
 }
 .section-reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-/* REVERTED: Removed the glass container styles from the previous step */
 .section-header { 
     margin-bottom: 30px; 
 }
 
 h3 { 
     font-size: 2.5rem; 
-    /* REVERTED: Added margin back */
     margin-bottom: 15px; 
     display: inline-block;
     
-    background: linear-gradient(90deg, #ffffff 0%, var(--color-cyan) 40%, var(--color-neon-pink) 100%);
+    /* UPDATED: Purple -> Cyan -> Purple Gradient */
+    background: linear-gradient(90deg, var(--color-neon-pink) 0%, var(--color-cyan) 50%, var(--color-neon-pink) 100%);
+    
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
     
-    /* ADDED: Brightness filter to cut through any perceived darkness */
+    /* Brightness boost for visibility */
     filter: brightness(1.3);
     
     font-weight: 800;
