@@ -98,19 +98,22 @@ body::after {
 } 
 .parallax-fg { z-index: 3; }
 
+/* MODIFIED: Changed height to 100vh to constrain image size to the visible window height */
 .sidebar-content-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 300vh; 
+    height: 100vh; 
+    padding-bottom: 50px; /* Add some space above the button */
 }
 
-/* MODIFIED: Increased width and max-width for a bigger GIF character */
+/* MODIFIED: Increased width and max-width for a bigger GIF character, and max-height for vertical dominance */
 .sidebar-char-img {
     width: 100%; /* Now tries to fill its container more */
     height: auto;
     max-width: 550px; /* Increased maximum width */
+    max-height: 80vh; /* Allow it to take up most of the vertical space */
     object-fit: contain;
 }
 
