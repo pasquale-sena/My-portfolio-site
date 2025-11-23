@@ -106,10 +106,11 @@ body::after {
     height: 300vh; 
 }
 
+/* MODIFIED: Increased width and max-width for a bigger GIF character */
 .sidebar-char-img {
-    width: 120%; 
+    width: 100%; /* Now tries to fill its container more */
     height: auto;
-    max-width: 450px; 
+    max-width: 550px; /* Increased maximum width */
     object-fit: contain;
 }
 
