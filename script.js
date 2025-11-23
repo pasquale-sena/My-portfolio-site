@@ -5,7 +5,7 @@ function animateGlitch() {
 
     // Start with a small delay for staggered effect
     setTimeout(() => {
-        // 1. Initial appearance (opacity transition from CSS is enough here)
+        // 1. Initial appearance
         nameElement.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
         nameElement.style.opacity = '1';
         nameElement.style.transform = 'translateY(0)';
@@ -13,13 +13,13 @@ function animateGlitch() {
         // 2. Start the glitching animation using the CSS class
         nameElement.classList.add('is-glitching');
 
-        // 3. Stop the glitching after a short time (e.g., 2.5 seconds)
+        // 3. Stop the glitching and transition to a steady state after 1.5 seconds (was 2.5s)
         setTimeout(() => {
             nameElement.classList.remove('is-glitching');
             // Ensure final style is clean
             nameElement.style.animation = 'none';
             nameElement.style.filter = 'drop-shadow(0 0 10px rgba(85, 255, 255, 0.3))';
-        }, 2500); 
+        }, 1500); 
 
     }, 300); // 300ms delay for name animation to start
 }
@@ -30,14 +30,15 @@ function animateTyping() {
     const typeElement = document.querySelector('.type-text');
     if (!typeElement) return;
 
-    // Get the full, original text content (including <br>)
-    const fullText = typeElement.innerHTML;
-    typeElement.innerHTML = ''; // Clear the text to start the animation
-    
-    // Calculate the total number of characters, replacing <br> with a single "character" step
-    const visibleText = fullText.replace(/<br>/gi, '\n');
+    // We keep the original inner HTML to get the full text including <br>
+    const fullTextHTML = typeElement.innerHTML;
+    // We clean the HTML to get a clean text string for character counting
+    const visibleText = fullTextHTML.replace(/<br>/gi, '\n');
     const totalLength = visibleText.length;
     let charIndex = 0;
+    
+    // Clear the element before starting
+    typeElement.innerHTML = ''; 
     
     // Add the typing class to enable the cursor blink animation
     typeElement.classList.add('is-typing');
@@ -45,21 +46,23 @@ function animateTyping() {
 
     function step() {
         if (charIndex < totalLength) {
-            // Check if the current "character" is a line break
-            if (visibleText[charIndex] === '\n') {
+            
+            let char = visibleText[charIndex];
+            
+            if (char === '\n') {
                 typeElement.innerHTML += '<br>';
-                charIndex++;
             } else {
-                // Add the next character
-                typeElement.innerHTML += visibleText[charIndex];
-                charIndex++;
+                // If the character is not a newline, append the literal character
+                typeElement.innerHTML += char;
             }
+            charIndex++;
+
             // Use a smooth, fast pace
             setTimeout(() => {
                 requestAnimationFrame(step);
             }, 30); // Speed of typing (30ms per character)
         } else {
-            // Animation complete: remove cursor blink
+            // Animation complete: remove cursor blink border
             typeElement.classList.remove('is-typing');
         }
     }
@@ -67,7 +70,7 @@ function animateTyping() {
     // Start the typing animation after the glitch starts
     setTimeout(() => {
         requestAnimationFrame(step);
-    }, 700); // 700ms delay to start after the name is mostly visible
+    }, 700);
 }
 
 
@@ -79,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // 1. Reveal Animations
-    const revealElements = document.querySelectorAll('.reveal-text, .dissolve-in, .section-reveal');
+    const revealElements = document.querySelectorAll('.about-glass.reveal-text, .section-label.reveal-text, .dissolve-in, .section-reveal');
     
     const observerReveal = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
