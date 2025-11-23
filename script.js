@@ -15,12 +15,38 @@ function animateTyping() {
     const typingState = {
         charIndex: 0,
         lastTimestamp: 0,
-        frameTime: 30, // Speed: 30ms per character
+        frameTime: 50, // Adjusted speed: 50ms per character
     };
 
     // Make the element visible and start the typing cursor animation
     typeElement.classList.add('is-typing');
     typeElement.style.opacity = '1';
+
+    // Function to run after typing completes
+    function onTypingComplete() {
+        // 1. Remove the typing cursor/animation
+        typeElement.classList.remove('is-typing');
+        typeElement.classList.add('no-cursor');
+
+        // 2. SEQUENCE THE REVEAL OF NEXT ELEMENTS
+        
+        // Target: About Glass, Section Label, and all Navigation Buttons
+        const elementsToReveal = document.querySelectorAll(
+            '.about-glass.reveal-text, ' + 
+            '.section-label.reveal-text, ' + 
+            '.glass-btn-wrapper.dissolve-in'
+        );
+
+        elementsToReveal.forEach((el, index) => {
+            // Apply a staggered delay to the subsequent elements
+            // (e.g., 50ms delay after typing finishes, plus 100ms per element)
+            const delay = 50 + (index * 100); 
+            
+            setTimeout(() => {
+                el.classList.add('is-visible');
+            }, delay);
+        });
+    }
 
     function step(timestamp) {
         if (!typingState.lastTimestamp) typingState.lastTimestamp = timestamp;
@@ -46,10 +72,8 @@ function animateTyping() {
             requestAnimationFrame(step);
 
         } else {
-            // Animation complete: remove cursor blink border
-            setTimeout(() => {
-                 typeElement.classList.remove('is-typing');
-            }, 50); // Small delay to show final cursor blink
+            // Animation complete: Call the completion function
+            onTypingComplete();
         }
     }
 
@@ -61,13 +85,13 @@ function animateTyping() {
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- 0. START HERO ANIMATIONS ---
-    // Removed animateGlitch()
     animateTyping();
 
 
     // 1. Reveal Animations
-    // NOTE: revealElements selection is simplified for robust loading
-    const revealElements = document.querySelectorAll('.about-glass.reveal-text, .section-label.reveal-text, .dissolve-in, .section-reveal');
+    // NOTE: revealElements selection is now ONLY for sections below the hero.
+    // The hero elements (.about-glass, .section-label, .dissolve-in) are handled by animateTyping().
+    const revealElements = document.querySelectorAll('.section-reveal');
     
     const observerReveal = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
