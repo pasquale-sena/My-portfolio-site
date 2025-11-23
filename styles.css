@@ -269,7 +269,13 @@ body::after {
 /* ========================================= */
 
 .project-section { 
-    margin-bottom: var(--section-spacing); padding-top: 40px; opacity: 0; transform: translateY(50px); transition: 0.8s ease-out; 
+    margin-bottom: var(--section-spacing); 
+    padding-top: 40px; 
+    opacity: 0; 
+    transform: translateY(50px); 
+    transition: 0.8s ease-out; 
+    /* FIX: Add scroll margin to push the element away from the top edge during hash navigation */
+    scroll-margin-top: 150px; 
 }
 .section-reveal.is-visible { opacity: 1; transform: translateY(0); }
 
