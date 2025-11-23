@@ -107,9 +107,9 @@ body::after {
 }
 
 .sidebar-char-img {
-    width: 90%; /* INCREASED: Made the graphic 10% wider */
+    width: 90%; 
     height: auto;
-    max-width: 450px; /* INCREASED: Max width also increased */
+    max-width: 450px; 
     object-fit: contain;
 }
 
@@ -173,7 +173,7 @@ body::after {
 }
 
 /* FIX: Increase specificity for elements in the hero section using 'dissolve-in' 
-   to ensure they are hidden on load and ready for the JS animation. */
+    to ensure they are hidden on load and ready for the JS animation. */
 #hero .dissolve-in {
     opacity: 0;
     transform: translateY(10px);
@@ -255,9 +255,6 @@ body::after {
     border-right: none;
     animation: none; /* Stop blink animation */
 }
-
-/* REMOVED: Glitch Animation Keyframes */
-
 
 /* ========================================= */
 /* --- PROJECT GRID STYLES --- */
@@ -606,11 +603,10 @@ h3 {
     padding: 0;
 }
 
-/* This is the problematic rule: it sets display: flex which we are trying to override later */
 .skill-card ul li {
     margin-bottom: 12px;
     color: #b4b4c8;
-    display: flex; /* Keeping this here but the higher-specificity rule below should override it for .meta-list */
+    display: flex; 
     align-items: center;
 }
 
@@ -623,14 +619,6 @@ h3 {
 
 /* ========================================= */
 /* --- ADDIE LIST STRUCTURE FIXES (Separating Label/Content) --- */
-/*
-    The core issue is text wrapping because the meta-label and meta-content 
-    are inside a list item (display: block) but are themselves divs that
-    were being forced into an inline or row-like layout previously.
-    We are ensuring both the list item and its content divs are full-width blocks.
-    
-    CHANGE: Reduced vertical spacing (padding-bottom and margin-bottom) for tighter list items.
-*/
 .meta-list {
     list-style: none; 
     padding-left: 0; 
@@ -643,8 +631,8 @@ h3 {
     list-style: none;
     position: relative;
     padding-left: 25px; 
-    padding-bottom: 8px; /* ADJUSTED: Reduced from 15px */
-    margin-bottom: 8px; /* ADJUSTED: Reduced from 15px */
+    padding-bottom: 8px; 
+    margin-bottom: 8px; 
     padding-top: 8px;
     border-bottom: 1px solid rgba(85, 255, 255, 0.1); 
 }
@@ -667,7 +655,6 @@ h3 {
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1.2;
-    /* FIX: Force full width to ensure text wrapping happens below, not beside, the label */
     width: 100%; 
 }
 
@@ -678,7 +665,6 @@ h3 {
     font-weight: 400;
     line-height: 1.6;
     color: #b4b4c8;
-    /* FIX: Force full width to prevent accidental inline behavior */
     width: 100%;
 }
 
