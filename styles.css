@@ -514,6 +514,7 @@ h3 {
     padding: 0;
 }
 
+/* Generic List Item Styling (for other lists if any) */
 .skill-card ul li {
     margin-bottom: 12px;
     color: #b4b4c8;
@@ -521,6 +522,7 @@ h3 {
     align-items: center;
 }
 
+/* Generic Bullet */
 .skill-card ul li::before {
     content: '▹';
     color: var(--color-neon-pink);
@@ -528,69 +530,45 @@ h3 {
     font-size: 1.2rem;
 }
 
-/* --- ADDIE LIST STRUCTURE FIXES (Separating Label/Content) --- */
+/* --- ADDIE LIST STRUCTURE FIXES --- */
+/* Specific override for the .meta-list used in ADDIE process */
 .meta-list {
-    list-style: none; 
-    padding-left: 0; 
-    margin-top: 15px; 
-}
-
-/* The List Item (Container for Label + Content + Separator) */
-.meta-list li {
-    /* Ensures stacking of label/content */
-    display: block; 
     list-style: none;
-    position: relative; /* Anchor for absolute bullet */
-    
-    /* FIX: Added padding-left and removed margin-left from bullet */
-    padding-left: 25px; 
-    
-    /* FIX 2: Increased Visibility & Padding */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 18px; 
-    margin-bottom: 18px; 
-    padding-top: 5px; 
+    padding-left: 0;
+    margin-top: 15px;
 }
 
-/* Custom Bullet Point Styling */
+.meta-list li {
+    /* Change from flex (side-by-side) to block (stacking) */
+    display: block !important; 
+    position: relative;
+    padding-left: 25px; /* Add indentation to make room for the bullet */
+    margin-bottom: 20px;
+}
+
+/* Reposition the bullet for the block layout */
 .meta-list li::before {
-    content: '▹';
-    color: var(--color-neon-pink);
-    font-size: 1.2rem;
-    
-    /* FIX: Take bullet out of flow and position absolutely */
     position: absolute;
-    left: 0; 
-    top: 8px; /* Vertical alignment */
+    left: 0;
+    top: 0; /* Aligns with the title line */
+    margin-right: 0;
 }
 
-/* Remove border from the last item */
-.meta-list li:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    padding-top: 0;
-}
-
-/* Label (The Title - e.g., Target Audience) */
+/* Title (Label) Styling */
 .meta-list .meta-label {
-    /* Forces the label to its own line (Line 1) */
-    display: block; 
-    margin-bottom: 5px; /* Increased spacing between label and description */
+    display: block; /* Forces it to its own line */
+    margin-bottom: 5px; /* Space between title and description */
     color: var(--color-cyan);
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1.2;
 }
 
-/* Content (The Description - Line 2) */
+/* Content (Description) Styling */
 .meta-list .meta-content {
-    /* FIX: Ensures content uses the full width below the label */
-    display: block;
-    padding-left: 0;
-    font-weight: 400;
-    line-height: 1.4;
+    display: block; /* Forces it to the line below */
     color: #b4b4c8;
+    line-height: 1.5;
 }
 /* --- END ADDIE LIST STRUCTURE FIXES --- */
 
