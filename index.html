@@ -12,7 +12,6 @@
 
         <aside class="sidebar-graphic">
             <div class="parallax-layer parallax-bg" style="background-image: url('images/placeholder-background.png');"></div>
-            
             <div class="parallax-layer parallax-mid" style="background-image: url('images/placeholder-mid.png');"></div>
             
             <div class="parallax-layer parallax-fg sidebar-content-wrapper">
@@ -150,7 +149,7 @@
                 </div>
 
                 <div class="contact-glass-card">
-                    <form action="https://formspree.io/f/mzzwwlwn" method="POST" class="contact-form">
+                    <form id="contact-form" action="https://formspree.io/f/mzzwwlwn" method="POST" class="contact-form">
                         
                         <div class="form-group">
                             <label for="name" class="form-label">Name</label>
@@ -168,6 +167,8 @@
                         </div>
 
                         <button type="submit" class="tech-btn contact-submit-btn">SEND MESSAGE</button>
+                        
+                        <div id="my-form-status" class="form-status"></div>
                     </form>
                 </div>
             </section>
