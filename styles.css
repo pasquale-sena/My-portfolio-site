@@ -564,12 +564,11 @@ h3 {
     padding: 0;
 }
 
+/* This is the problematic rule: it sets display: flex which we are trying to override later */
 .skill-card ul li {
     margin-bottom: 12px;
     color: #b4b4c8;
-    /* This generic rule is likely where the conflict comes from. */
-    /* Since we're fixing the specific .meta-list below, we leave this. */
-    display: flex;
+    display: flex; /* Keeping this here but the higher-specificity rule below should override it for .meta-list */
     align-items: center;
 }
 
@@ -583,9 +582,10 @@ h3 {
 /* ========================================= */
 /* --- ADDIE LIST STRUCTURE FIXES (Separating Label/Content) --- */
 /*
-    ISSUE FIX: Increased specificity for .meta-list li to override
-    the earlier .skill-card ul li display: flex rule, which was preventing
-    the meta-label and meta-content divs from stacking.
+    The core issue is text wrapping because the meta-label and meta-content 
+    are inside a list item (display: block) but are themselves divs that
+    were being forced into an inline or row-like layout previously.
+    We are ensuring both the list item and its content divs are full-width blocks.
 */
 .meta-list {
     list-style: none; 
@@ -593,57 +593,56 @@ h3 {
     margin-top: 15px; 
 }
 
-/* Use higher specificity to ensure display: block wins without !important */
+/* 1. Ensure the list item is a block element for stacking and positioning */
 .skill-card .meta-list li {
-    /* Ensures stacking of label/content (overrides display: flex from above) */
     display: block; 
     list-style: none;
     position: relative;
-    
-    /* Indentation and spacing */
     padding-left: 25px; 
-    padding-bottom: 25px; 
-    margin-bottom: 25px; 
-    padding-top: 5px; 
-    border-bottom: none;
+    padding-bottom: 15px; /* Reduced bottom padding */
+    margin-bottom: 15px; /* Reduced margin */
+    padding-top: 8px; /* Slightly increased top padding for better vertical alignment with text */
+    border-bottom: 1px solid rgba(85, 255, 255, 0.1); /* Added a subtle separator line for visual clarity */
 }
 
 /* Ensure bullet is displayed and positioned correctly */
 .skill-card .meta-list li::before {
-    content: '▹'; /* Re-adding the bullet point */
+    content: '▹'; 
     color: var(--color-neon-pink);
     position: absolute;
     left: 0;
-    top: 5px; /* Aligns with the title line */
+    top: 8px; /* Aligns with the list item's top padding */
     margin-right: 0;
 }
 
-/* Label (The Title - e.g., Target Audience) */
+/* 2. Ensure the label takes full width and stacks */
 .skill-card .meta-list .meta-label {
-    /* Ensure the label always takes up full width for stacking */
     display: block; 
-    margin-bottom: 8px; /* Space between title and description */
+    margin-bottom: 5px; /* Reduced space between title and description */
     color: var(--color-cyan); 
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1.2;
+    /* FIX: Force full width to ensure text wrapping happens below, not beside, the label */
+    width: 100%; 
 }
 
-/* Content (The Description - Line 2) */
+/* 3. Ensure the content takes full width and stacks */
 .skill-card .meta-list .meta-content {
-    /* Ensure the content always takes up full width for stacking */
     display: block; 
     padding-left: 0;
     font-weight: 400;
-    line-height: 1.6; /* Slightly more space */
+    line-height: 1.6;
     color: #b4b4c8;
+    /* FIX: Force full width to prevent accidental inline behavior */
+    width: 100%;
 }
 
-/* Remove extra spacing from the last item */
+/* Remove border and spacing from the last item */
 .skill-card .meta-list li:last-child {
     margin-bottom: 0;
     padding-bottom: 0;
-    padding-top: 0;
+    border-bottom: none;
 }
 /* --- END ADDIE LIST STRUCTURE FIXES --- */
 /* ========================================= */
