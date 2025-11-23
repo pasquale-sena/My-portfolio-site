@@ -170,7 +170,7 @@ body::after {
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    visibility: hidden; /* ADDED: Ensure elements are definitely hidden before animation starts */
+    visibility: hidden; /* Ensure elements are definitely hidden before animation starts */
 }
 
 /* FIX: Increase specificity for elements in the hero section using 'dissolve-in' 
@@ -178,16 +178,16 @@ body::after {
 #hero .dissolve-in {
     opacity: 0;
     transform: translateY(10px);
-    visibility: hidden; /* ADDED: Ensure elements are definitely hidden before animation starts */
+    visibility: hidden; /* Ensure elements are definitely hidden before animation starts */
 }
 
 
-/* 2. REVEAL: Applied by JS on completion */
-.reveal-text.is-visible, 
-.dissolve-in.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible; /* ADDED: Make visible when animation starts */
+/* 2. REVEAL: Applied by JS on completion - MAX SPECIFICITY FIX */
+#hero .reveal-text.is-visible,
+#hero .dissolve-in.is-visible {
+    opacity: 1 !important; /* Force visibility */
+    transform: translateY(0) !important;
+    visibility: visible !important; /* Force visibility */
 }
 
 
