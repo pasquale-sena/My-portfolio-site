@@ -3,67 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me | Pasquale Sena</title>
+    <title>About | Pasquale Sena</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <nav class="about-nav dissolve-in">
-        <a href="index.html" class="tech-btn back-btn">← Return to Base</a>
-    </nav>
+    <main class="split-layout">
 
-    <main class="about-page-container">
-        
-        <section class="profile-header">
-            <div class="profile-img-card dissolve-in">
-                <img src="images/pasquale-headshot.jpg" alt="Pasquale Sena" class="profile-photo">
-            </div>
+        <aside class="sidebar-graphic">
+            <div class="parallax-layer parallax-bg" style="background-image: url('images/placeholder-background.png');"></div>
+            <div class="parallax-layer parallax-mid" style="background-image: url('images/placeholder-mid.png');"></div>
             
-            <div class="profile-intro reveal-text">
-                <h3>About The Architect</h3>
-                <h1 class="hero-headline">Designing the future of <br><span class="highlight-cyan">Human Potential.</span></h1>
+            <div class="parallax-layer parallax-fg sidebar-content-wrapper">
+                <img src="images/placeholder-me.png" alt="Pasquale Sena Character" class="sidebar-char-img">
+                
+                <a href="index.html" class="tech-btn sidebar-btn">BACK TO HOME</a>
             </div>
-        </section>
+        </aside>
 
-        <section class="bio-glass reveal-text">
-            <p><strong>I don't just design training; I engineer experiences.</strong></p>
-            <p>With over a decade of experience in Instructional Design and Multimedia, I specialize in bridging the gap between complex technical concepts and intuitive learner experiences.</p>
-            <p>My philosophy is simple: Learning shouldn't be a chore—it should be an exploration. By leveraging cutting-edge tools like AI, interactive video, and gamification, I transform passive content into active engagement.</p>
-            <p>When I'm not building courses, I'm exploring the bleeding edge of educational technology, ensuring that my strategies remain lightyears ahead of the curve.</p>
-        </section>
 
-        <section class="skills-section reveal-text">
-            <h3>Mission Capabilities</h3>
+        <div class="main-content-container">
             
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h4>Core Disciplines</h4>
-                    <div class="tag-container">
-                        <span class="neon-tag">Instructional Design</span>
-                        <span class="neon-tag">E-Learning Dev</span>
-                        <span class="neon-tag">Curriculum Strategy</span>
-                        <span class="neon-tag">ADDIE / SAM</span>
-                    </div>
+            <section class="about-hero-section section-reveal">
+                
+                <div class="about-photo-wrapper">
+                    <img src="images/placeholder-new-photo.jpg" alt="Pasquale Sena" class="about-photo">
+                    <div class="photo-border-glow"></div>
                 </div>
 
-                <div class="skill-card">
-                    <h4>Tech Stack</h4>
-                    <div class="tag-container">
-                        <span class="neon-tag">Articulate Storyline</span>
-                        <span class="neon-tag">Adobe Creative Cloud</span>
-                        <span class="neon-tag">Camtasia</span>
-                        <span class="neon-tag">AI Tools (Midjourney, ChatGPT)</span>
+                <div class="header-group">
+                    <h1 class="hero-headline" style="font-size: 3rem;">Charting the Future<br>of Learning.</h1>
+                </div>
+
+                <div class="about-text-content">
+                    <p class="lead-text">I treat instructional design like a high-tech expedition: you need a clear map, a bold strategy, and the most advanced tools to navigate the shifting terrain of the industry.</p>
+                    
+                    <p>With over a decade of experience, I don’t just build courses; I architect adaptive learning ecosystems. I leverage <strong>Generative AI</strong> and automation to turbocharge workflows and create personalized, scalable training that gets learners from "Novice" to "Expert" at warp speed.</p>
+                    
+                    <p>My downtime looks a lot like my uptime—just with better scenery. I’m an avid explorer and drone photographer, constantly seeking new peaks to climb and new roads to drive. If I’m indoors, I’m likely experimenting with new AI prompts or editing footage, usually with a cat asleep on the keyboard.</p>
+                </div>
+            </section>
+
+            <section class="section-reveal">
+                <div class="section-header">
+                    <h3>Technical Arsenal</h3>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h4>Authoring & Dev</h4>
+                        <ul>
+                            <li>Articulate Storyline 360</li>
+                            <li>Rise 360</li>
+                            <li>Adobe Premiere Pro</li>
+                            <li>After Effects</li>
+                            <li>Figma / UX Design</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <h4>AI & Strategy</h4>
+                        <ul>
+                            <li>Generative AI Workflows</li>
+                            <li>ChatGPT / Midjourney</li>
+                            <li>Agile / Scrum for L&D</li>
+                            <li>ADDIE / SAM Models</li>
+                            <li>Data-Driven QA Governance</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="contact-cta reveal-text">
-            <h3>Ready to Collaborate?</h3>
-            <p>Let's build something extraordinary together.</p>
-            <a href="mailto:your-email@example.com" class="tech-btn sidebar-btn">INITIATE CONTACT</a>
-        </section>
+            <section id="contact" class="section-reveal">
+                <div class="section-header">
+                    <h3>Let's Connect.</h3>
+                    <p class="section-focus">Available for new opportunities and collaborations.</p>
+                </div>
 
+                <div class="contact-glass-card">
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="How can I help?" required></textarea>
+                        </div>
+                        <button type="submit" class="tech-btn contact-submit-btn">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </section>
+
+        </div> 
     </main>
 
     <script src="script.js"></script>
