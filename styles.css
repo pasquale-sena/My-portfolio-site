@@ -108,13 +108,14 @@ body::after {
     padding-bottom: 50px; /* Add some space above the button */
 }
 
-/* MODIFIED: Increased width and max-width for a bigger GIF character, and max-height for vertical dominance */
+/* MODIFIED: Added drop-shadow filter */
 .sidebar-char-img {
     width: 100%; /* Now tries to fill its container more */
     height: auto;
     max-width: 550px; /* Increased maximum width */
     max-height: 80vh; /* Allow it to take up most of the vertical space */
     object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(85, 255, 255, 0.6)); /* Added drop shadow */
 }
 
 /* --- RIGHT MAIN CONTENT AREA --- */
