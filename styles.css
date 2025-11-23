@@ -2,12 +2,17 @@
 :root {
     --bg-gradient: linear-gradient(135deg, #0a041c 0%, #000000 100%);
     --color-text: #ffffff; 
-    --color-cyan: #00dbde;
-    --color-neon-pink: #ff56f6;
-    --bright-neon-gradient: linear-gradient(90deg, var(--color-cyan), var(--color-neon-pink));
+    
+    /* UPDATED: Even Brighter Neon Colors */
+    --color-cyan: #55ffff; /* Super bright cyan */
+    --color-neon-pink: #ff77ff; /* Super bright pink */
+    
+    /* UPDATED: Super bright gradient */
+    --super-neon-gradient: linear-gradient(90deg, var(--color-cyan), var(--color-neon-pink));
+    
     --glass-border: rgba(255, 255, 255, 0.15); 
     --glass-bg: rgba(10, 4, 28, 0.6); 
-    --card-hover-glow: 0 0 25px rgba(0, 219, 222, 0.4); 
+    --card-hover-glow: 0 0 25px rgba(85, 255, 255, 0.4); 
     --font-primary: sans-serif;
     --section-spacing: 140px;
 }
@@ -42,8 +47,8 @@ body::after {
     top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 0; opacity: 0.15; 
     background-image:
-        linear-gradient(rgba(0, 219, 222, 0.2) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 219, 222, 0.2) 1px, transparent 1px);
+        linear-gradient(rgba(85, 255, 255, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(85, 255, 255, 0.2) 1px, transparent 1px);
     background-size: 50px 50px;
     mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
@@ -73,14 +78,12 @@ body::after {
     justify-content: center;
 }
 
-/* UPDATED PARALLAX LAYERS */
 .parallax-layer {
     position: absolute;
     left: 0; width: 100%; height: 300vh; top: -100vh; 
     will-change: transform;
 }
 
-/* Background and Mid layers still use background images */
 .parallax-bg { 
     z-index: 1; opacity: 0.6; mix-blend-mode: lighten; 
     background-size: contain; background-repeat: no-repeat; background-position: center center;
@@ -89,8 +92,6 @@ body::after {
     z-index: 2;
     background-size: contain; background-repeat: no-repeat; background-position: center center;
 } 
-
-/* NEW: Foreground layer is now a flex container for img + button */
 .parallax-fg { z-index: 3; }
 
 .sidebar-content-wrapper {
@@ -98,30 +99,28 @@ body::after {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%; /* Fills the tall parallax layer height */
+    height: 100%; 
 }
 
 .sidebar-char-img {
-    width: 80%; /* Adjust based on preference */
+    width: 80%;
     height: auto;
     max-width: 400px;
     object-fit: contain;
 }
 
-/* NEW SIDEBAR BUTTON STYLE */
 .sidebar-btn {
-    margin-top: 25px; /* Spacing between graphic and button */
-    /* Ensure high contrast */
+    margin-top: 25px;
     border-color: var(--color-cyan);
     color: var(--color-cyan);
-    background: rgba(0, 219, 222, 0.1);
-    padding: 12px 35px; /* Slightly wider */
+    background: rgba(85, 255, 255, 0.1);
+    padding: 12px 35px;
     font-size: 1rem;
 }
 .sidebar-btn:hover {
     background: var(--color-cyan);
     color: #0a041c;
-    box-shadow: 0 0 30px rgba(0, 219, 222, 0.6);
+    box-shadow: 0 0 30px rgba(85, 255, 255, 0.6);
 }
 
 
@@ -133,7 +132,6 @@ body::after {
     margin: 0 auto;
 }
 
-/* Hero Intro Section */
 .hero-intro {
     min-height: 90vh; 
     display: flex;
@@ -141,13 +139,11 @@ body::after {
     justify-content: center;
     align-items: flex-start;
     padding-bottom: 60px;
-    /* Added scroll-margin for smooth anchor linking */
     scroll-margin-top: 100px;
 }
 
 .header-group { padding-left: 30px; margin-bottom: 40px; }
 
-/* TYPOGRAPHY */
 .name-badge {
     display: block;
     color: var(--color-cyan);
@@ -157,7 +153,7 @@ body::after {
     font-size: 3.5rem; 
     text-transform: uppercase;
     line-height: 1;
-    text-shadow: 0 0 10px rgba(0, 219, 222, 0.3);
+    text-shadow: 0 0 10px rgba(85, 255, 255, 0.3);
 }
 
 .hero-headline {
@@ -168,7 +164,6 @@ body::after {
     color: white;
 }
 
-/* GLASS BOX */
 .about-glass {
     background: var(--glass-bg); 
     backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
@@ -182,7 +177,6 @@ body::after {
     letter-spacing: 0.5px;
 }
 
-/* --- GLASS BUTTONS (HERO) --- */
 .glass-btn-container { display: flex; gap: 25px; height: 100px; width: 100%; max-width: 700px; }
 .glass-btn-wrapper {
     position: relative; border-radius: 50px; overflow: hidden; transition: all 0.4s ease;
@@ -204,8 +198,8 @@ body::after {
 
 .glass-btn-wrapper:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--card-hover-glow); }
 .glass-btn-wrapper:hover .btn-bg-img { filter: blur(5px) brightness(0.7) saturate(1.5); }
-.main-btn .glass-btn { border-color: var(--color-cyan); background: rgba(0, 219, 222, 0.1); box-shadow: 0 0 15px rgba(0, 219, 222, 0.2) inset; }
-.glass-btn-wrapper:hover .glass-btn { border-color: var(--color-cyan); background: rgba(0, 219, 222, 0.2); text-shadow: 0 0 8px rgba(255,255,255,0.8); }
+.main-btn .glass-btn { border-color: var(--color-cyan); background: rgba(85, 255, 255, 0.1); box-shadow: 0 0 15px rgba(85, 255, 255, 0.2) inset; }
+.glass-btn-wrapper:hover .glass-btn { border-color: var(--color-cyan); background: rgba(85, 255, 255, 0.2); text-shadow: 0 0 8px rgba(255,255,255,0.8); }
 
 
 /* ========================================= */
@@ -218,16 +212,20 @@ body::after {
 .section-reveal.is-visible { opacity: 1; transform: translateY(0); }
 .section-header { margin-bottom: 30px; }
 
-/* BRIGHTER NEON GRADIENT TITLES */
+/* UPDATED: BRIGHTER GRADIENT, NO GLOW FILTER */
 h3 { 
-    font-size: 2.5rem; margin-bottom: 15px; display: inline-block;
-    background: var(--bright-neon-gradient);
-    background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
-    filter: drop-shadow(0 0 10px rgba(0, 219, 222, 0.5));
+    font-size: 2.5rem; margin-bottom: 15px; 
+    display: inline-block;
+    /* Use the new super bright gradient */
+    background: var(--super-neon-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    /* FILTER REMOVED */
 }
 .section-focus { font-size: 1.2rem; color: #b4b4c8; font-weight: 300; }
 
-/* TECH LABEL WITH GLOWING UNDERLINE */
 .section-label {
     font-size: 0.9rem; font-weight: 800; letter-spacing: 2px; color: var(--color-cyan);
     margin-bottom: 35px; text-transform: uppercase; opacity: 0.9; text-align: center; width: 100%; max-width: 700px; position: relative; 
@@ -243,7 +241,6 @@ h3 {
     gap: 40px; justify-content: center; 
 }
 
-/* "FUTURISTIC" CARD STYLE */
 .project-card {
     background: var(--glass-bg); border-radius: 24px; overflow: hidden; transition: all 0.4s ease;
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); max-width: 550px;
@@ -253,13 +250,12 @@ h3 {
 .project-card:hover { transform: translateY(-8px); }
 
 .card-image { 
-    height: 220px; width: 100%; overflow: hidden; border-bottom: 1px solid rgba(0, 219, 222, 0.2); position: relative; 
+    height: 220px; width: 100%; overflow: hidden; border-bottom: 1px solid rgba(85, 255, 255, 0.2); position: relative; 
 }
 
-/* TECH GRID OVERLAY ON HOVER */
 .card-image::after {
     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background-image: linear-gradient(rgba(0, 219, 222, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 219, 222, 0.15) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(85, 255, 255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(85, 255, 255, 0.15) 1px, transparent 1px);
     background-size: 20px 20px; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; 
 }
 .project-card:hover .card-image::after { opacity: 1; }
@@ -273,14 +269,17 @@ h3 {
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 
-/* GENERAL TECH BUTTON */
 .tech-btn {
-    display: inline-block; padding: 12px 25px; background: rgba(255, 255, 255, 0.05); 
+    display: inline-block; padding: 12px 25px; 
+    background: rgba(255, 255, 255, 0.05); 
     border: 2px solid var(--color-cyan); color: var(--color-cyan);
     text-decoration: none; font-weight: 800; border-radius: 50px;
     transition: all 0.3s ease; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
 }
-.tech-btn:hover { background: var(--color-cyan); color: #0a041c; box-shadow: 0 0 30px rgba(0, 219, 222, 0.5); }
+.tech-btn:hover { 
+    background: var(--color-cyan); color: #0a041c; 
+    box-shadow: 0 0 30px rgba(85, 255, 255, 0.5);
+}
 
 
 /* --- MOBILE RESPONSIVE --- */
