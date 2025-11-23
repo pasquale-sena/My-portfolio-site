@@ -386,7 +386,7 @@ h3 {
 }
 .contact-submit-btn:hover {
     background: white;
-    box-shadow: 0 0 30px rgba(85, 255, 255, 0.6);
+    box-shadow: 0 0 30px rgba(85, 255, 255, 0.8);
 }
 
 /* AJAX Form Status Message */
@@ -537,26 +537,29 @@ h3 {
 
 /* The List Item (Container for Label + Content + Separator) */
 .meta-list li {
-    /* Now treats each point as its own block */
+    /* Ensures stacking of label/content */
     display: block; 
     list-style: none;
-    padding-left: 10px; /* Indent for the list marker */
+    padding-left: 25px; 
+    position: relative; /* Anchor for absolute bullet */
     
     /* FIX 2: Increased Visibility & Padding */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 18px; /* Increased vertical spacing */
+    padding-bottom: 18px; 
     margin-bottom: 18px; 
-    padding-top: 5px; /* Added slight top padding */
+    padding-top: 5px; 
 }
 
 /* Custom Bullet Point Styling */
 .meta-list li::before {
     content: '▹';
     color: var(--color-neon-pink);
-    margin-right: 8px;
     font-size: 1.2rem;
-    display: inline-block;
-    margin-left: -18px; /* Pull the bullet point outside the padding */
+    
+    /* FIX: Take bullet out of flow and position absolutely */
+    position: absolute;
+    left: 0; 
+    top: 8px; /* Vertical alignment */
 }
 
 /* Remove border from the last item */
@@ -569,15 +572,16 @@ h3 {
 
 /* Label (The Title - e.g., Target Audience) */
 .meta-list .meta-label {
-    /* Forces the label to its own line */
+    /* Forces the label to its own line (Line 1) */
     display: block; 
-    margin-bottom: 5px; /* Increased spacing between label and description */
+    margin-bottom: 5px; 
     color: var(--color-cyan);
     font-weight: 700;
     text-transform: uppercase;
+    line-height: 1.2;
 }
 
-/* Content (The Description) */
+/* Content (The Description - Line 2) */
 .meta-list .meta-content {
     display: block;
     padding-left: 0;
