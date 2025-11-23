@@ -109,27 +109,8 @@ body::after {
     object-fit: contain;
 }
 
-/* --- UPDATED SIDEBAR BUTTON --- */
-.sidebar-btn {
-    margin-top: 12px;
-    background: var(--super-neon-gradient);
-    box-shadow: none;
-    color: #0a041c; 
-    border: none; 
-    padding: 12px 35px;
-    font-size: 1rem;
-    font-weight: 800; 
-    transition: all 0.3s ease;
-    border-radius: 50px; 
-    text-decoration: none; 
-}
-
-.sidebar-btn:hover {
-    filter: brightness(1.1);
-    transform: translateY(-3px);
-    box-shadow: 0 0 15px rgba(85, 255, 255, 0.4); 
-    color: #0a041c;
-}
+/* --- SIDEBAR BUTTON (MOVED DOWN TO OVERRIDE .tech-btn) --- */
+/* See bottom of file for the specific override */
 
 
 /* --- RIGHT MAIN CONTENT AREA --- */
@@ -220,7 +201,7 @@ body::after {
 .section-reveal.is-visible { opacity: 1; transform: translateY(0); }
 .section-header { margin-bottom: 30px; }
 
-/* UPDATED: Added Thin White Outline */
+/* UPDATED: Removed stroke to fix overlapping lines */
 h3 { 
     font-size: 2.5rem; margin-bottom: 15px; 
     display: inline-block;
@@ -232,12 +213,16 @@ h3 {
     -webkit-text-fill-color: transparent;
     color: transparent;
 
-    /* NEW: Adds a thin 0.8px white outline around the text */
-    -webkit-text-stroke: 0.8px #ffffff;
+    /* REMOVED: -webkit-text-stroke (Caused the crossing lines artifact) */
     
-    filter: none;
+    /* ADDED: Drop-shadow filter creates a glow on the WHOLE word shape, not individual overlapping letters */
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+    
     font-weight: 800;
     width: fit-content;
+    
+    /* ADDED: Slight spacing to help readability */
+    letter-spacing: 1px;
 }
 
 .section-focus { font-size: 1.2rem; color: #b4b4c8; font-weight: 300; }
@@ -295,6 +280,21 @@ h3 {
 .tech-btn:hover { 
     background: var(--color-cyan); color: #0a041c; 
     box-shadow: 0 0 30px rgba(85, 255, 255, 0.5);
+}
+
+/* --- FIX FOR SIDEBAR BUTTON --- */
+/* Placed at the end to ensure it overrides .tech-btn */
+.tech-btn.sidebar-btn {
+    margin-top: 12px;
+    background: var(--color-cyan) !important; /* Force solid cyan */
+    color: #000000 !important; /* Force black text */
+    border: none;
+    box-shadow: 0 0 20px rgba(85, 255, 255, 0.4);
+}
+.tech-btn.sidebar-btn:hover {
+    background: #fff !important;
+    box-shadow: 0 0 30px rgba(85, 255, 255, 0.8);
+    transform: translateY(-3px);
 }
 
 
