@@ -1,196 +1,181 @@
-// Function for the Typing effect (Senior Instructional Designer)
-function animateTyping() {
-    const typeElement = document.querySelector('.type-text');
-    if (!typeElement) return;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasquale Sena | Senior Instructional Designer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-    // Get original HTML (including <br>) and clean text string for counting
-    const fullTextHTML = typeElement.innerHTML;
-    const visibleText = fullTextHTML.replace(/<br>/gi, '\n');
-    const totalLength = visibleText.length;
-    
-    // Clear the element before starting
-    typeElement.innerHTML = ''; 
-    
-    // State object for timing control
-    const typingState = {
-        charIndex: 0,
-        lastTimestamp: 0,
-        frameTime: 50, // Adjusted speed: 50ms per character
-    };
+    <main class="split-layout">
 
-    // Make the element visible and start the typing cursor animation
-    typeElement.classList.add('is-typing');
-    typeElement.style.opacity = '1';
-
-    // Function to run after typing completes
-    function onTypingComplete() {
-        // 1. Remove the typing cursor/animation
-        typeElement.classList.remove('is-typing');
-        typeElement.classList.add('no-cursor');
-
-        // 2. SEQUENCE THE REVEAL OF NEXT ELEMENTS
-        
-        // --- PHASE 1: Reveal About Me Summary (.about-glass) immediately ---
-        const aboutGlass = document.querySelector('.about-glass.reveal-text');
-        if (aboutGlass) {
-            aboutGlass.classList.add('is-visible');
-        }
-
-        // --- PHASE 2: Wait for Phase 1 (0.7s) before revealing the rest ---
-        // (The CSS transition for .reveal-text is 0.6s, so we wait 700ms)
-        const secondaryRevealDelay = 700; 
-
-        setTimeout(() => {
-            // Get the label element separately
-            const label = document.querySelector('#hero .section-label.dissolve-in');
+        <!-- NOTE: Image URLs are placeholders and may not load -->
+        <aside class="sidebar-graphic">
+            <div class="parallax-layer parallax-bg" style="background-image: url('https://placehold.co/800x2400/0a041c/55ffff?text=Background');"></div>
             
-            // Get the buttons
-            const buttonWrappers = document.querySelectorAll('.glass-btn-wrapper.dissolve-in');
-
-            // FIX: Reveal the label at delay 0.
-            if (label) {
-                label.classList.add('is-visible');
-            }
+            <div class="parallax-layer parallax-mid" style="background-image: url('https://placehold.co/800x2400/0a041c/ff77ff?text=Midground');"></div>
             
-            // Now, start the staggered reveal ONLY for the buttons.
-            buttonWrappers.forEach((el, index) => {
-                // Apply a staggered delay. The first button (index 0) will appear immediately 
-                // after the label (which just appeared), and the subsequent buttons will stagger.
-                const delay = index * 100; 
+            <div class="parallax-layer parallax-fg sidebar-content-wrapper">
+                <img src="https://placehold.co/400x600/55ffff/0a041c?text=Character+GIF" alt="Pasquale Sena Character" class="sidebar-char-img">
+                <a href="about.html" class="tech-btn sidebar-btn">ABOUT ME</a>
+            </div>
+        </aside>
+
+
+        <div class="main-content-container">
+            
+            <section id="hero" class="hero-intro">
+                <div class="header-group">
+                    <!-- Name is instantly visible -->
+                    <div class="name-badge">PASQUALE SENA</div>
+                    
+                    <!-- Typing effect for the job title -->
+                    <h1 class="hero-headline">
+                        <span class="type-text">Senior Instructional<br>Designer.</span>
+                    </h1>
+                </div>
                 
-                setTimeout(() => {
-                    el.classList.add('is-visible');
-                }, delay);
-            });
-        }, secondaryRevealDelay);
-    }
+                <div class="about-glass dissolve-in"> 
+                    <p><strong>Innovator. Veteran. Creator.</strong></p>
+                    <p>I build immersive learning solutions that break the mold. Leveraging AI and interactive tech to create experiences that stick.</p>
+                </div>
 
-    function step(timestamp) {
-        if (!typingState.lastTimestamp) typingState.lastTimestamp = timestamp;
-        
-        const elapsed = timestamp - typingState.lastTimestamp;
+                <!-- Element to reveal simultaneously with buttons -->
+                <p class="section-label dissolve-in" id="project-label">CHOOSE A PROJECT TO EXPLORE</p>
 
-        if (typingState.charIndex < totalLength) {
+                <nav class="glass-btn-container">
+                    <!-- Elements to reveal simultaneously with label -->
+                    <div class="glass-btn-wrapper small-btn dissolve-in" data-reveal-group="project-nav">
+                        <img class="btn-bg-img" src="https://placehold.co/200x100/55ffff/0a041c?text=Multimedia+Still" alt="">
+                        <a href="#multimedia" class="glass-btn">
+                            <span class="btn-title">Multimedia</span>
+                        </a>
+                    </div>
+                    
+                    <div class="glass-btn-wrapper main-btn dissolve-in" data-reveal-group="project-nav">
+                        <img class="btn-bg-img" src="https://placehold.co/300x100/ff77ff/0a041c?text=Instructional+Still" alt="">
+                        <a href="#instructional" class="glass-btn">
+                            <span class="btn-title">Instructional Design</span>
+                        </a>
+                    </div>
+
+                    <div class="glass-btn-wrapper small-btn dissolve-in" data-reveal-group="project-nav">
+                        <img class="btn-bg-img" src="https://placehold.co/200x100/ff77ff/0a041c?text=Graphic+Design+Still" alt="">
+                        <a href="#graphic" class="glass-btn">
+                            <span class="btn-title">Graphic Design</span>
+                        </a>
+                    </div>
+                </nav>
+            </section>
+
+            <section id="instructional" class="project-section section-reveal">
+                <div class="section-header">
+                    <h3>Instructional Design Projects</h3>
+                    <p class="section-focus">My core passion: building measurable, boundary-pushing learning solutions.</p>
+                </div>
+
+                <div class="project-grid">
+                    <article class="project-card">
+                        <div class="card-image">
+                            <img src="https://picsum.photos/id/111/600/400" alt="AI Onboarding Project">
+                        </div>
+                        <div class="card-content">
+                            <h4>AI-Driven Onboarding Sim</h4>
+                            <p>An adaptive, React-based simulation that assesses user empathy and dynamically adjusts scenario difficulty in real-time.</p>
+                            <a href="project-onboarding.html" class="tech-btn">View Case Study</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="card-image">
+                            <img src="https://picsum.photos/id/119/600/400" alt="Scenario Learning Project">
+                        </div>
+                        <div class="card-content">
+                            <h4>Leadership Decision Paths</h4>
+                            <p>Complex, branching scenario-based training focused on high-stakes decision-making for executive leadership.</p>
+                            <a href="project-onboarding.html" class="tech-btn">View Case Study</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="multimedia" class="project-section section-reveal">
+                <div class="section-header">
+                    <h3>Multimedia Design</h3>
+                    <p class="section-focus">Motion graphics, video editing, and visual storytelling.</p>
+                </div>
+
+                <div class="project-grid">
+                    <article class="project-card" style="max-width: 100%; grid-column: 1 / -1;">
+                        <div class="card-image">
+                            <img src="https://picsum.photos/id/118/1200/400" alt="Multimedia Showreel">
+                        </div>
+                        <div class="card-content">
+                            <h4>Multimedia Design Showreel</h4>
+                            <p>A comprehensive showcase of dynamic 2D/3D motion graphics, video production, and eLearning animations produced for global clients.</p>
+                            <a href="multimedia.html" class="tech-btn">Watch Showreel</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="graphic" class="project-section section-reveal">
+                <div class="section-header">
+                    <h3>Graphic Design Projects</h3>
+                    <p class="section-focus">From visual identity to detailed interface design and branding.</p>
+                </div>
+
+                <div class="project-grid">
+                    <article class="project-card">
+                        <div class="card-image"><img src="https://picsum.photos/id/250/600/400" alt="Rebrand Project"></div>
+                        <div class="card-content">
+                            <h4>Tech Corp Rebrand</h4>
+                            <p>Complete visual identity overhaul including logo, typography systems, and comprehensive style guides.</p>
+                            <a href="#" class="tech-btn">View Project</a>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="card-image"><img src="https://picsum.photos/id/355/600/400" alt="UI/UX Project"></div>
+                        <div class="card-content">
+                            <h4>LMS Interface Redesign</h4>
+                            <p>Modernizing the user experience of a legacy Learning Management System with a focus on accessibility.</p>
+                            <a href="#" class="tech-btn">View Project</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
             
-            if (elapsed > typingState.frameTime) {
-                // Time for the next character
-                let char = visibleText[typingState.charIndex];
-                
-                if (char === '\n') {
-                    typeElement.innerHTML += '<br>';
-                } else {
-                    typeElement.innerHTML += char;
-                }
-                typingState.charIndex++;
-                typingState.lastTimestamp = timestamp; // Reset timer
-            }
+            <section id="contact" class="section-reveal">
+                <div class="section-header">
+                    <h3>Let's Build Something.</h3>
+                    <p class="section-focus">Ready to discuss your next learning strategy? Drop me a line.</p>
+                </div>
 
-            // Continue the animation loop
-            requestAnimationFrame(step);
+                <div class="contact-glass-card">
+                    <form id="contact-form" action="https://formspree.io/f/mzzwwlwn" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="tech-btn contact-submit-btn">SEND MESSAGE</button>
+                        
+                        <div id="my-form-status" class="form-status"></div>
+                    </form>
+                </div>
+            </section>
 
-        } else {
-            // Animation complete: Call the completion function
-            onTypingComplete();
-        }
-    }
+        </div> 
+    </main>
 
-    // Start the animation immediately on load
-    requestAnimationFrame(step);
-}
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 0. START HERO ANIMATIONS ---
-    animateTyping();
-
-
-    // 1. Reveal Animations (Only targets sections outside the hero, which use .section-reveal)
-    const revealElements = document.querySelectorAll('.section-reveal'); // SIMPLIFIED SELECTOR
-    
-    const observerReveal = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                // Use a standard delay for the projects/sections
-                let delay = entry.target.classList.contains('section-reveal') ? 300 : index * 100;
-
-                setTimeout(() => {
-                    entry.target.classList.add('is-visible');
-                }, delay); 
-                observerReveal.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    revealElements.forEach(el => observerReveal.observe(el));
-
-
-    // 2. PARALLAX LOGIC (unchanged)
-    const bg = document.querySelector('.parallax-bg');
-    const mid = document.querySelector('.parallax-mid');
-    const fg = document.querySelector('.parallax-fg');
-
-    if (bg && mid && fg) {
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            if (window.innerWidth > 900) {
-                bg.style.transform = `translateY(${scrollY * -0.05}px)`;
-                mid.style.transform = `translateY(${scrollY * -0.1}px)`;
-                fg.style.transform = `translateY(${scrollY * -0.15}px)`;
-            }
-        });
-    }
-
-
-    // 3. Smooth Scroll (unchanged)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if(targetId === '#' || !targetId.startsWith('#')) return;
-            const target = document.querySelector(targetId);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
-
-
-    // 4. AJAX FORM HANDLING (No Redirect) (unchanged)
-    const contactForm = document.getElementById('contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener("submit", function(event) {
-            event.preventDefault(); // Stop the redirect
-            
-            const status = document.getElementById("my-form-status");
-            const data = new FormData(event.target);
-            
-            fetch(event.target.action, {
-                method: contactForm.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    status.innerHTML = "Message Received! I'll be in touch soon.";
-                    status.className = "form-status success";
-                    contactForm.reset(); // Clear the form
-                } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
-                        } else {
-                            status.innerHTML = "Oops! There was a problem submitting your form";
-                        }
-                        status.className = "form-status error";
-                    })
-                }
-            }).catch(error => {
-                status.innerHTML = "Oops! There was a problem submitting your form";
-                status.className = "form-status error";
-            });
-        });
-    }
-});
+    <script src="script.js"></script>
+</body>
+</html>
