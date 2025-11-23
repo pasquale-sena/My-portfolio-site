@@ -8,21 +8,38 @@
     
     <style>
         .meta-list li {
-            display: flex;
-            align-items: baseline;
-            margin-bottom: 12px;
-            padding-left: 10px; /* Indent the bullet points slightly */
+            /* Now treats each point as its own block */
+            display: block; 
+            list-style: none;
+            margin-bottom: 15px; 
+            padding-left: 10px; /* Indent for the list marker */
         }
-        .meta-list .meta-label {
-            min-width: 130px; /* Fixed width for the label column */
+        /* Style the custom bullet point */
+        .meta-list li::before {
+            content: '▹';
+            color: var(--color-neon-pink);
             margin-right: 8px;
+            font-size: 1.2rem;
+            display: inline-block;
+            margin-left: -18px; /* Pull the bullet point outside the padding */
+        }
+
+        .meta-list .meta-label {
+            /* Forces the label to its own line */
+            display: block; 
+            margin-bottom: 3px; 
             color: var(--color-cyan);
             font-weight: 700;
+            text-transform: uppercase;
         }
         .meta-list .meta-content {
-            flex-grow: 1;
-            padding-left: 5px;
-            font-weight: 400;
+            /* Ensures the content flows naturally below the label */
+            display: block;
+            padding-left: 0;
+        }
+        /* Adjust the specific paragraph content */
+        .skill-card p {
+             margin-bottom: 15px;
         }
     </style>
 </head>
@@ -85,7 +102,7 @@
                     <div class="skill-card">
                         <h4>02. DESIGN (THE BLUEPRINT)</h4>
                         <p style="color: #b4b4c8; font-size: 0.95rem; line-height: 1.6;">
-                            I developed an **"AI-OS"** concept where the learner is not just taking a course, but "booting up" their new workstation.
+                            I developed an <strong>AI-OS</strong> concept where the learner is not just taking a course, but "booting up" their new workstation.
                         </p>
                         <ul class="meta-list">
                             <li><span class="meta-label">Adaptive Pathing:</span> <span class="meta-content">Novices route to empathy drills; experienced pros skip to complex scenarios.</span></li>
@@ -97,7 +114,7 @@
                     <div class="skill-card">
                         <h4>03. DEVELOPMENT (THE BUILD)</h4>
                         <p style="color: #b4b4c8; font-size: 0.95rem; line-height: 1.6;">
-                            Moved beyond authoring tools to a custom **React Application** for zero-latency interactions and rapid, responsive UI development (Tailwind CSS).
+                            Moved beyond authoring tools to a custom <strong>React Application</strong> for zero-latency interactions and rapid, responsive UI development (Tailwind CSS).
                         </p>
                         <ul class="meta-list">
                             <li><span class="meta-label">Stack:</span> <span class="meta-content">React, Tailwind CSS, Custom State Machine.</span></li>
