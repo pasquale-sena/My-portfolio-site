@@ -99,7 +99,8 @@ body::after {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%; 
+    /* FIX: Changed from 100% to 300vh to match the parallax-layer height */
+    height: 300vh; 
 }
 
 .sidebar-char-img {
