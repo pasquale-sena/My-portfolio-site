@@ -153,6 +153,10 @@ body::after {
     
     /* Use drop-shadow filter instead of text-shadow for gradient text */
     filter: drop-shadow(0 0 10px rgba(85, 255, 255, 0.3));
+    
+    /* Hide initially for JS animation */
+    opacity: 0;
+    transform: translateY(10px);
 }
 
 .hero-headline {
@@ -199,6 +203,87 @@ body::after {
 .glass-btn-wrapper:hover .btn-bg-img { filter: blur(5px) brightness(0.7) saturate(1.5); }
 .main-btn .glass-btn { border-color: var(--color-cyan); background: rgba(85, 255, 255, 0.1); box-shadow: 0 0 15px rgba(85, 255, 255, 0.2) inset; }
 .glass-btn-wrapper:hover .glass-btn { border-color: var(--color-cyan); background: rgba(85, 255, 255, 0.2); text-shadow: 0 0 8px rgba(255,255,255,0.8); }
+
+
+/* ========================================= */
+/* --- HERO ANIMATION STYLES --- */
+/* ========================================= */
+
+/* Typing Cursor Animation */
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.type-text {
+    /* Hide overflow to simulate typing */
+    overflow: hidden;
+    /* Use steps() to animate the border for the typing cursor */
+    border-right: 3px solid var(--color-cyan);
+    white-space: nowrap;
+    display: inline-block;
+    width: 0; /* Starts hidden, JS handles the width animation */
+    padding-right: 5px; /* Space for cursor */
+    
+    /* Initial state - hidden */
+    opacity: 0;
+}
+
+.type-text.is-typing {
+    opacity: 1;
+    animation: blink 0.7s step-end infinite;
+}
+
+/* Glitch Animation for Name */
+.glitch-text.is-glitching {
+    opacity: 1; /* Show text */
+    animation: 
+        glitch-translate 0.65s steps(2, start) infinite alternate,
+        glitch-flicker 0.2s steps(1) infinite;
+}
+
+/* Glitch Movement */
+@keyframes glitch-translate {
+    0% {
+        transform: translate(0);
+    }
+    10% {
+        transform: translate(-2px, -2px);
+    }
+    20% {
+        transform: translate(2px, 2px);
+    }
+    30% {
+        transform: translate(-3px, 1px);
+    }
+    40% {
+        transform: translate(3px, -2px);
+    }
+    50% {
+        transform: translate(-1px, 3px);
+    }
+    60% {
+        transform: translate(2px, -3px);
+    }
+    70% {
+        transform: translate(-3px, 0px);
+    }
+    80% {
+        transform: translate(1px, 3px);
+    }
+    90% {
+        transform: translate(0px, -1px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Glitch Transparency Flickering */
+@keyframes glitch-flicker {
+    0% { opacity: 0.85; text-shadow: 0 0 10px var(--color-cyan); }
+    50% { opacity: 1; text-shadow: none; }
+    100% { opacity: 0.85; text-shadow: 0 0 10px var(--color-cyan); }
+}
 
 
 /* ========================================= */
@@ -514,7 +599,6 @@ h3 {
     padding: 0;
 }
 
-/* Generic List Item Styling (for other lists if any) */
 .skill-card ul li {
     margin-bottom: 12px;
     color: #b4b4c8;
@@ -522,7 +606,6 @@ h3 {
     align-items: center;
 }
 
-/* Generic Bullet */
 .skill-card ul li::before {
     content: '▹';
     color: var(--color-neon-pink);
@@ -530,49 +613,74 @@ h3 {
     font-size: 1.2rem;
 }
 
-/* --- ADDIE LIST STRUCTURE FIXES --- */
-/* Specific override for the .meta-list used in ADDIE process */
+/* --- ADDIE LIST STRUCTURE FIXES (Separating Label/Content) --- */
 .meta-list {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 15px;
+    list-style: none; 
+    padding-left: 0; 
+    margin-top: 15px; 
 }
 
 .meta-list li {
-    /* Change from flex (side-by-side) to block (stacking) */
-    display: block !important; 
-    position: relative;
-    padding-left: 25px; /* Add indentation to make room for the bullet */
-    margin-bottom: 20px;
+    /* Ensures stacking of label/content */
+    display: block !important; 
+    list-style: none;
+    position: relative;
+    
+    /* Added indentation and spacing for the bullet to appear correctly */
+    padding-left: 25px; 
+    padding-bottom: 25px; 
+    margin-bottom: 25px; 
+    padding-top: 5px; 
+    border-bottom: none;
 }
 
-/* Reposition the bullet for the block layout */
+/* Ensure bullet is displayed and positioned correctly */
 .meta-list li::before {
+    content: '▹'; /* Re-adding the bullet point */
+    color: var(--color-neon-pink);
     position: absolute;
     left: 0;
-    top: 0; /* Aligns with the title line */
-    margin-right: 0;
+    top: 5px; /* Aligns with the title line */
+    margin-right: 0;
 }
 
-/* Title (Label) Styling */
+
+/* Content (The Description - Line 2) */
+.meta-list li:not(:last-child)::after {
+    /* Removed separator line from previous request */
+    content: none; 
+}
+
+/* Remove extra spacing from the last item */
+.meta-list li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+/* Label (The Title - e.g., Target Audience) */
 .meta-list .meta-label {
-    display: block; /* Forces it to its own line */
-    margin-bottom: 5px; /* Space between title and description */
-    color: var(--color-cyan);
-    font-weight: 700;
-    text-transform: uppercase;
-    line-height: 1.2;
+    /* Forces the label to its own line (Line 1 - Title) */
+    display: block; 
+    margin-bottom: 8px; /* Space between title and description */
+    color: var(--color-cyan); 
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
 }
 
-/* Content (Description) Styling */
+/* Content (The Description - Line 2) */
 .meta-list .meta-content {
-    display: block; /* Forces it to the line below */
-    color: #b4b4c8;
-    line-height: 1.5;
+    /* Ensures content uses the full width below the label */
+    display: block;
+    padding-left: 0;
+    font-weight: 400;
+    line-height: 1.6; /* Slightly more space */
+    color: #b4b4c8;
 }
 /* --- END ADDIE LIST STRUCTURE FIXES --- */
 
-/* --- VIDEO PLAYER STYLES --- */
+/* --- VIDEO PLAYER STYLES (Unchanged) --- */
 .video-wrapper-glass {
     position: relative;
     width: 100%;
@@ -592,7 +700,7 @@ h3 {
     height: 100%;
 }
 
-/* --- MOBILE RESPONSIVE --- */
+/* --- MOBILE RESPONSIVE (Unchanged) --- */
 @media (max-width: 900px) {
     .split-layout { grid-template-columns: 1fr; }
     .sidebar-graphic { display: none; }
