@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Onboarding Sim | Case Study</title>
     <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .meta-list li {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 12px;
+            padding-left: 10px; /* Indent the bullet points slightly */
+        }
+        .meta-list .meta-label {
+            min-width: 130px; /* Fixed width for the label column */
+            margin-right: 8px;
+            color: var(--color-cyan);
+            font-weight: 700;
+        }
+        .meta-list .meta-content {
+            flex-grow: 1;
+            padding-left: 5px;
+            font-weight: 400;
+        }
+    </style>
 </head>
 <body>
 
@@ -51,61 +71,61 @@
                 <div class="skills-grid">
                     
                     <div class="skill-card">
-                        <h4>01. Analysis (The Why)</h4>
+                        <h4>01. ANALYSIS (THE WHY)</h4>
                         <p style="color: #b4b4c8; font-size: 0.95rem; line-height: 1.6;">
                             Traditional onboarding for high-volume agents relies on static modules which fail to simulate real-time pressure or assess baseline skills.
                         </p>
-                        <ul style="margin-top: 15px;">
-                            <li><strong>Target Audience:</strong> New Hire Customer Service Agents (0-2 years exp).</li>
-                            <li><strong>Problem:</strong> Linear modules cannot accurately measure empathy or de-escalation tactics.</li>
-                            <li><strong>Solution:</strong> A micro-learning module (< 15 mins) that runs in a standard browser.</li>
+                        <ul class="meta-list">
+                            <li><span class="meta-label">Target Audience:</span> <span class="meta-content">New Hire Customer Service Agents (0-2 years exp).</span></li>
+                            <li><span class="meta-label">Problem:</span> <span class="meta-content">Linear modules cannot accurately measure empathy or de-escalation tactics.</span></li>
+                            <li><span class="meta-label">Solution:</span> <span class="meta-content">A micro-learning module (< 15 mins) that runs in a standard browser.</span></li>
                         </ul>
                     </div>
 
                     <div class="skill-card">
-                        <h4>02. Design (The Blueprint)</h4>
+                        <h4>02. DESIGN (THE BLUEPRINT)</h4>
                         <p style="color: #b4b4c8; font-size: 0.95rem; line-height: 1.6;">
                             I developed an **"AI-OS"** concept where the learner is not just taking a course, but "booting up" their new workstation.
                         </p>
-                        <ul style="margin-top: 15px;">
-                            <li><strong>Adaptive Pathing:</strong> Novices route to empathy drills; experienced pros skip to complex scenarios.</li>
-                            <li><strong>Aesthetic:</strong> "Iron Man's HUD meets Corporate Training" using Glassmorphism and terminal effects.</li>
-                            <li><strong>Model:</strong> L.E.A.R.N. (Listen, Empathize, Apologize, React, Notify) for de-escalation.</li>
+                        <ul class="meta-list">
+                            <li><span class="meta-label">Adaptive Pathing:</span> <span class="meta-content">Novices route to empathy drills; experienced pros skip to complex scenarios.</span></li>
+                            <li><span class="meta-label">Aesthetic:</span> <span class="meta-content">"Iron Man's HUD meets Corporate Training" using Glassmorphism and terminal effects.</span></li>
+                            <li><span class="meta-label">Model:</span> <span class="meta-content">L.E.A.R.N. (Listen, Empathize, Apologize, React, Notify) for de-escalation.</span></li>
                         </ul>
                     </div>
 
                     <div class="skill-card">
-                        <h4>03. Development (The Build)</h4>
+                        <h4>03. DEVELOPMENT (THE BUILD)</h4>
                         <p style="color: #b4b4c8; font-size: 0.95rem; line-height: 1.6;">
                             Moved beyond authoring tools to a custom **React Application** for zero-latency interactions and rapid, responsive UI development (Tailwind CSS).
                         </p>
-                        <ul style="margin-top: 15px;">
-                            <li><strong>Stack:</strong> React, Tailwind CSS, Custom State Machine.</li>
-                            <li><strong>Scenario:</strong> "The Missing Sea View" - High value, high stress context.</li>
-                            <li><strong>Logic:</strong> Branching paths track "Empathy Points" vs "Efficiency Points".</li>
+                        <ul class="meta-list">
+                            <li><span class="meta-label">Stack:</span> <span class="meta-content">React, Tailwind CSS, Custom State Machine.</span></li>
+                            <li><span class="meta-label">Scenario:</span> <span class="meta-content">"The Missing Sea View" - High value, high stress context.</span></li>
+                            <li><span class="meta-label">Logic:</span> <span class="meta-content">Branching paths track "Empathy Points" vs "Efficiency Points".</span></li>
                         </ul>
                     </div>
 
                     <div class="skill-card">
-                        <h4>04. Implementation (Delivery)</h4>
+                        <h4>04. IMPLEMENTATION (DELIVERY)</h4>
                         <p style="color: #b4b4c8; font-size: 0.95rem; line-height: 1.6;">
                             The simulation is hosted via GitHub Pages and designed for seamless integration into any host LMS.
                         </p>
-                        <ul style="margin-top: 15px;">
-                            <li><strong>Hosting:</strong> Deployed via GitHub Pages for instant access.</li>
-                            <li><strong>Accessibility:</strong> Full keyboard navigation and high-contrast text ratios (WCAG AA).</li>
-                            <li><strong>Integration:</strong> Conceptually wrapped for SCORM 1.2 to report scores.</li>
+                        <ul class="meta-list">
+                            <li><span class="meta-label">Hosting:</span> <span class="meta-content">Deployed via GitHub Pages for instant access.</span></li>
+                            <li><span class="meta-label">Accessibility:</span> <span class="meta-content">Full keyboard navigation and high-contrast text ratios (WCAG AA).</span></li>
+                            <li><span class="meta-label">Integration:</span> <span class="meta-content">Conceptually wrapped for SCORM 1.2 to report scores.</span></li>
                         </ul>
                     </div>
 
                     <div class="skill-card">
-                        <h4>05. Evaluation (Metrics)</h4>
+                        <h4>05. EVALUATION (METRICS)</h4>
                         <p style="color: #b4b4c8; font-size: 0.95rem; line-height: 1.6;">
                             Success is measured by performance metrics that directly translate to job performance.
                         </p>
-                        <ul style="margin-top: 15px;">
-                            <li><strong>KPIs:</strong> Completion Rate, Empathy Index, and Time-to-Resolution (Efficiency).</li>
-                            <li><strong>Feedback Loop:</strong> If users fail a specific question, the preceding hint text is automatically rewritten for clarity.</li>
+                        <ul class="meta-list">
+                            <li><span class="meta-label">KPIs:</span> <span class="meta-content">Completion Rate, Empathy Index, and Time-to-Resolution (Efficiency).</span></li>
+                            <li><span class="meta-label">Feedback Loop:</span> <span class="meta-content">If users fail a specific question, the preceding hint text is automatically rewritten for clarity.</span></li>
                         </ul>
                     </div>
 
