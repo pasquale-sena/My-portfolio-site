@@ -1,35 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Reveal Animations
-    setTimeout(() => { 
-        document.querySelectorAll('.reveal-text').forEach(el => {
-            el.style.opacity = '1'; 
-            el.style.transform = 'translateY(0)';
-        }); 
-    }, 500);
+    // 1. Reveal Animations (Text & Buttons)
+    const revealElements = document.querySelectorAll('.reveal-text, .dissolve-in');
+    
+    const observerReveal = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('is-visible');
+                    // Ensure styles apply
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100); 
+                observerReveal.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
 
-    const navButtons = document.querySelectorAll('.button-wrapper');
-    navButtons.forEach((button, index) => {
-        setTimeout(() => { button.classList.add('is-visible'); }, 1200 + (index * 200));
-    });
+    revealElements.forEach(el => observerReveal.observe(el));
 
-    // 2. PARALLAX (Updated for the new container)
-    const bg = document.querySelector('.parallax-bg');
-    const mid = document.querySelector('.parallax-mid');
-    const fg = document.querySelector('.parallax-fg');
+
+    // 2. PARALLAX LOGIC (Only runs if element is visible)
+    const tallBg = document.querySelector('.parallax-tall-bg');
 
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
-
-        // Only move if we are near the top of the page to save performance
-        if (scrollY < 800) {
-            // Subtle movement is better for smaller graphics
-            if(bg) bg.style.transform = `translateY(${scrollY * 0.2}px)`; 
-            if(mid) mid.style.transform = `translateY(${scrollY * 0.1}px)`; 
-            // Foreground stays mostly still or moves very slightly
-            if(fg) fg.style.transform = `translateY(${scrollY * 0.05}px)`; 
+        
+        // This check ensures no errors on mobile when element is hidden
+        if (tallBg && tallBg.offsetParent !== null) {
+            tallBg.style.transform = `translateY(${scrollY * -0.5}px)`;
         }
     });
+
 
     // 3. Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -38,5 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(this.getAttribute('href'));
             if(target) target.scrollIntoView({ behavior: 'smooth' });
         });
+    });
+
+    // 4. Section Scroll Reveal
+    const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-reveal').forEach(section => {
+        sectionObserver.observe(section);
     });
 });
