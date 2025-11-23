@@ -226,6 +226,7 @@ body::after {
     
     /* Initial state - hidden */
     opacity: 0;
+    white-space: pre-wrap; /* Allows the <br> tag to work properly */
 }
 
 .type-text.is-typing {
@@ -241,37 +242,37 @@ body::after {
         glitch-flicker 0.2s steps(1) infinite;
 }
 
-/* Glitch Movement */
+/* Glitch Movement (Less Aggressive) */
 @keyframes glitch-translate {
     0% {
         transform: translate(0);
     }
     10% {
-        transform: translate(-2px, -2px);
+        transform: translate(-1px, -1px); /* Reduced from 2px */
     }
     20% {
-        transform: translate(2px, 2px);
+        transform: translate(1px, 1px); /* Reduced from 2px */
     }
     30% {
-        transform: translate(-3px, 1px);
+        transform: translate(-1px, 0px); /* Reduced from 3px */
     }
     40% {
-        transform: translate(3px, -2px);
+        transform: translate(1px, -1px); /* Reduced from 3px */
     }
     50% {
-        transform: translate(-1px, 3px);
+        transform: translate(0px, 1px); /* Reduced from 3px */
     }
     60% {
-        transform: translate(2px, -3px);
+        transform: translate(1px, -1px); /* Reduced from 3px */
     }
     70% {
-        transform: translate(-3px, 0px);
+        transform: translate(-1px, 0px); /* Reduced from 3px */
     }
     80% {
-        transform: translate(1px, 3px);
+        transform: translate(0px, 1px); /* Reduced from 3px */
     }
     90% {
-        transform: translate(0px, -1px);
+        transform: translate(0px, 0px); /* Reduced from 1px */
     }
     100% {
         transform: translate(0);
