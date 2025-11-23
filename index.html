@@ -12,6 +12,7 @@
 
         <aside class="sidebar-graphic">
             <div class="parallax-layer parallax-bg" style="background-image: url('images/placeholder-background.png');"></div>
+            
             <div class="parallax-layer parallax-mid" style="background-image: url('images/placeholder-mid.png');"></div>
             
             <div class="parallax-layer parallax-fg sidebar-content-wrapper">
@@ -143,9 +144,33 @@
                 </div>
             </section>
             
-            <section id="contact" class="section-reveal" style="min-height: 40vh;">
-                <h3>Get in Touch</h3>
-                <p>Let's discuss how my design approach can solve your learning challenges.</p>
+            <section id="contact" class="section-reveal">
+                <div class="section-header">
+                    <h3>Let's Build Something.</h3>
+                    <p class="section-focus">Ready to discuss your next learning strategy? Drop me a line.</p>
+                </div>
+
+                <div class="contact-glass-card">
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+                        
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="tech-btn contact-submit-btn">SEND MESSAGE</button>
+                    </form>
+                </div>
             </section>
 
         </div> 
