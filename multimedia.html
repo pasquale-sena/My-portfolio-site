@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimedia Showreel | Pasquale Sena</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <main class="split-layout">
+
+        <aside class="sidebar-graphic">
+            <div class="parallax-layer parallax-bg" style="background-image: url('images/placeholder-background.png');"></div>
+            <div class="parallax-layer parallax-mid" style="background-image: url('images/placeholder-mid.png');"></div>
+            
+            <div class="parallax-layer parallax-fg sidebar-content-wrapper">
+                <img src="images/placeholder-me.png" alt="Pasquale Sena Character" class="sidebar-char-img">
+                <a href="index.html" class="tech-btn sidebar-btn">BACK TO HOME</a>
+            </div>
+        </aside>
+
+        <div class="main-content-container">
+            
+            <section class="about-hero-section section-reveal" style="padding-top: 60px;">
+                
+                <div class="header-group">
+                    <h1 class="hero-headline">Multimedia Design<br>Showreel.</h1>
+                </div>
+
+                <div class="video-wrapper-glass">
+                    <iframe 
+                        src="https://player.vimeo.com/video/1139818876?color=55ffff&title=0&byline=0&portrait=0" 
+                        class="responsive-iframe" 
+                        frameborder="0" 
+                        allow="autoplay; fullscreen; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="about-text-content" style="margin-top: 40px;">
+                    <h3 style="margin-bottom: 20px; font-size: 1.8rem;">Visual Storytelling & Animation</h3>
+                    
+                    <p class="lead-text">
+                        I conceptualize, design, and animate dynamic 2D and 3D graphics used in all aspects of eLearning, marketing, and promotional campaigns.
+                    </p>
+                    
+                    <p><strong>Clients:</strong> TED, Payever, Booking.com, USAA, US Navy.</p>
+                    
+                    <p>
+                        With extensive proficiency in <strong>Adobe Premiere Pro, After Effects, and Illustrator</strong>, I specialize in transforming static concepts into high-fidelity video assets. 
+                        My background involves overseeing high-volume multimedia production strategies in fast-paced environments, ensuring every frame aligns with brand identity and instructional goals.
+                    </p>
+                    
+                    <p>
+                        From kinetic typography to character animation and technical explainer videos, I focus on creating visual narratives that increase viewer engagement and retention.
+                    </p>
+                </div>
+            </section>
+
+            <section id="contact" class="section-reveal">
+                <div class="section-header">
+                    <h3>Let's Create Together.</h3>
+                    <p class="section-focus">Need a motion graphic or video strategy? Let's talk.</p>
+                </div>
+
+                <div class="contact-glass-card">
+                    <form id="contact-form" action="https://formspree.io/f/mzzwwlwn" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="tech-btn contact-submit-btn">SEND MESSAGE</button>
+                        <div id="my-form-status" class="form-status"></div>
+                    </form>
+                </div>
+            </section>
+
+        </div> 
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
