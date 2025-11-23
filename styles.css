@@ -170,6 +170,7 @@ body::after {
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    visibility: hidden; /* ADDED: Ensure elements are definitely hidden before animation starts */
 }
 
 /* FIX: Increase specificity for elements in the hero section using 'dissolve-in' 
@@ -177,6 +178,7 @@ body::after {
 #hero .dissolve-in {
     opacity: 0;
     transform: translateY(10px);
+    visibility: hidden; /* ADDED: Ensure elements are definitely hidden before animation starts */
 }
 
 
@@ -185,6 +187,7 @@ body::after {
 .dissolve-in.is-visible {
     opacity: 1;
     transform: translateY(0);
+    visibility: visible; /* ADDED: Make visible when animation starts */
 }
 
 
@@ -205,7 +208,7 @@ body::after {
 .glass-btn-wrapper {
     position: relative; border-radius: 50px; overflow: hidden; transition: all 0.4s ease;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
-    /* The opacity/transform for this element is controlled by .dissolve-in */
+    /* The opacity/transform for this element is controlled by its parent container, or implicit rules */
 }
 .small-btn { flex: 1; } .main-btn { flex: 1.5; }
 .btn-bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(10px) brightness(0.5) saturate(1.2); transition: filter 0.4s; }
