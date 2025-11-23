@@ -107,7 +107,7 @@ body::after {
 }
 
 .sidebar-char-img {
-    width: 90%; /* INCREASED: Made the graphic 10% wider */
+    width: 100%; /* INCREASED: Made the graphic 10% wider */
     height: auto;
     max-width: 450px; /* INCREASED: Max width also increased */
     object-fit: contain;
