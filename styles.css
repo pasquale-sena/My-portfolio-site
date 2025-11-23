@@ -1,10 +1,16 @@
-/* --- GLOBAL STYLES & COLOR PALETTE --- */
+/* --- GLOBAL STYLES & NEW DARK PALETTE --- */
 :root {
-    --color-bg: #F3F6F8; 
-    --color-text: #1E293B; 
-    --color-accent: #0F766E; 
-    --glass-border: rgba(148, 163, 184, 0.4); 
-    --glass-bg: rgba(255, 255, 255, 0.3);
+    /* Dark Mode Base */
+    --color-bg: #0f172a; /* Deep Dark Blue/Slate Background */
+    --color-text: #e2e8f0; /* Light Gray Text for contrast */
+    
+    /* Vibrant Accent */
+    --color-accent: #14b8a6; /* Bright Teal/Cyan Accent */
+    
+    /* Dark Glassmorphism Variables */
+    --glass-border: rgba(255, 255, 255, 0.1); /* Subtle light border */
+    --glass-bg: rgba(30, 41, 59, 0.7); /* Dark, semi-transparent slate */
+    
     --font-primary: sans-serif;
 }
 
@@ -14,67 +20,82 @@ body {
     font-family: var(--font-primary);
     background-color: var(--color-bg);
     color: var(--color-text);
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevents horizontal scrollbar */
 }
+
 
 /* --- MAIN FULL-PAGE SPLIT LAYOUT --- */
 .split-layout {
     display: grid;
-    /* 1/3 for graphic, 2/3 for content */
+    /* 1/3 width for sidebar graphic, 2/3 for main content */
     grid-template-columns: 1fr 2fr; 
     width: 100%;
     min-height: 100vh;
     position: relative;
 }
 
-/* --- LEFT SIDEBAR (STICKY GRAPHIC) --- */
+
+/* --- LEFT SIDEBAR (STICKY PARALLAX GRAPHIC) --- */
 .sidebar-graphic {
-    /* Key to keeping it visible while scrolling */
+    /* Makes the sidebar stick to the viewport while content scrolls */
     position: sticky; 
     top: 0;
-    height: 100vh; /* Takes up full viewport height */
-    overflow: hidden; /* Crops the tall images inside */
-    background-color: #E2E8F0; 
+    height: 100vh; /* Occupies full screen height */
+    overflow: hidden; /* Crops the very tall images inside */
+    background-color: #1e293b; /* Slightly lighter slate for the sidebar base */
     border-right: 1px solid var(--glass-border);
     z-index: 1;
+    
+    /* Flexbox to help center the layers initially */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* PARALLAX LAYERS (Must be very tall PNGs) */
+/* PARALLAX LAYERS (Must use tall PNGs) */
 .parallax-layer {
     position: absolute;
-    top: -10%; /* Start slightly higher up */
+    /* Center the layers horizontally */
     left: 0;
     width: 100%;
-    /* Make layers MUCH taller to allow for long scrolling */
-    height: 300%; 
+    
+    /* Make layers MUCH taller than screen to allow for long scrolling movement without running out of image */
+    height: 300vh; 
+    
+    /* Position the top of the tall layer higher up so the visual center aligns with the screen center */
+    top: -100vh; 
+    
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center top;
-    will-change: transform;
+    /* Ensures the graphic image is centered within its tall layer */
+    background-position: center center; 
+    will-change: transform; /* Performance optimization */
 }
+
 .parallax-bg { z-index: 1; } 
 .parallax-mid { z-index: 2; } 
 .parallax-fg { z-index: 3; }
 
 
-/* --- RIGHT CONTENT AREA --- */
+/* --- RIGHT MAIN CONTENT AREA --- */
 .main-content-container {
     padding: 0 5%;
-    z-index: 10;
+    z-index: 10; /* Ensures content sits above background elements */
 }
 
-/* Hero Intro Section */
+/* Hero Intro Section (Top part of right column) */
 .hero-intro {
-    /* Makes the intro section fill the first screen */
+    /* Fills most of the first screen view */
     min-height: 90vh; 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start; /* Left align text */
     padding-bottom: 60px;
 }
 
 .header-group {
+    /* Ensures left alignment matches the glass box below */
     padding-left: 30px; 
     margin-bottom: 30px;
 }
@@ -82,13 +103,14 @@ body {
 .name-badge {
     display: inline-block;
     padding: 8px 12px;
-    background-color: var(--color-accent); 
-    color: white; 
-    font-weight: bold;
+    background-color: var(--color-accent); /* Solid Accent Background */
+    color: #0f172a; /* Dark text on bright accent for readability */
+    font-weight: 800;
     letter-spacing: 2px;
     margin-bottom: 20px;
     font-size: 0.9rem;
     border-radius: 4px;
+    text-transform: uppercase;
 }
 
 .hero-headline {
@@ -96,22 +118,24 @@ body {
     line-height: 1.1;
     margin-bottom: 0; 
     font-weight: 800;
-    color: var(--color-text);
+    color: white; /* Pure white for maximum headline pop */
 }
 
 .about-glass {
     background: var(--glass-bg);
-    backdrop-filter: blur(15px); 
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(20px); /* Stronger blur for dark mode */
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     padding: 30px;
     border-radius: 16px;
     margin-bottom: 50px;
-    box-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* deeper shadow */
     font-size: 1.1rem;
     text-align: left; 
     max-width: 650px;
+    color: #cbd5e1; /* Slightly softer white for body text */
 }
+
 
 /* --- GLASS BUTTONS --- */
 .glass-btn-container {
@@ -126,24 +150,29 @@ body {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    /* Initial State for Animation */
     opacity: 0; transform: translateY(20px);
 }
 .glass-btn-wrapper.is-visible { opacity: 1; transform: translateY(0); }
 
+/* Button Sizing */
 .small-btn { flex: 1; } 
-.main-btn { flex: 2; } 
+.main-btn { flex: 2; } /* ID button is wider */
 
+/* Blurred Background Image inside button */
 .btn-bg-img {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
     object-fit: cover;
-    filter: blur(6px) brightness(0.8); 
+    /* Darken and blur image so white text is readable */
+    filter: blur(8px) brightness(0.6); 
     transition: filter 0.3s;
 }
 
+/* The clickable button layer */
 .glass-btn {
     position: relative;
     z-index: 2;
@@ -154,8 +183,9 @@ body {
     width: 100%; height: 100%;
     text-decoration: none;
     color: white; 
-    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-    background: rgba(255, 255, 255, 0.1);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    
+    background: rgba(255, 255, 255, 0.05); /* Very subtle fill */
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(4px);
     transition: border-color 0.3s, background 0.3s;
@@ -164,31 +194,60 @@ body {
 .btn-label { font-size: 1.8rem; font-weight: 900; }
 .btn-full { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
 
-.glass-btn-wrapper:hover { transform: translateY(-5px); }
-.glass-btn-wrapper:hover .btn-bg-img { filter: blur(3px) brightness(1.0); }
-.main-btn .glass-btn { border-color: var(--color-accent); border-width: 2px; background: rgba(15, 118, 110, 0.2); }
-.glass-btn-wrapper:hover .glass-btn { border-color: var(--color-accent); }
+/* HOVER EFFECTS */
+.glass-btn-wrapper:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3); }
+.glass-btn-wrapper:hover .btn-bg-img { filter: blur(4px) brightness(0.8); }
+
+/* Main ID Button Highlight */
+.main-btn .glass-btn { 
+    border-color: var(--color-accent); 
+    border-width: 2px; 
+    background: rgba(20, 184, 166, 0.15); /* Subtle teal tint */
+}
+.glass-btn-wrapper:hover .glass-btn {
+    border-color: var(--color-accent);
+    background: rgba(20, 184, 166, 0.25);
+}
 
 
-/* --- SECTIONS --- */
-.project-section { min-height: 80vh; margin-bottom: 80px; opacity: 0; transform: translateY(50px); transition: 0.6s; padding-top: 40px; max-width: 800px; }
+/* --- PROJECT SECTIONS --- */
+.project-section { 
+    min-height: 80vh; /* Ensures tall scrolling area */
+    margin-bottom: 80px; 
+    padding-top: 40px; 
+    max-width: 800px; 
+    /* Scroll Reveal Initial State */
+    opacity: 0; transform: translateY(50px); transition: 0.6s; 
+}
 .section-reveal.is-visible { opacity: 1; transform: translateY(0); }
-h3 { color: var(--color-accent); font-size: 2.5rem; margin-bottom: 20px; }
-.section-focus { font-size: 1.3rem; color: #555; font-style: italic;}
+
+h3 { 
+    color: var(--color-accent); 
+    font-size: 2.5rem; 
+    margin-bottom: 20px; 
+}
+.section-focus { font-size: 1.3rem; color: #94a3b8; font-style: italic;}
 
 
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 900px) {
-    /* Collapse to single column */
+    /* 1. Collapse grid to single column */
     .split-layout { grid-template-columns: 1fr; }
     
-    /* Hide the sidebar graphic completely */
+    /* 2. HIDE the sidebar graphic completely on mobile */
     .sidebar-graphic { display: none; }
     
+    /* 3. Adjust content padding */
     .main-content-container { padding: 0 25px; }
-    .hero-intro { min-height: auto; padding: 60px 0; }
+    .hero-intro { min-height: auto; padding: 80px 0 60px; }
+    
+    /* 4. Reset alignment padding for mobile */
     .header-group { padding-left: 0; }
+    
+    /* 5. Resize text for smaller screens */
     .hero-headline { font-size: 3.5rem; }
+    
+    /* 6. Stack buttons vertically */
     .glass-btn-container { height: auto; flex-wrap: wrap; }
     .small-btn, .main-btn { flex: 100%; height: 80px; }
 }
