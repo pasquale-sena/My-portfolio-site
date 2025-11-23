@@ -1,87 +1,72 @@
-// Function for the Glitch effect (Pasquale Sena)
-function animateGlitch() {
-    const nameElement = document.querySelector('.glitch-text');
-    if (!nameElement) return;
-
-    // Start with a small delay for staggered effect
-    setTimeout(() => {
-        // 1. Initial appearance
-        nameElement.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
-        nameElement.style.opacity = '1';
-        nameElement.style.transform = 'translateY(0)';
-        
-        // 2. Start the glitching animation using the CSS class
-        nameElement.classList.add('is-glitching');
-
-        // 3. Stop the glitching and transition to a steady state after 1.5 seconds (was 2.5s)
-        setTimeout(() => {
-            nameElement.classList.remove('is-glitching');
-            // Ensure final style is clean
-            nameElement.style.animation = 'none';
-            nameElement.style.filter = 'drop-shadow(0 0 10px rgba(85, 255, 255, 0.3))';
-        }, 1500); 
-
-    }, 300); // 300ms delay for name animation to start
-}
-
-
 // Function for the Typing effect (Senior Instructional Designer)
 function animateTyping() {
     const typeElement = document.querySelector('.type-text');
     if (!typeElement) return;
 
-    // We keep the original inner HTML to get the full text including <br>
+    // Get original HTML (including <br>) and clean text string for counting
     const fullTextHTML = typeElement.innerHTML;
-    // We clean the HTML to get a clean text string for character counting
     const visibleText = fullTextHTML.replace(/<br>/gi, '\n');
     const totalLength = visibleText.length;
-    let charIndex = 0;
     
     // Clear the element before starting
     typeElement.innerHTML = ''; 
     
-    // Add the typing class to enable the cursor blink animation
+    // State object for timing control
+    const typingState = {
+        charIndex: 0,
+        lastTimestamp: 0,
+        frameTime: 30, // Speed: 30ms per character
+    };
+
+    // Make the element visible and start the typing cursor animation
     typeElement.classList.add('is-typing');
     typeElement.style.opacity = '1';
 
-    function step() {
-        if (charIndex < totalLength) {
-            
-            let char = visibleText[charIndex];
-            
-            if (char === '\n') {
-                typeElement.innerHTML += '<br>';
-            } else {
-                // If the character is not a newline, append the literal character
-                typeElement.innerHTML += char;
-            }
-            charIndex++;
+    function step(timestamp) {
+        if (!typingState.lastTimestamp) typingState.lastTimestamp = timestamp;
+        
+        const elapsed = timestamp - typingState.lastTimestamp;
 
-            // Use a smooth, fast pace
-            setTimeout(() => {
-                requestAnimationFrame(step);
-            }, 30); // Speed of typing (30ms per character)
+        if (typingState.charIndex < totalLength) {
+            
+            if (elapsed > typingState.frameTime) {
+                // Time for the next character
+                let char = visibleText[typingState.charIndex];
+                
+                if (char === '\n') {
+                    typeElement.innerHTML += '<br>';
+                } else {
+                    typeElement.innerHTML += char;
+                }
+                typingState.charIndex++;
+                typingState.lastTimestamp = timestamp; // Reset timer
+            }
+
+            // Continue the animation loop
+            requestAnimationFrame(step);
+
         } else {
             // Animation complete: remove cursor blink border
-            typeElement.classList.remove('is-typing');
+            setTimeout(() => {
+                 typeElement.classList.remove('is-typing');
+            }, 50); // Small delay to show final cursor blink
         }
     }
 
-    // Start the typing animation after the glitch starts
-    setTimeout(() => {
-        requestAnimationFrame(step);
-    }, 700);
+    // Start the animation immediately on load
+    requestAnimationFrame(step);
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- 0. START HERO ANIMATIONS ---
-    animateGlitch();
+    // Removed animateGlitch()
     animateTyping();
 
 
     // 1. Reveal Animations
+    // NOTE: revealElements selection is simplified for robust loading
     const revealElements = document.querySelectorAll('.about-glass.reveal-text, .section-label.reveal-text, .dissolve-in, .section-reveal');
     
     const observerReveal = new IntersectionObserver((entries) => {
