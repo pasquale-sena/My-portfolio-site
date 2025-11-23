@@ -107,7 +107,7 @@ body::after {
 }
 
 .sidebar-char-img {
-    width: 100%; /* INCREASED: Made the graphic 10% wider */
+    width: 90%; /* INCREASED: Made the graphic 10% wider */
     height: auto;
     max-width: 450px; /* INCREASED: Max width also increased */
     object-fit: contain;
@@ -609,23 +609,9 @@ h3 {
     margin-right: 0;
 }
 
-
-/* Content (The Description - Line 2) */
-.meta-list li:not(:last-child)::after {
-    /* Removed separator line from previous request */
-    content: none; 
-}
-
-/* Remove extra spacing from the last item */
-.meta-list li:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    padding-top: 0;
-}
-
 /* Label (The Title - e.g., Target Audience) */
 .meta-list .meta-label {
-    /* Forces the label to its own line (Line 1 - Title) */
+    /* FIX: Ensure the label always takes up full width for stacking */
     display: block; 
     margin-bottom: 8px; /* Space between title and description */
     color: var(--color-cyan); 
@@ -636,12 +622,24 @@ h3 {
 
 /* Content (The Description - Line 2) */
 .meta-list .meta-content {
-    /* Ensures content uses the full width below the label */
-    display: block;
+    /* FIX: Ensure the content always takes up full width for stacking */
+    display: block; 
     padding-left: 0;
     font-weight: 400;
     line-height: 1.6; /* Slightly more space */
     color: #b4b4c8;
+}
+
+/* Content (The Description - Line 2) - This was a redundant rule in the previous version, removing the unnecessary rule to clean up. */
+.meta-list li:not(:last-child)::after {
+    content: none; 
+}
+
+/* Remove extra spacing from the last item */
+.meta-list li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0;
 }
 /* --- END ADDIE LIST STRUCTURE FIXES --- */
 
