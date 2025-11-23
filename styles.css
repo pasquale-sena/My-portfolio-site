@@ -109,8 +109,7 @@ body::after {
     object-fit: contain;
 }
 
-/* --- SIDEBAR BUTTON (MOVED DOWN TO OVERRIDE .tech-btn) --- */
-/* See bottom of file for the specific override */
+/* --- SIDEBAR BUTTON (Specific styling at bottom) --- */
 
 
 /* --- RIGHT MAIN CONTENT AREA --- */
@@ -199,33 +198,46 @@ body::after {
     margin-bottom: var(--section-spacing); padding-top: 40px; opacity: 0; transform: translateY(50px); transition: 0.8s ease-out; 
 }
 .section-reveal.is-visible { opacity: 1; transform: translateY(0); }
-.section-header { margin-bottom: 30px; }
 
-/* UPDATED: Removed stroke to fix overlapping lines */
+/* UPDATED: Section Header now has a Glass Container to bring it forward */
+.section-header { 
+    margin-bottom: 30px; 
+    
+    /* New Glass Container Styles */
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px); 
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    padding: 35px;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+    max-width: 800px; /* Optional: keeps it from getting too wide */
+}
+
 h3 { 
-    font-size: 2.5rem; margin-bottom: 15px; 
+    font-size: 2.5rem; 
+    /* Removed margin-bottom so it fits nicely in the box */
+    margin-bottom: 5px; 
     display: inline-block;
     
     background: linear-gradient(90deg, #ffffff 0%, var(--color-cyan) 40%, var(--color-neon-pink) 100%);
-    
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
 
-    /* REMOVED: -webkit-text-stroke (Caused the crossing lines artifact) */
-    
-    /* ADDED: Drop-shadow filter creates a glow on the WHOLE word shape, not individual overlapping letters */
-    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
-    
+    filter: none;
     font-weight: 800;
     width: fit-content;
-    
-    /* ADDED: Slight spacing to help readability */
     letter-spacing: 1px;
 }
 
-.section-focus { font-size: 1.2rem; color: #b4b4c8; font-weight: 300; }
+.section-focus { 
+    font-size: 1.2rem; 
+    color: #ffffff; /* Brightened text slightly for better contrast on glass */
+    font-weight: 300; 
+    margin-top: 10px;
+}
 
 .section-label {
     font-size: 0.9rem; font-weight: 800; letter-spacing: 2px; color: var(--color-cyan);
