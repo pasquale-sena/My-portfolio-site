@@ -24,38 +24,38 @@ function animateTyping() {
 
     // Function to run after typing completes
     function onTypingComplete() {
+        console.log("Typing complete. Starting combined reveal sequence."); // Added log for debugging
+
         // 1. Remove the typing cursor/animation
         typeElement.classList.remove('is-typing');
         typeElement.classList.add('no-cursor');
 
         // 2. SEQUENCE THE REVEAL OF NEXT ELEMENTS
         
-        // --- PHASE 1: Reveal About Me Summary (.about-glass) immediately ---
-        const aboutGlass = document.querySelector('.about-glass.dissolve-in');
-        if (aboutGlass) {
-            aboutGlass.classList.add('is-visible');
-        }
-
-        // --- PHASE 2: Wait for Phase 1 (0.7s) before revealing the label and buttons SIMULTANEOUSLY ---
-        // (The CSS transition for .dissolve-in is 0.6s, so we wait 700ms)
-        const secondaryRevealDelay = 700; 
+        // Wait for a small buffer time (200ms) after the cursor is gone for a smoother transition.
+        const combinedRevealDelay = 200; 
 
         setTimeout(() => {
-            // FIX: Select the label AND all the buttons using a comma selector.
-            // This creates a NodeList of the label and the three button wrappers.
+            console.log("Executing combined reveal for summary, label, and buttons.");
+
+            // FIX: Select ALL elements (Summary, Label, Buttons) that should appear.
+            // This ensures they are all treated in one batch and appear simultaneously.
             const elementsToRevealSimultaneously = document.querySelectorAll(
-                '#project-label, .glass-btn-wrapper.dissolve-in'
+                '.about-glass.dissolve-in, #project-label, .glass-btn-wrapper.dissolve-in'
             );
 
-            // Iterate over the combined NodeList and reveal them all at once (delay 0)
+            // Safety check in case elements are missing
+            if (elementsToRevealSimultaneously.length === 0) {
+                 console.error("Reveal failure: Did not find any elements with the selectors.");
+                 return;
+            }
+
+            // Iterate over the combined NodeList and reveal them all at once.
             elementsToRevealSimultaneously.forEach(el => {
                 el.classList.add('is-visible');
             });
-            
-            // The label and all three button wrappers will now start their CSS transition (0.6s)
-            // at the exact same time, making them appear simultaneously.
 
-        }, secondaryRevealDelay);
+        }, combinedRevealDelay);
     }
 
     function step(timestamp) {
