@@ -295,26 +295,46 @@ h3 {
 
 
 .project-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px; justify-content: center; 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    justify-content: center; 
 }
 
 .project-card {
-    background: var(--glass-bg); border-radius: 24px; overflow: hidden; transition: all 0.4s ease;
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); max-width: 550px;
-    border: 1px solid var(--color-cyan); box-shadow: var(--card-hover-glow);
+    background: var(--glass-bg);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    max-width: 550px;
+    border: 1px solid var(--color-cyan);
+    box-shadow: var(--card-hover-glow);
 }
 
 .project-card:hover { transform: translateY(-8px); }
 
 .card-image { 
-    height: 220px; width: 100%; overflow: hidden; border-bottom: 1px solid rgba(85, 255, 255, 0.2); position: relative; 
+    height: 220px;
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(85, 255, 255, 0.2);
+    position: relative; 
 }
 
 .card-image::after {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: linear-gradient(rgba(85, 255, 255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(85, 255, 255, 0.15) 1px, transparent 1px);
-    background-size: 20px 20px; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; 
+    background-size: 20px 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none; 
 }
 .project-card:hover .card-image::after { opacity: 1; }
 
@@ -323,19 +343,33 @@ h3 {
 .card-content { padding: 30px; }
 .card-content h4 { color: white; font-size: 1.5rem; margin-bottom: 12px; letter-spacing: 0.5px; }
 .card-content p {
-    color: #b4b4c8; font-size: 1rem; line-height: 1.7; margin-bottom: 25px;
-    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    color: #b4b4c8;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .tech-btn {
-    display: inline-block; padding: 12px 25px; 
+    display: inline-block;
+    padding: 12px 25px; 
     background: rgba(255, 255, 255, 0.05); 
-    border: 2px solid var(--color-cyan); color: var(--color-cyan);
-    text-decoration: none; font-weight: 800; border-radius: 50px;
-    transition: all 0.3s ease; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
+    border: 2px solid var(--color-cyan);
+    color: var(--color-cyan);
+    text-decoration: none;
+    font-weight: 800;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 .tech-btn:hover { 
-    background: var(--color-cyan); color: #0a041c; 
+    background: var(--color-cyan);
+    color: #0a041c; 
     box-shadow: 0 0 30px rgba(85, 255, 255, 0.5);
 }
 
@@ -586,6 +620,8 @@ h3 {
     are inside a list item (display: block) but are themselves divs that
     were being forced into an inline or row-like layout previously.
     We are ensuring both the list item and its content divs are full-width blocks.
+    
+    CHANGE: Reduced vertical spacing (padding-bottom and margin-bottom) for tighter list items.
 */
 .meta-list {
     list-style: none; 
@@ -599,10 +635,10 @@ h3 {
     list-style: none;
     position: relative;
     padding-left: 25px; 
-    padding-bottom: 15px; /* Reduced bottom padding */
-    margin-bottom: 15px; /* Reduced margin */
-    padding-top: 8px; /* Slightly increased top padding for better vertical alignment with text */
-    border-bottom: 1px solid rgba(85, 255, 255, 0.1); /* Added a subtle separator line for visual clarity */
+    padding-bottom: 8px; /* ADJUSTED: Reduced from 15px */
+    margin-bottom: 8px; /* ADJUSTED: Reduced from 15px */
+    padding-top: 8px;
+    border-bottom: 1px solid rgba(85, 255, 255, 0.1); 
 }
 
 /* Ensure bullet is displayed and positioned correctly */
@@ -611,14 +647,14 @@ h3 {
     color: var(--color-neon-pink);
     position: absolute;
     left: 0;
-    top: 8px; /* Aligns with the list item's top padding */
+    top: 8px;
     margin-right: 0;
 }
 
 /* 2. Ensure the label takes full width and stacks */
 .skill-card .meta-list .meta-label {
     display: block; 
-    margin-bottom: 5px; /* Reduced space between title and description */
+    margin-bottom: 5px; 
     color: var(--color-cyan); 
     font-weight: 700;
     text-transform: uppercase;
