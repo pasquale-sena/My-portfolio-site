@@ -8,12 +8,22 @@
 </head>
 <body>
 
-    <header class="split-hero">
-        
-        <div class="hero-left">
-            <div class="content-wrapper">
-                <div class="name-badge reveal-text">PASQUALE SENA</div>
-                <h1 class="hero-headline reveal-text">Senior Instructional<br>Designer.</h1>
+    <main class="split-layout">
+
+        <aside class="sidebar-graphic">
+            <div class="parallax-layer parallax-bg" style="background-image: url('images/placeholder-background.png');"></div>
+            <div class="parallax-layer parallax-mid" style="background-image: url('images/placeholder-mid.png');"></div>
+            <div class="parallax-layer parallax-fg" style="background-image: url('images/placeholder-me.png');"></div>
+        </aside>
+
+
+        <div class="main-content-container">
+            
+            <section class="hero-intro">
+                <div class="header-group">
+                    <div class="name-badge reveal-text">PASQUALE SENA</div>
+                    <h1 class="hero-headline reveal-text">Senior Instructional<br>Designer.</h1>
+                </div>
                 
                 <div class="about-glass reveal-text">
                     <p><strong>Innovator. Veteran. Creator.</strong></p>
@@ -21,7 +31,6 @@
                 </div>
 
                 <nav class="glass-btn-container">
-                    
                     <div class="glass-btn-wrapper small-btn dissolve-in">
                         <img class="btn-bg-img" src="images/project-still-graphic-design.jpg" alt="">
                         <a href="#graphic" class="glass-btn">
@@ -29,7 +38,6 @@
                             <span class="btn-full">Graphic</span>
                         </a>
                     </div>
-
                     <div class="glass-btn-wrapper main-btn dissolve-in">
                         <img class="btn-bg-img" src="images/project-still-instructional.jpg" alt="">
                         <a href="#instructional" class="glass-btn">
@@ -37,7 +45,6 @@
                             <span class="btn-full">Instructional Design</span>
                         </a>
                     </div>
-
                     <div class="glass-btn-wrapper small-btn dissolve-in">
                         <img class="btn-bg-img" src="images/project-still-multimedia.jpg" alt="">
                         <a href="#multimedia" class="glass-btn">
@@ -45,42 +52,30 @@
                             <span class="btn-full">Multimedia</span>
                         </a>
                     </div>
-
                 </nav>
-            </div>
-        </div>
+            </section>
 
-        <div class="hero-right">
-            <div class="parallax-tall-bg" style="background-image: url('images/placeholder-tall-bg.jpg');"></div>
+            <section id="instructional" class="project-section section-reveal">
+                <h3>Instructional Design Projects</h3>
+                <p class="section-focus">My core passion: building measurable, boundary-pushing learning solutions.</p>
+            </section>
+
+            <section id="graphic" class="project-section section-reveal">
+                <h3>Graphic Design Projects</h3>
+                <p>From visual identity to detailed interface design.</p>
+            </section>
+
+            <section id="multimedia" class="project-section section-reveal">
+                <h3>Multimedia Design Projects</h3>
+                <p>Video, animation, and interactive content creation.</p>
+            </section>
             
-            <div class="fixed-character">
-                <img src="images/placeholder-me.png" alt="Pasquale Cartoon">
-            </div>
-        </div>
+            <section id="contact" class="section-reveal">
+                <h3>Get in Touch</h3>
+                <p>Let's discuss how my design approach can solve your learning challenges.</p>
+            </section>
 
-    </header>
-
-    <main>
-        <section id="instructional" class="project-section section-reveal">
-            <h3>Instructional Design Projects</h3>
-            <p class="section-focus">My core passion: building measurable, boundary-pushing learning solutions.</p>
-        </section>
-
-        <section id="graphic" class="project-section section-reveal">
-            <h3>Graphic Design Projects</h3>
-            <p>From visual identity to detailed interface design.</p>
-        </section>
-
-        <section id="multimedia" class="project-section section-reveal">
-            <h3>Multimedia Design Projects</h3>
-            <p>Video, animation, and interactive content creation.</p>
-        </section>
-        
-        <section id="contact" class="section-reveal">
-            <h3>Get in Touch</h3>
-            <p>Let's discuss how my design approach can solve your learning challenges.</p>
-        </section>
-    </main>
+        </div> </main>
 
     <script src="script.js"></script>
 </body>
