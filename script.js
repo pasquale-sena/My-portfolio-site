@@ -41,18 +41,15 @@ function animateTyping() {
         const secondaryRevealDelay = 700; 
 
         setTimeout(() => {
-            // Target the Section Label
-            const label = document.querySelector('#hero .section-label.reveal-text');
-            if (label) {
-                // Make the label visible immediately when the phase starts
-                label.classList.add('is-visible');
-            }
+            // FIX: Target ALL elements with 'dissolve-in' in one query.
+            // This now includes the section-label (index 0) and the three buttons (index 1, 2, 3).
+            const elementsToReveal = document.querySelectorAll(
+                '#hero .dissolve-in' 
+            );
 
-            // Target: All Navigation Buttons
-            const buttonWrappers = document.querySelectorAll('.glass-btn-wrapper.dissolve-in');
-
-            buttonWrappers.forEach((el, index) => {
-                // Staggered delay starts immediately after the label is visible (index * 100ms)
+            elementsToReveal.forEach((el, index) => {
+                // Apply a staggered delay to the subsequent elements
+                // The label (index 0) will have a delay of 0, appearing simultaneously with the first button (index 1)
                 const delay = index * 100; 
                 
                 setTimeout(() => {
