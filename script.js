@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Reveal Animations (Text & Buttons)
     const revealElements = document.querySelectorAll('.reveal-text, .dissolve-in, .section-reveal');
     
-    // NEW: Function to instantly reveal elements in the #hero section, bypassing the Intersection Observer
+    // FIX: Function to instantly reveal elements in the #hero section, bypassing the Intersection Observer
     const instantReveal = (elements) => {
         elements.forEach(el => {
-            // Check if the element is inside the #hero section
+            // Directly target and activate elements inside the #hero section
             if (el.closest('#hero')) {
                 el.classList.add('is-visible');
             }
@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.innerWidth > 900) {
                 bg.style.transform = `translateY(${scrollY * -0.05}px)`;
                 mid.style.transform = `translateY(${scrollY * -0.1}px)`;
-                // fg is fixed via CSS/JS cleanup
             }
         });
     }
