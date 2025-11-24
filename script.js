@@ -1,89 +1,30 @@
-// Function for the Typing effect (Senior Instructional Designer)
-function animateTyping() {
-    const typeElement = document.querySelector('.type-text');
-    if (!typeElement) return;
-
-    // Get original HTML (including <br>) and clean text string for counting
-    const fullTextHTML = typeElement.innerHTML;
-    const visibleText = fullTextHTML.replace(/<br>/gi, '\n');
-    const totalLength = visibleText.length;
-    
-    // Clear the element before starting
-    typeElement.innerHTML = ''; 
-    
-    // State object for timing control
-    const typingState = {
-        charIndex: 0,
-        lastTimestamp: 0,
-        frameTime: 50, // Adjusted speed: 50ms per character
-    };
-
-    // Make the element visible and start the typing cursor animation
-    typeElement.classList.add('is-typing');
-    typeElement.style.opacity = '1';
-
-    // Function to run after typing completes
-    function onTypingComplete() {
-        // Remove the typing cursor/animation
-        typeElement.classList.remove('is-typing');
-        typeElement.classList.add('no-cursor');
-
-        // NOTE: The summary box, project label, and navigation buttons 
-        // are now static (no 'dissolve-in' class in HTML) and are immediately visible.
-    }
-
-    function step(timestamp) {
-        if (!typingState.lastTimestamp) typingState.lastTimestamp = timestamp;
-        
-        const elapsed = timestamp - typingState.lastTimestamp;
-
-        if (typingState.charIndex < totalLength) {
-            
-            if (elapsed > typingState.frameTime) {
-                // Time for the next character
-                let char = visibleText[typingState.charIndex];
-                
-                if (char === '\n') {
-                    typeElement.innerHTML += '<br>';
-                } else {
-                    typeElement.innerHTML += char;
-                }
-                typingState.charIndex++;
-                typingState.lastTimestamp = timestamp; // Reset timer
-            }
-
-            // Continue the animation loop
-            requestAnimationFrame(step);
-
-        } else {
-            // Animation complete: Call the completion function
-            onTypingComplete();
-        }
-    }
-
-    // Start the animation immediately on load
-    requestAnimationFrame(step);
-}
-
-
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 0. START HERO ANIMATIONS ---
-    animateTyping();
-
-
-    // 1. Reveal Animations (Only targets sections outside the hero, which use .section-reveal)
-    const revealElements = document.querySelectorAll('.section-reveal'); // SIMPLIFIED SELECTOR
+    // 1. Reveal Animations (Text & Buttons)
+    const revealElements = document.querySelectorAll('.reveal-text, .dissolve-in, .section-reveal');
     
+    // NEW: Function to instantly reveal elements in the #hero section, bypassing the Intersection Observer
+    const instantReveal = (elements) => {
+        elements.forEach(el => {
+            // Check if the element is inside the #hero section
+            if (el.closest('#hero')) {
+                el.classList.add('is-visible');
+            }
+        });
+    };
+    
+    // Activate the hero elements immediately upon load
+    instantReveal(revealElements);
+
     const observerReveal = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                // Use a standard delay for the projects/sections
-                let delay = entry.target.classList.contains('section-reveal') ? 300 : index * 100;
-
-                setTimeout(() => {
-                    entry.target.classList.add('is-visible');
-                }, delay); 
+                // Only process elements *not* already revealed by instantReveal
+                if (!entry.target.classList.contains('is-visible')) { 
+                    setTimeout(() => {
+                        entry.target.classList.add('is-visible');
+                    }, index * 100); 
+                }
                 observerReveal.unobserve(entry.target);
             }
         });
@@ -92,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => observerReveal.observe(el));
 
 
-    // 2. PARALLAX LOGIC (unchanged)
+    // 2. PARALLAX LOGIC
     const bg = document.querySelector('.parallax-bg');
     const mid = document.querySelector('.parallax-mid');
     const fg = document.querySelector('.parallax-fg');
@@ -103,13 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.innerWidth > 900) {
                 bg.style.transform = `translateY(${scrollY * -0.05}px)`;
                 mid.style.transform = `translateY(${scrollY * -0.1}px)`;
-                fg.style.transform = `translateY(${scrollY * -0.15}px)`;
+                // fg is fixed via CSS/JS cleanup
             }
         });
     }
 
 
-    // 3. Smooth Scroll (FIXED: Added block: 'center' to center the element)
+    // 3. Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -117,14 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(targetId);
             if (target) {
                 e.preventDefault();
-                // Changed scroll alignment from default 'top' to 'center'
-                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                target.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
 
 
-    // 4. AJAX FORM HANDLING (No Redirect) (unchanged)
+    // 4. AJAX FORM HANDLING (No Redirect)
     const contactForm = document.getElementById('contact-form');
     
     if (contactForm) {
