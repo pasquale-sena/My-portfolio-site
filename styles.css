@@ -125,13 +125,15 @@ body::after {
 }
 
 .hero-intro {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 100px;
-    padding-bottom: 60px;
-    scroll-margin-top: 100px;
+    /* min-height: 90vh; - REMOVED TO PREVENT PUSHING CONTENT OFF-SCREEN */
+    min-height: auto; /* Ensure it only takes up the required space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 60px;
+    scroll-margin-top: 100px;
+    padding-top: 100px; /* Add padding to push content down from the top edge */
 }
 
 .header-group { padding-left: 30px; margin-bottom: 40px; }
