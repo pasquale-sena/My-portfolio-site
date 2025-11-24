@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphic Design Showcase</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <main class="split-layout">
+
+        <aside class="sidebar-graphic">
+            <div class="parallax-layer parallax-bg" style="background-image: url('images/placeholder-background.png');"></div>
+            <div class="parallax-layer parallax-mid" style="background-image: url('images/placeholder-mid.png');"></div>
+            
+            <div class="parallax-layer parallax-fg sidebar-content-wrapper">
+                <img src="images/placeholder-me.gif" alt="Pasquale Sena Character" class="sidebar-char-img">
+                <a href="index.html" class="tech-btn sidebar-btn">BACK TO HOME</a>
+            </div>
+        </aside>
+
+        <div class="main-content-container">
+            
+            <section class="about-hero-section section-reveal" style="padding-top: 60px;">
+                <div class="section-header">
+                    <h3>Visual Design Portfolio</h3>
+                    <p class="section-focus">Brand Identity, UI/UX Mockups, and High-Impact Corporate Visuals.</p>
+                </div>
+            </section>
+
+            <section class="section-reveal" style="margin-bottom: 100px;">
+                <div class="graphic-grid">
+
+                    <div class="g-item g-item-1">
+                        <img src="images/graphic-11.png" alt="Customer Service Learning Journey Banner">
+                    </div>
+
+                    <div class="g-item g-item-2">
+                        <img src="images/graphic-1.png" alt="Finance App UI Mockup">
+                    </div>
+
+                    <div class="g-item g-item-3">
+                        <img src="images/graphic-3.png" alt="Corporate Profile Internal Comms">
+                    </div>
+
+                    <div class="g-item g-item-4">
+                        <img src="images/graphic-4.jpg" alt="Navy Ship Bell Infographic">
+                    </div>
+                    
+                    <div class="g-item g-item-5">
+                        <img src="images/graphic-5.jpg" alt="Veterans Day Infographic">
+                    </div>
+
+                    <div class="g-item g-item-6">
+                        <img src="images/graphic-12.png" alt="Call Control Process Map">
+                    </div>
+
+                    <div class="g-item g-item-7">
+                        <img src="images/graphic-7.png" alt="Lubrizol Marketing Stats">
+                    </div>
+                    
+                    <div class="g-item g-item-8">
+                        <img src="images/graphic-8.png" alt="Lubrizol Lifestyle Marketing">
+                    </div>
+
+                    <div class="g-item g-item-9">
+                        <img src="images/graphic-2.png" alt="Lubrizol 3D Printing Solutions">
+                    </div>
+
+                    <div class="g-item g-item-10">
+                        <img src="images/graphic-6.png" alt="New Dimension of Innovation">
+                    </div>
+                    
+                    <div class="g-item g-item-11">
+                        <img src="images/graphic-10.png" alt="Mountain Hiker Illustration">
+                    </div>
+
+                    <div class="g-item g-item-12">
+                        <img src="images/graphic-9.jpg" alt="Flight Tracker App Detail">
+                    </div>
+
+                    <div class="g-item g-item-13">
+                        <img src="images/graphic-13.png" alt="Rifle Stock Product Marketing">
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="section-reveal">
+                <div class="section-header">
+                    <h3>Let's Collaborate.</h3>
+                    <p class="section-focus">Ready to discuss your visual identity or design needs? Contact me below.</p>
+                </div>
+
+                <div class="contact-glass-card">
+                    <form id="contact-form" action="https://formspree.io/f/mzzwwlwn" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="tech-btn contact-submit-btn">SEND MESSAGE</button>
+                        <div id="my-form-status" class="form-status"></div>
+                    </form>
+                </div>
+            </section>
+
+        </div> 
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
