@@ -10,23 +10,28 @@
 
     <main class="split-layout">
 
+        <!-- MODAL -->
         <div id="image-modal" class="modal-overlay">
-    <div class="modal-content">
-        <button id="modal-close-btn" class="modal-close">&times;</button>
+            <div class="modal-content">
+                <button id="modal-close-btn" class="modal-close">&times;</button>
+                <img id="modal-image" src="" alt="">
+            </div>
         </div>
-</div>
+
+        <!-- SIDEBAR -->
         <aside class="sidebar-graphic">
             <div class="parallax-layer parallax-bg" style="background-image: url('images/placeholder-background.png');"></div>
             <div class="parallax-layer parallax-mid" style="background-image: url('images/placeholder-mid.png');"></div>
-            
+
             <div class="parallax-layer parallax-fg sidebar-content-wrapper">
                 <img src="images/placeholder-me.gif" alt="Pasquale Sena Character" class="sidebar-char-img">
                 <a href="index.html" class="tech-btn sidebar-btn">BACK TO HOME</a>
             </div>
         </aside>
 
+        <!-- MAIN CONTENT -->
         <div class="main-content-container">
-            
+
             <section class="about-hero-section section-reveal" style="padding-top: 60px;">
                 <div class="section-header">
                     <h3>Visual Design Portfolio</h3>
@@ -34,53 +39,62 @@
                 </div>
             </section>
 
-           <section class="section-reveal" style="margin-bottom: 100px;">
+            <!-- GRAPHIC GRID -->
+            <section class="section-reveal" style="margin-bottom: 100px;">
                 <div class="graphic-grid">
 
-                    <div class="g-item g-item-1" onclick="openModal('images/graphic-11.png')">
-                        <img src="images/graphic-11.png" alt="Customer Service Learning Journey Banner">
-                    </div>
-                    
-                    <div class="g-item g-item-4" onclick="openModal('images/graphic-4.jpg')">
-                        <img src="images/graphic-4.jpg" alt="Navy Ship Bell Infographic">
-                    </div>
-                    <div class="g-item g-item-5" onclick="openModal('images/graphic-5.jpg')">
-                        <img src="images/graphic-5.jpg" alt="Veterans Day Infographic">
-                    </div>
-                    
-                    <div class="g-item g-item-6" onclick="openModal('images/graphic-12.png')">
-                        <img src="images/graphic-12.png" alt="Call Control Process Map">
-                    </div>
-                    <div class="g-item g-item-7" onclick="openModal('images/graphic-7.png')">
-                        <img src="images/graphic-7.png" alt="Lubrizol Marketing Stats">
-                    </div>
-                    
-                    <div class="g-item g-item-8" onclick="openModal('images/graphic-8.png')">
-                        <img src="images/graphic-8.png" alt="Lubrizol Lifestyle Marketing">
-                    </div>
-                    <div class="g-item g-item-10" onclick="openModal('images/graphic-6.png')">
-                        <img src="images/graphic-6.png" alt="New Dimension of Innovation">
-                    </div>
-                    <div class="g-item g-item-13" onclick="openModal('images/graphic-13.png')">
-                        <img src="images/graphic-13.png" alt="Rifle Stock Product Marketing">
+                    <div class="g-item" onclick="openModal('images/graphic-11.png')">
+                        <img src="images/graphic-11.png" alt="">
                     </div>
 
-                    <div class="g-item g-item-9" onclick="openModal('images/graphic-2.png')">
-                        <img src="images/graphic-2.png" alt="Lubrizol 3D Printing Solutions">
+                    <div class="g-item" onclick="openModal('images/graphic-4.jpg')">
+                        <img src="images/graphic-4.jpg" alt="">
                     </div>
-                    
-                    <div class="g-item g-item-2" onclick="openModal('images/graphic-1.png')">
-                        <img src="images/graphic-1.png" alt="Finance App UI Mockup">
+
+                    <div class="g-item" onclick="openModal('images/graphic-5.jpg')">
+                        <img src="images/graphic-5.jpg" alt="">
                     </div>
-                    <div class="g-item g-item-3" onclick="openModal('images/graphic-3.png')">
-                        <img src="images/graphic-3.png" alt="Corporate Profile Internal Comms">
+
+                    <div class="g-item" onclick="openModal('images/graphic-12.png')">
+                        <img src="images/graphic-12.png" alt="">
                     </div>
-                    <div class="g-item g-item-11" onclick="openModal('images/graphic-10.png')">
-                        <img src="images/graphic-10.png" alt="Mountain Hiker Illustration">
+
+                    <div class="g-item" onclick="openModal('images/graphic-7.png')">
+                        <img src="images/graphic-7.png" alt="">
                     </div>
+
+                    <div class="g-item" onclick="openModal('images/graphic-8.png')">
+                        <img src="images/graphic-8.png" alt="">
+                    </div>
+
+                    <div class="g-item" onclick="openModal('images/graphic-6.png')">
+                        <img src="images/graphic-6.png" alt="">
+                    </div>
+
+                    <div class="g-item" onclick="openModal('images/graphic-13.png')">
+                        <img src="images/graphic-13.png" alt="">
+                    </div>
+
+                    <div class="g-item" onclick="openModal('images/graphic-2.png')">
+                        <img src="images/graphic-2.png" alt="">
+                    </div>
+
+                    <div class="g-item" onclick="openModal('images/graphic-1.png')">
+                        <img src="images/graphic-1.png" alt="">
+                    </div>
+
+                    <div class="g-item" onclick="openModal('images/graphic-3.png')">
+                        <img src="images/graphic-3.png" alt="">
+                    </div>
+
+                    <div class="g-item" onclick="openModal('images/graphic-10.png')">
+                        <img src="images/graphic-10.png" alt="">
+                    </div>
+
                 </div>
             </section>
 
+            <!-- CONTACT -->
             <section id="contact" class="section-reveal">
                 <div class="section-header">
                     <h3>Let's Collaborate.</h3>
@@ -93,23 +107,38 @@
                             <label for="name" class="form-label">Name</label>
                             <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
                         </div>
+
                         <div class="form-group">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" id="email" name="email" class="form-input" placeholder="name@example.com" required>
                         </div>
+
                         <div class="form-group">
                             <label for="message" class="form-label">Message</label>
                             <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
                         </div>
+
                         <button type="submit" class="tech-btn contact-submit-btn">SEND MESSAGE</button>
                         <div id="my-form-status" class="form-status"></div>
                     </form>
                 </div>
             </section>
 
-        </div> 
+        </div>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        function openModal(src) {
+            const modal = document.getElementById("image-modal");
+            const modalImg = document.getElementById("modal-image");
+            modalImg.src = src;
+            modal.classList.add("active");
+        }
+
+        document.getElementById("modal-close-btn").onclick = () => {
+            document.getElementById("image-modal").classList.remove("active");
+        };
+    </script>
+
 </body>
 </html>
