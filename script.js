@@ -134,5 +134,61 @@ document.addEventListener('DOMContentLoaded', () => {
                 status.className = "form-status error";
             });
         });
+
+        // --- MODAL (LIGHTBOX) LOGIC ---
+    
+    // Select modal elements once
+    const modal = document.getElementById('image-modal');
+    const modalContent = modal ? modal.querySelector('.modal-content') : null;
+    const closeBtn = modal ? document.getElementById('modal-close-btn') : null;
+    
+    // Function to open the modal
+    window.openModal = function(src) {
+        if (!modal || !modalContent) return;
+        
+        // Create new image element
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = "Full Graphic View";
+        
+        // Clear previous content and insert new image
+        modalContent.innerHTML = '';
+        modalContent.appendChild(img);
+        modalContent.appendChild(closeBtn); // Reinsert close button
+        
+        modal.classList.add('open');
+    };
+    
+    // Function to close the modal
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('open');
+        // Optional: clear image source
+        setTimeout(() => { modalContent.innerHTML = ''; }, 300);
     }
-});
+    
+    // Event listeners
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+    
+    if (modal) {
+        // Close when clicking outside the image content
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
+
+    // Ensure close button exists even if modal content is cleared
+    if (modalContent && !modalContent.querySelector('#modal-close-btn')) {
+        const tempBtn = document.createElement('button');
+        tempBtn.id = 'modal-close-btn';
+        tempBtn.className = 'modal-close';
+        tempBtn.innerHTML = '&times;';
+        tempBtn.addEventListener('click', closeModal);
+        modalContent.appendChild(tempBtn); 
+    }
+}); 
+// End DOMContentLoaded
