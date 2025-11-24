@@ -572,7 +572,7 @@ h3 {
 
 /* Label (The Title - e.g., Target Audience) */
 .meta-list .meta-label {
-    /* FIX: Forces the label to its own line (Line 1) */
+    /* Forces the label to its own line (Line 1) */
     display: block; 
     margin-bottom: 5px; /* Increased spacing between label and description */
     color: var(--color-cyan);
