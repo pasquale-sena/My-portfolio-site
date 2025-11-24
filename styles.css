@@ -125,11 +125,11 @@ body::after {
 }
 
 .hero-intro {
-    min-height: 90vh; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    padding-top: 100px;
     padding-bottom: 60px;
     scroll-margin-top: 100px;
 }
