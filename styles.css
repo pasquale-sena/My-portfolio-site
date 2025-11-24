@@ -631,82 +631,97 @@ h3 {
     height: 100%;
 }
 
-/* --- GRAPHIC SHOWCASE GRID STYLES --- */
+/* ============================
+   GRAPHIC GRID FIX
+   ============================ */
 
 .graphic-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Default 3-column layout */
-    grid-gap: 20px;
-    align-items: stretch;
-    padding: 0 0 50px 0;
-    /* FIX: Ensure grid items don't expand past container boundaries */
-    min-width: 0; 
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 100%;
+    margin: 0 auto;
 }
 
+/* Square graphic cards */
 .g-item {
     position: relative;
-    overflow: hidden;
-    background: var(--glass-bg);
-    border-radius: 16px;
-    border: 1px solid rgba(85, 255, 255, 0.2);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-    /* FIX: Ensure grid items don't expand past container boundaries */
-    min-width: 0; 
-    
-    /* FIX: FINAL 1:1 ASPECT RATIO */
+    width: 100%;
     aspect-ratio: 1 / 1;
-}
-
-.g-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 25px rgba(85, 255, 255, 0.4);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .g-item img {
     width: 100%;
     height: 100%;
-    display: block;
     object-fit: cover;
-    /* FIX: Ensure image is constrained within its parent */
-    max-width: 100%; 
+    display: block;
 }
 
-/* Removed all specific g-item-X spanning rules to enforce 1:1 simple grid */
+.g-item:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 25px rgba(85, 255, 255, 0.4);
+}
 
-
-/* Tablet/Small Desktop (Switch to 2 columns for tighter fit) */
-@media (max-width: 1100px) and (min-width: 600px) {
+/* MOBILE */
+@media (max-width: 900px) {
     .graphic-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    /* Simple two column flow - no spanning needed */
 }
 
-/* Mobile (Single column) */
-@media (max-width: 599px) {
-    .split-layout { grid-template-columns: 1fr; }
-    .sidebar-graphic { display: none; }
-    .main-content-container { padding: 0 30px; }
-    .hero-intro { min-height: auto; padding: 100px 0 80px; }
-    .header-group { padding-left: 0; }
-    .name-badge { font-size: 3rem; }
-    .hero-headline { font-size: 2.2rem; }
-    .glass-btn-container { height: auto; flex-wrap: wrap; gap: 15px; }
-    .small-btn, .main-btn { flex: 100%; height: 80px; }
-    .project-grid { grid-template-columns: 1fr; }
-    .project-card { max-width: 100%; }
-    
-    /* Grid items stack in mobile */
-    .graphic-grid { grid-template-columns: 1fr; grid-gap: 15px; }
-    .graphic-grid > div {
-        grid-column: auto !important;
-        grid-row: auto !important;
-        height: auto; 
-        aspect-ratio: 1/1; /* Ensure mobile cards retain square ratio */
+@media (max-width: 600px) {
+    .graphic-grid {
+        grid-template-columns: 1fr;
     }
-    .g-item img { height: auto; }
-    
-    /* About page specific mobile adjustments */
-    .about-text-content { padding: 25px; }
+}
+
+/* ============================
+   MODAL FIX
+   ============================ */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+    z-index: 999;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 2.4rem;
+    cursor: pointer;
 }
