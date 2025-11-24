@@ -10,6 +10,11 @@
 
     <main class="split-layout">
 
+        <div id="image-modal" class="modal-overlay">
+    <div class="modal-content">
+        <button id="modal-close-btn" class="modal-close">&times;</button>
+        </div>
+</div>
         <aside class="sidebar-graphic">
             <div class="parallax-layer parallax-bg" style="background-image: url('images/placeholder-background.png');"></div>
             <div class="parallax-layer parallax-mid" style="background-image: url('images/placeholder-mid.png');"></div>
@@ -29,59 +34,49 @@
                 </div>
             </section>
 
-            <section class="section-reveal" style="margin-bottom: 100px;">
+           <section class="section-reveal" style="margin-bottom: 100px;">
                 <div class="graphic-grid">
 
-                    <div class="g-item g-item-1">
+                    <div class="g-item g-item-1" onclick="openModal('images/graphic-11.png')">
                         <img src="images/graphic-11.png" alt="Customer Service Learning Journey Banner">
                     </div>
-
-                    <div class="g-item g-item-2">
-                        <img src="images/graphic-1.png" alt="Finance App UI Mockup">
-                    </div>
-
-                    <div class="g-item g-item-3">
-                        <img src="images/graphic-3.png" alt="Corporate Profile Internal Comms">
-                    </div>
-
-                    <div class="g-item g-item-4">
+                    
+                    <div class="g-item g-item-4" onclick="openModal('images/graphic-4.jpg')">
                         <img src="images/graphic-4.jpg" alt="Navy Ship Bell Infographic">
                     </div>
-                    
-                    <div class="g-item g-item-5">
+                    <div class="g-item g-item-5" onclick="openModal('images/graphic-5.jpg')">
                         <img src="images/graphic-5.jpg" alt="Veterans Day Infographic">
                     </div>
-
-                    <div class="g-item g-item-6">
+                    
+                    <div class="g-item g-item-6" onclick="openModal('images/graphic-12.png')">
                         <img src="images/graphic-12.png" alt="Call Control Process Map">
                     </div>
-
-                    <div class="g-item g-item-7">
+                    <div class="g-item g-item-7" onclick="openModal('images/graphic-7.png')">
                         <img src="images/graphic-7.png" alt="Lubrizol Marketing Stats">
                     </div>
                     
-                    <div class="g-item g-item-8">
+                    <div class="g-item g-item-8" onclick="openModal('images/graphic-8.png')">
                         <img src="images/graphic-8.png" alt="Lubrizol Lifestyle Marketing">
                     </div>
-
-                    <div class="g-item g-item-9">
-                        <img src="images/graphic-2.png" alt="Lubrizol 3D Printing Solutions">
-                    </div>
-
-                    <div class="g-item g-item-10">
+                    <div class="g-item g-item-10" onclick="openModal('images/graphic-6.png')">
                         <img src="images/graphic-6.png" alt="New Dimension of Innovation">
                     </div>
-                    
-                    <div class="g-item g-item-11">
-                        <img src="images/graphic-10.png" alt="Mountain Hiker Illustration">
-                    </div>
-
-                    <div class="g-item g-item-12">
-                        <img src="images/graphic-9.jpg" alt="Flight Tracker App Detail">
-                    </div>
-
-                    <div class="g-item g-item-13">
+                    <div class="g-item g-item-13" onclick="openModal('images/graphic-13.png')">
                         <img src="images/graphic-13.png" alt="Rifle Stock Product Marketing">
+                    </div>
+
+                    <div class="g-item g-item-9" onclick="openModal('images/graphic-2.png')">
+                        <img src="images/graphic-2.png" alt="Lubrizol 3D Printing Solutions">
+                    </div>
+                    
+                    <div class="g-item g-item-2" onclick="openModal('images/graphic-1.png')">
+                        <img src="images/graphic-1.png" alt="Finance App UI Mockup">
+                    </div>
+                    <div class="g-item g-item-3" onclick="openModal('images/graphic-3.png')">
+                        <img src="images/graphic-3.png" alt="Corporate Profile Internal Comms">
+                    </div>
+                    <div class="g-item g-item-11" onclick="openModal('images/graphic-10.png')">
+                        <img src="images/graphic-10.png" alt="Mountain Hiker Illustration">
                     </div>
                 </div>
             </section>
