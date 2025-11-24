@@ -51,7 +51,9 @@
     box-shadow: 0 0 25px rgba(85, 255, 255, 0.4);
 }
 
-/* --- MODAL STYLES (REQUIRED FOR OVERLAY) --- */
+/* ============================
+   MODAL FIXES
+   ============================ */
 
 .modal-overlay {
     position: fixed;
@@ -74,26 +76,55 @@
 .modal-content {
     position: relative;
     max-width: 90%;
-    max-height: 90%;
+    
+    /* FIX 1: Constrain by viewport height (vh) to prevent scrolling/cutoff */
+    max-height: 90vh; 
+    
+    /* FIX 2: Use flex to correctly center and contain the image */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content img {
+    /* FIX 3: Make image fill the constrained content area */
     width: 100%;
-    height: auto;
+    height: 100%; 
+    
+    /* CRITICAL FIX 4: Scales the image down to fit the container without cropping */
+    object-fit: contain; 
+    
+    /* Ensure it doesn't overflow its constrained container */
+    max-width: 100%; 
+    max-height: 100%;
+    
     border-radius: 10px;
 }
 
 .modal-close {
     position: absolute;
-    top: -40px;
-    right: 0;
-    background: none;
-    color: white;
+    
+    /* FIX 5: Reposition button to top-right corner, inside the viewport */
+    top: 10px; 
+    right: 10px;
+    
+    /* FIX 6: Restyle the button for better visibility/accessibility */
+    background: rgba(0, 0, 0, 0.5); 
+    color: white; 
     border: none;
-    font-size: 2.4rem;
     cursor: pointer;
+    border-radius: 50%; /* Make it circular */
+    
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 1.8rem;
+    line-height: 1; /* Center the 'x' vertically */
+    z-index: 1000; /* Ensure it's above the image */
 }
-
 
 /* --- MEDIA QUERIES --- */
 
