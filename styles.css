@@ -73,8 +73,8 @@ body::after {
 .sidebar-graphic {
     position: sticky; 
     top: 0;
-    height: 100vh; 
-    overflow: hidden;  /* CRITICAL: Restore hidden to hide parallax overflow and maintain background */
+    height: 100vh;  /* CRITICAL: Must be 100vh to ensure it sticks and fills the viewport */
+    overflow: hidden;  /* CRITICAL: Restored to hide the 300vh parallax content, preventing background cutoff */
     background-color: transparent; 
     border-right: 1px solid var(--glass-border);
     z-index: 1;
