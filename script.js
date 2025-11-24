@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const headlineElement = document.querySelector('.hero-headline');
     
     if (headlineElement) {
-        // Store original text, replacing <br> with a custom marker for precise timing
-        const originalText = headlineElement.innerHTML.replace(/<br>/gi, '###BR###').trim();
+        // Store original text, removing the <br> marker logic completely
+        const originalText = headlineElement.innerHTML.replace(/<br>/gi, '').trim();
         
         // Function to simulate typing
         const typeWriter = (element, text, speed = 50) => {
@@ -16,16 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
             function typing() {
                 if (i < text.length) {
                     
-                    // FIX: Check if the next segment is the 7-character break marker
-                    const nextSegment = text.substring(i, i + 7);
+                    // The line break check logic is REMOVED.
+                    // It will simply type the next character.
+                    element.innerHTML += text.charAt(i);
+                    i++;
                     
-                    if (nextSegment === '###BR###') { 
-                        element.innerHTML += '<br>';
-                        i += 7; // Skip the entire 7-character marker
-                    } else {
-                        element.innerHTML += text.charAt(i);
-                        i++;
-                    }
                     setTimeout(typing, speed);
                 }
             }
