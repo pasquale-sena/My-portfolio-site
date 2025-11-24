@@ -98,24 +98,19 @@ body::after {
 } 
 .parallax-fg { z-index: 3; }
 
-/* REVERTED to original setup */
 .sidebar-content-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 300vh; /* Reverted to 300vh for parallax scroll functionality */
-    padding-bottom: 0; 
+    height: 300vh; 
 }
 
-/* REVERTED to original dimensions and removed drop shadow */
 .sidebar-char-img {
-    width: 90%; /* Reverted to original width */
+    width: 80%;
     height: auto;
-    max-width: 450px; /* Reverted to original max-width */
-    /* Removed max-height */
+    max-width: 400px;
     object-fit: contain;
-    filter: none; /* Removed drop shadow */
 }
 
 /* --- RIGHT MAIN CONTENT AREA --- */
@@ -138,7 +133,7 @@ body::after {
 
 .header-group { padding-left: 30px; margin-bottom: 40px; }
 
-/* Name is now permanently visible and styled by gradient */
+/* NAME BADGE IS NOW A GRADIENT */
 .name-badge {
     display: block;
     
@@ -168,34 +163,6 @@ body::after {
     color: white;
 }
 
-/* --- SEQUENCE CONTROL CLASSES --- */
-
-/* 1. INITIAL HIDE: Apply to elements waiting for typing to finish */
-.reveal-text, .dissolve-in {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    visibility: hidden; /* Ensure elements are definitely hidden before animation starts */
-}
-
-/* FIX: Increase specificity for elements in the hero section using 'dissolve-in' 
-    to ensure they are hidden on load and ready for the JS animation. */
-#hero .dissolve-in {
-    opacity: 0;
-    transform: translateY(10px);
-    visibility: hidden; /* Ensure elements are definitely hidden before animation starts */
-}
-
-
-/* 2. REVEAL: Applied by JS on completion - MAX SPECIFICITY FIX */
-#hero .reveal-text.is-visible,
-#hero .dissolve-in.is-visible {
-    opacity: 1 !important; /* Force visibility */
-    transform: translateY(0) !important;
-    visibility: visible !important; /* Force visibility */
-}
-
-
 .about-glass {
     background: var(--glass-bg); 
     backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
@@ -212,9 +179,9 @@ body::after {
 .glass-btn-container { display: flex; gap: 25px; height: 100px; width: 100%; max-width: 700px; }
 .glass-btn-wrapper {
     position: relative; border-radius: 50px; overflow: hidden; transition: all 0.4s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
-    /* The opacity/transform for this element is controlled by its parent container, or implicit rules */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); opacity: 0; transform: translateY(20px);
 }
+.glass-btn-wrapper.is-visible { opacity: 1; transform: translateY(0); }
 .small-btn { flex: 1; } .main-btn { flex: 1.5; }
 .btn-bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(10px) brightness(0.5) saturate(1.2); transition: filter 0.4s; }
 
@@ -235,47 +202,11 @@ body::after {
 
 
 /* ========================================= */
-/* --- HERO ANIMATION STYLES (TYPING ONLY) --- */
-/* ========================================= */
-
-/* Typing Cursor Animation */
-@keyframes blink {
-    50% { border-color: transparent; }
-}
-
-.type-text {
-    border-right: 3px solid var(--color-cyan); /* Cursor style */
-    display: inline-block; /* Essential to get the cursor effect on the border */
-    padding-right: 5px; /* Space for cursor */
-    
-    /* Initial state - hidden text content, but element is visible */
-    opacity: 0;
-    white-space: pre-wrap;
-}
-
-.type-text.is-typing {
-    opacity: 1;
-    animation: blink 0.7s step-end infinite;
-}
-
-/* ADDED: Class to remove the typing cursor line */
-.type-text.no-cursor {
-    border-right: none;
-    animation: none; /* Stop blink animation */
-}
-
-/* ========================================= */
 /* --- PROJECT GRID STYLES --- */
 /* ========================================= */
 
 .project-section { 
-    margin-bottom: var(--section-spacing); 
-    padding-top: 40px; 
-    opacity: 0; 
-    transform: translateY(50px); 
-    transition: 0.8s ease-out; 
-    /* FIX: Add scroll margin to push the element away from the top edge during hash navigation */
-    scroll-margin-top: 150px; 
+    margin-bottom: var(--section-spacing); padding-top: 40px; opacity: 0; transform: translateY(50px); transition: 0.8s ease-out; 
 }
 .section-reveal.is-visible { opacity: 1; transform: translateY(0); }
 
@@ -314,46 +245,26 @@ h3 {
 
 
 .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    justify-content: center; 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px; justify-content: center; 
 }
 
 .project-card {
-    background: var(--glass-bg);
-    border-radius: 24px;
-    overflow: hidden;
-    transition: all 0.4s ease;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    max-width: 550px;
-    border: 1px solid var(--color-cyan);
-    box-shadow: var(--card-hover-glow);
+    background: var(--glass-bg); border-radius: 24px; overflow: hidden; transition: all 0.4s ease;
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); max-width: 550px;
+    border: 1px solid var(--color-cyan); box-shadow: var(--card-hover-glow);
 }
 
 .project-card:hover { transform: translateY(-8px); }
 
 .card-image { 
-    height: 220px;
-    width: 100%;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(85, 255, 255, 0.2);
-    position: relative; 
+    height: 220px; width: 100%; overflow: hidden; border-bottom: 1px solid rgba(85, 255, 255, 0.2); position: relative; 
 }
 
 .card-image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background-image: linear-gradient(rgba(85, 255, 255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(85, 255, 255, 0.15) 1px, transparent 1px);
-    background-size: 20px 20px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none; 
+    background-size: 20px 20px; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; 
 }
 .project-card:hover .card-image::after { opacity: 1; }
 
@@ -362,39 +273,25 @@ h3 {
 .card-content { padding: 30px; }
 .card-content h4 { color: white; font-size: 1.5rem; margin-bottom: 12px; letter-spacing: 0.5px; }
 .card-content p {
-    color: #b4b4c8;
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-bottom: 25px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    color: #b4b4c8; font-size: 1rem; line-height: 1.7; margin-bottom: 25px;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 
 .tech-btn {
-    display: inline-block;
-    padding: 12px 25px; 
+    display: inline-block; padding: 12px 25px; 
     background: rgba(255, 255, 255, 0.05); 
-    border: 2px solid var(--color-cyan);
-    color: var(--color-cyan);
-    text-decoration: none;
-    font-weight: 800;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    border: 2px solid var(--color-cyan); color: var(--color-cyan);
+    text-decoration: none; font-weight: 800; border-radius: 50px;
+    transition: all 0.3s ease; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
 }
 .tech-btn:hover { 
-    background: var(--color-cyan);
-    color: #0a041c; 
+    background: var(--color-cyan); color: #0a041c; 
     box-shadow: 0 0 30px rgba(85, 255, 255, 0.5);
 }
 
 /* --- FIX FOR SIDEBAR BUTTON --- */
 .tech-btn.sidebar-btn {
-    margin-top: 12px; /* Reverted to original margin */
+    margin-top: 12px;
     background: var(--super-neon-gradient) !important; 
     color: #000000 !important; 
     border: none;
@@ -620,7 +517,7 @@ h3 {
 .skill-card ul li {
     margin-bottom: 12px;
     color: #b4b4c8;
-    display: flex; 
+    display: flex;
     align-items: center;
 }
 
@@ -631,7 +528,6 @@ h3 {
     font-size: 1.2rem;
 }
 
-/* ========================================= */
 /* --- ADDIE LIST STRUCTURE FIXES (Separating Label/Content) --- */
 .meta-list {
     list-style: none; 
@@ -639,60 +535,64 @@ h3 {
     margin-top: 15px; 
 }
 
-/* 1. Ensure the list item is a block element for stacking and positioning */
-.skill-card .meta-list li {
+/* The List Item (Container for Label + Content + Separator) */
+.meta-list li {
+    /* Ensures stacking of label/content */
     display: block; 
     list-style: none;
-    position: relative;
     padding-left: 25px; 
-    padding-bottom: 8px; 
-    margin-bottom: 8px; 
-    padding-top: 8px;
-    border-bottom: 1px solid rgba(85, 255, 255, 0.1); 
+    position: relative; /* Anchor for absolute bullet */
+    
+    /* FIX 2: Increased Visibility & Padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 18px; /* Increased vertical spacing */
+    margin-bottom: 18px; 
+    padding-top: 5px; 
 }
 
-/* Ensure bullet is displayed and positioned correctly */
-.skill-card .meta-list li::before {
-    content: '▹'; 
+/* Custom Bullet Point Styling */
+.meta-list li::before {
+    content: '▹';
     color: var(--color-neon-pink);
+    font-size: 1.2rem;
+    
+    /* FIX: Take bullet out of flow and position absolutely */
     position: absolute;
-    left: 0;
-    top: 8px;
-    margin-right: 0;
+    left: 0; 
+    top: 8px; /* Vertical alignment */
 }
 
-/* 2. Ensure the label takes full width and stacks */
-.skill-card .meta-list .meta-label {
+/* Remove border from the last item */
+.meta-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+/* Label (The Title - e.g., Target Audience) */
+.meta-list .meta-label {
+    /* Forces the label to its own line (Line 1) */
     display: block; 
-    margin-bottom: 5px; 
-    color: var(--color-cyan); 
+    margin-bottom: 5px; /* Increased spacing between label and description */
+    color: var(--color-cyan);
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1.2;
-    width: 100%; 
 }
 
-/* 3. Ensure the content takes full width and stacks */
-.skill-card .meta-list .meta-content {
-    display: block; 
+/* Content (The Description - Line 2) */
+.meta-list .meta-content {
+    /* FIX: Ensures content uses the full width below the label */
+    display: block;
     padding-left: 0;
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.4;
     color: #b4b4c8;
-    width: 100%;
-}
-
-/* Remove border and spacing from the last item */
-.skill-card .meta-list li:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
 }
 /* --- END ADDIE LIST STRUCTURE FIXES --- */
-/* ========================================= */
 
-
-/* --- VIDEO PLAYER STYLES (Unchanged) --- */
+/* --- VIDEO PLAYER STYLES --- */
 .video-wrapper-glass {
     position: relative;
     width: 100%;
@@ -712,7 +612,7 @@ h3 {
     height: 100%;
 }
 
-/* --- MOBILE RESPONSIVE (Unchanged) --- */
+/* --- MOBILE RESPONSIVE --- */
 @media (max-width: 900px) {
     .split-layout { grid-template-columns: 1fr; }
     .sidebar-graphic { display: none; }
