@@ -26,7 +26,6 @@ body {
     color: var(--color-text);
     scroll-behavior: smooth;
     position: relative;
-    /* NOTE: overflow-x: hidden was removed here previously to fix the grid visibility */
 }
 
 /* --- BACKGROUND EFFECTS --- */
@@ -35,7 +34,7 @@ body::before {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; 
-    z-index: 0; /* Original z-index */
+    z-index: -1; /* FIX: Put background elements behind all content layers */
     opacity: 0.4; 
     background-image: 
         radial-gradient(circle at 20% 30%, rgba(159, 64, 255, 0.4) 0%, transparent 50%),
@@ -48,7 +47,7 @@ body::after {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; 
-    z-index: 0; /* Original z-index */
+    z-index: -1; /* FIX: Put background elements behind all content layers */
     opacity: 0.15; 
     background-image:
         linear-gradient(rgba(85, 255, 255, 0.2) 1px, transparent 1px),
@@ -68,14 +67,14 @@ body::after {
     min-height: 100vh;
     position: relative;
     z-index: 5; 
-    /* NOTE: overflow-x: hidden was added here later, but is removed here */
+    overflow-x: hidden; /* FIX: Contains horizontal overflow artifacts */
 }
 
 .sidebar-graphic {
     position: sticky; 
     top: 0;
     height: 100vh; 
-    overflow: hidden; 
+    overflow: hidden;  /* CRITICAL: Restore hidden to hide parallax overflow and maintain background */
     background-color: transparent; 
     border-right: 1px solid var(--glass-border);
     z-index: 1;
@@ -83,6 +82,8 @@ body::after {
     align-items: center;
     justify-content: center;
     grid-area: sidebar;
+    /* FIX: Force a new stacking context to resolve rendering glitch/color bar */
+    transform: translateZ(0); 
 }
 
 .parallax-layer {
@@ -127,7 +128,7 @@ body::after {
 
 .hero-intro {
     /* min-height: 90vh; was removed here to fix grid visibility */
-    min-height: auto; 
+    min-height: auto; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -207,11 +208,14 @@ body::after {
 
 .glass-btn {
     position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center;
-    width: 100%; height: 100%; text-decoration: none; color: white; 
+    width: 100%; height: 100%; 
+    min-height: 40px; /* FIX: Ensure button has minimum size */
+    text-decoration: none; color: white; 
     background: rgba(10, 4, 28, 0.6); 
     border: 1px solid var(--glass-border); 
     backdrop-filter: blur(10px); transition: all 0.4s;
     border-radius: 50px;
+    padding: 10px 0; /* FIX: Add vertical padding for sizing */
 }
 .btn-title { font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-align: center; padding: 0 15px; }
 
