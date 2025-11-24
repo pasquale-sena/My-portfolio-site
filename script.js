@@ -1,14 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- NEW TYPEWRITER LOGIC ---
+    const headlineElement = document.querySelector('.hero-headline');
     
+    if (headlineElement) {
+        // Store original text, replacing <br> with a custom marker for precise timing
+        const originalText = headlineElement.innerHTML.replace(/<br>/gi, '###BR###').trim();
+        
+        // Function to simulate typing
+        const typeWriter = (element, text, speed = 50) => {
+            let i = 0;
+            element.innerHTML = ''; // Clear existing content
+            element.classList.add('is-visible'); // Ensure it's visually active
+            
+            function typing() {
+                if (i < text.length) {
+                    let char = text.charAt(i);
+                    i++;
+                    
+                    // Check for the custom line break marker
+                    if (text.substring(i - 1, i + 6) === '###BR###') {
+                        element.innerHTML += '<br>';
+                        i += 6; // Skip the marker length
+                    } else {
+                        element.innerHTML += char;
+                    }
+                    setTimeout(typing, speed);
+                }
+            }
+            typing();
+        };
+
+        // Activate the typewriter logic immediately on load
+        typeWriter(headlineElement, originalText, 50);
+    }
+    // --- END TYPEWRITER LOGIC ---
+
+
     // 1. Reveal Animations (Text & Buttons)
     const revealElements = document.querySelectorAll('.reveal-text, .dissolve-in, .section-reveal');
     
-    // FIX: Function to instantly reveal elements in the #hero section, bypassing the Intersection Observer
+    // Function to instantly reveal elements in the #hero section, bypassing the Intersection Observer
     const instantReveal = (elements) => {
         elements.forEach(el => {
-            // Directly target and activate elements inside the #hero section
             if (el.closest('#hero')) {
-                // Ensure non-typing elements in the hero are visible instantly
+                // Now, only activate non-typing elements instantly
                 if (!el.classList.contains('hero-headline')) { 
                     el.classList.add('is-visible');
                 }
@@ -22,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observerReveal = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                // Only process elements *not* already revealed by instantReveal
+                // Only process elements *not* already revealed
                 if (!entry.target.classList.contains('is-visible')) { 
                     setTimeout(() => {
                         entry.target.classList.add('is-visible');
