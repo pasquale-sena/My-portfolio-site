@@ -78,16 +78,8 @@ body::after {
 .sidebar-graphic {
     position: sticky; 
     top: 0;
-    height: 100vh; /* Restore 100vh to maintain full-screen sticky sidebar height */
-    overflow: hidden;  /* Restore hidden to clip parallax layers inside */
-    background-color: transparent; 
-    border-right: 1px solid var(--glass-border);
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    grid-area: sidebar;
-    /* Remove any transform: translateZ(0) if present */
+    height: 100vh; /* KEEP THIS RESTORED VALUE */
+    overflow: hidden;
 }
 
 .parallax-layer {
@@ -107,11 +99,20 @@ body::after {
 .parallax-fg { z-index: 3; }
 
 .sidebar-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 300vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300vh;  /* This massive height is necessary for parallax scrolling, but we need to contain it. */
+    
+    /* ADD THIS: Set the wrapper to 100% of its parent's (sidebar-graphic's) height */
+    height: 100%; 
+    
+    /* ADD THIS: Position it absolutely within the sticky sidebar */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .sidebar-char-img {
