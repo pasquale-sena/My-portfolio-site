@@ -8,12 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.forEach(el => {
             // Directly target and activate elements inside the #hero section
             if (el.closest('#hero')) {
-                el.classList.add('is-visible');
+                // Ensure non-typing elements in the hero are visible instantly
+                if (!el.classList.contains('hero-headline')) { 
+                    el.classList.add('is-visible');
+                }
             }
         });
     };
     
-    // Activate the hero elements immediately upon load
+    // Activate the non-typing hero elements immediately upon load
     instantReveal(revealElements);
 
     const observerReveal = new IntersectionObserver((entries) => {
