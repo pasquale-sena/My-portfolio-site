@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    
     // --- NEW TYPEWRITER LOGIC ---
     const headlineElement = document.querySelector('.hero-headline');
     
@@ -15,15 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             function typing() {
                 if (i < text.length) {
-                    let char = text.charAt(i);
-                    i++;
                     
-                    // Check for the custom line break marker
-                    if (text.substring(i - 1, i + 6) === '###BR###') {
+                    // FIX: Check if the next segment is the 7-character break marker
+                    const nextSegment = text.substring(i, i + 7);
+                    
+                    if (nextSegment === '###BR###') { 
                         element.innerHTML += '<br>';
-                        i += 6; // Skip the marker length
+                        i += 7; // Skip the entire 7-character marker
                     } else {
-                        element.innerHTML += char;
+                        element.innerHTML += text.charAt(i);
+                        i++;
                     }
                     setTimeout(typing, speed);
                 }
