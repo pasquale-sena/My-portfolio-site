@@ -176,7 +176,7 @@ body::after {
     letter-spacing: 0.5px;
 }
 
-/* --- INITIAL HIDDEN STATE FOR ANIMATION (ADDED FIX) --- */
+/* --- INITIAL HIDDEN STATE FOR ANIMATION --- */
 .reveal-text, .dissolve-in, .section-reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -599,7 +599,7 @@ h3 {
 
 /* Content (The Description - Line 2) */
 .meta-list .meta-content {
-    /* Ensures content uses the full width below the label */
+    /* FIX: Ensures content uses the full width below the label */
     display: block;
     padding-left: 0;
     font-weight: 400;
