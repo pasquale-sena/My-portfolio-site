@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- TYPEWRITER LOGIC ---
+    // --- TYPEWRITER LOGIC (Conditional) ---
+    // This code only runs if the .hero-headline element exists on the page.
     const headlineElement = document.querySelector('.hero-headline');
     
     if (headlineElement) {
@@ -28,43 +29,81 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // --- END TYPEWRITER LOGIC ---
 
+    // ----------------------------------------------------
+    // 1. MODAL LOGIC (Required for graphic-showcase.html)
+    // ----------------------------------------------------
 
-    // 1. Reveal Animations (Intersection Observer)
+    const modal = document.getElementById("image-modal");
+    const modalImg = document.getElementById("modal-image");
+    const modalCloseBtn = document.getElementById("modal-close-btn");
+
+    // Expose openModal globally (or attach to window) so HTML onclick works
+    window.openModal = function(src) {
+        if (modal && modalImg) {
+            modalImg.src = src;
+            modal.classList.add("active");
+        }
+    }
+
+    if (modalCloseBtn) {
+        modalCloseBtn.onclick = () => {
+            modal.classList.remove("active");
+        };
+    }
+    
+    if (modal) {
+        // Close modal if user clicks outside the image
+        modal.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                modal.classList.remove('active');
+            }
+        });
+    }
+
+    // ----------------------------------------------------
+    // 2. Reveal Animations (Intersection Observer)
+    // ----------------------------------------------------
+
     const revealElements = document.querySelectorAll('.reveal-text, .dissolve-in, .section-reveal');
     
-    // Function to instantly reveal elements in the #hero section, bypassing the Intersection Observer
+    // Function to instantly reveal elements that are likely in the initial viewport
     const instantReveal = (elements) => {
         elements.forEach(el => {
-            if (el.closest('#hero')) {
+            // Check for hero-intro section, which is present on both pages but for different content
+            if (el.closest('.hero-intro') || el.closest('.about-hero-section')) {
                 // Now, only activate non-typing elements instantly
-                if (!el.classList.contains('hero-headline')) { 
+                if (!el.classList.contains('hero-headline')) {
                     el.classList.add('is-visible');
                 }
             }
         });
     };
     
-    // Activate the non-typing hero elements immediately upon load
+    // Activate the instant reveals based on simplified logic for other pages
     instantReveal(revealElements);
 
     const observerReveal = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
                 // Only process elements *not* already revealed
-                if (!entry.target.classList.contains('is-visible')) { 
+                if (!entry.target.classList.contains('is-visible')) {
+                    // Stagger the reveal slightly
                     setTimeout(() => {
                         entry.target.classList.add('is-visible');
-                    }, index * 100); 
+                    }, index * 100);
                 }
                 observerReveal.unobserve(entry.target);
             }
         });
     }, { threshold: 0.1 });
 
+    // Target all elements, including the graphic sections which have 'section-reveal'
     revealElements.forEach(el => observerReveal.observe(el));
 
 
-    // 2. PARALLAX LOGIC
+    // ----------------------------------------------------
+    // 3. PARALLAX LOGIC
+    // ----------------------------------------------------
     const bg = document.querySelector('.parallax-bg');
     const mid = document.querySelector('.parallax-mid');
     const fg = document.querySelector('.parallax-fg');
@@ -80,7 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // 3. Smooth Scroll
+    // ----------------------------------------------------
+    // 4. Smooth Scroll
+    // ----------------------------------------------------
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -94,7 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // 4. AJAX FORM HANDLING (No Redirect)
+    // ----------------------------------------------------
+    // 5. AJAX FORM HANDLING (No Redirect)
+    // ----------------------------------------------------
     const contactForm = document.getElementById('contact-form');
     
     if (contactForm) {
